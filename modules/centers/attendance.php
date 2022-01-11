@@ -49,7 +49,7 @@ if(!defined("APP_START")) die("No Direct Access");
             </div>
         </div>
     </div>
-    <div class="clearfix form-actions">
+    <div class="form-group">
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
                 <button class="btn btn-info" type="submit" name="attendance_save" title="Save Attendance">
