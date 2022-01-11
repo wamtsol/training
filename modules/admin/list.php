@@ -53,9 +53,9 @@ if(!empty($q)){
                 <th>User Name</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Balance</th>
-                <th class="text-center">Status</th>
-                <th>Actions</th>
+                <th>Linked User</th>
+                <th width="5%" class="text-center">Status</th>
+                <th width="5%">Actions</th>
             </tr>
     	</thead>
     	<tbody>
@@ -77,11 +77,7 @@ if(!empty($q)){
                         <td><?php echo unslash($r["username"]); ?></td>
                         <td><?php echo unslash($r["name"]); ?></td>
                         <td><?php echo unslash($r["email"]); ?></td>
-                        <th><a href="admin_manage.php?tab=salary&id=<?php echo $r["id"]?>"><?php
-							$balance = get_user_balance( $r[ "id" ] );
-							$total += $balance;
-                        	echo curr_format( $balance );
-						?></a></th>
+                        <td><?php echo get_field($r["linked_user"], "admin", "name"); ?></td>
                         <td class="text-center"><a href="admin_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                             <?php
                             if($r["status"]==0){
@@ -105,11 +101,6 @@ if(!empty($q)){
                     $sn++;
                 }
                 ?>
-                <tr>
-                	<td colspan="6">&nbsp;</td>
-                    <th><?php echo curr_format( $total )?></th>
-                    <td colspan="2">&nbsp;</td>
-                </tr>
                 <tr>
                     <td colspan="5" class="actions">
                         <select name="bulk_action" id="bulk_action" title="Choose Action">

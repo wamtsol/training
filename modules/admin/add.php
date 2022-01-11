@@ -9,8 +9,7 @@ else{
 	$username="";
 	$email="";
 	$password="";
-	$monthly_salary="";
-    $project_ids=array();
+	$linked_user="";
 }
 ?>
 <div class="page-header">
@@ -23,9 +22,6 @@ else{
   	</div>
 </div>
 <form action="admin_manage.php?tab=add" method="post" enctype="multipart/form-data" name="frmAdd"  onSubmit="return checkFields();" class="form-horizontal form-horizontal-left">
-	<?php
-    	$i=0;
-  	?>
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
@@ -50,19 +46,19 @@ else{
     </div>
     <div class="form-group">
         <div class="row">
-            <div class="col-sm-2 control-label no-padding-right">
-                <label class="form-label" for="project_id">Project </label>
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="linked_user">Linked User </label>
             </div>
             <div class="col-sm-10">
-                <select name="project_ids[]" title="Choose Option" multiple="multiple" class="select_multiple">
-                    <option value="0">Select Project</option>
+                <select name="linked_user" title="Choose Option">
+                    <option value="0">Select Linked User</option>
                     <?php
-                    $res=doquery("Select * from project order by title",$dblink);
+                    $res=doquery("Select * from admin where status = 1 order by name",$dblink);
                     if(numrows($res)>0){
                         while($rec=dofetch($res)){
-                            ?>
-                            <option value="<?php echo $rec["id"]?>"<?php echo in_array($rec["id"], $project_ids)?"selected":"";?>><?php echo unslash($rec["title"]); ?></option>
-                            <?php			
+                        ?>
+                        <option value="<?php echo $rec["id"]?>"<?php echo($linked_user==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"]); ?></option>
+                        <?php			
                         }			
                     }
                     ?>
@@ -97,16 +93,6 @@ else{
             </div>
             <div class="col-sm-10">
                 <input type="email" title="Enter Email" value="<?php echo $email; ?>" name="email" id="email" class="form-control">
-            </div>
-        </div>
-  	</div>
-    <div class="form-group">
-    	<div class="row">
-        	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="monthly_salary">Monthly Salary</label>
-            </div>
-            <div class="col-sm-10">
-                <input type="text" title="Enter Salary" value="<?php echo $monthly_salary; ?>" name="monthly_salary" id="monthly_salary" class="form-control">
             </div>
         </div>
   	</div>
