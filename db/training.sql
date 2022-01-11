@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 11, 2022 at 04:01 PM
+-- Generation Time: Jan 11, 2022 at 10:39 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -72,6 +72,45 @@ CREATE TABLE `admin_type` (
 INSERT INTO `admin_type` (`id`, `title`, `can_add`, `can_edit`, `can_delete`, `can_read`, `status`, `ts`) VALUES
 (1, 'Administrator', 1, 1, 1, 1, 1, '2017-02-27 12:10:38'),
 (3, 'FARHAN', 0, 0, 0, 1, 1, '2022-01-01 11:57:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL,
+  `center_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `center_id`, `user_id`, `date`, `ts`) VALUES
+(1, 3, 1, '2022-01-12', '2022-01-11 22:37:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance_records`
+--
+
+CREATE TABLE `attendance_records` (
+  `attendance_id` int(11) DEFAULT NULL,
+  `trainee_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `attendance_records`
+--
+
+INSERT INTO `attendance_records` (`attendance_id`, `trainee_id`) VALUES
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -425,7 +464,28 @@ CREATE TABLE `trainees` (
 --
 
 INSERT INTO `trainees` (`id`, `name`, `gender`, `cnic`, `cnic_photo_front`, `cnic_photo_back`, `birth_date`, `status`, `ts`) VALUES
-(1, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2021-12-01', 1, '2022-01-11 12:27:35');
+(1, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2021-12-01', 1, '2022-01-11 12:27:35'),
+(2, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-12 00:51:08'),
+(3, 'Hassan', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-11 22:35:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainees_2_center`
+--
+
+CREATE TABLE `trainees_2_center` (
+  `trainee_id` int(11) DEFAULT NULL,
+  `center_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `trainees_2_center`
+--
+
+INSERT INTO `trainees_2_center` (`trainee_id`, `center_id`) VALUES
+(2, 3),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -486,6 +546,12 @@ ALTER TABLE `admin`
 -- Indexes for table `admin_type`
 --
 ALTER TABLE `admin_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -577,6 +643,12 @@ ALTER TABLE `admin_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `centers`
 --
 ALTER TABLE `centers`
@@ -628,7 +700,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `trainees`
 --
 ALTER TABLE `trainees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `uploads`

@@ -56,9 +56,6 @@ $(document).ready(function(){
 <link rel="stylesheet" type="text/css" href="css/angularjs-datetime-picker.css" />
 <script type="text/javascript" src="js/datetimepicker.js"></script>
 <script type="text/javascript" src="js/attendance.angular.js"></script>
-<script type="text/javascript" src="js/invoice.angular.js"></script>
-<script type="text/javascript" src="js/supply.angular.js"></script>
-<script type="text/javascript" src="js/placement.angular.js"></script>
 <script type="text/javascript" src="js/angular-chosen.js"></script>
 <script>
 $(document).ready(function() {     

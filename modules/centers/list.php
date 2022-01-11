@@ -116,6 +116,7 @@ if(!empty($q)){
                 <th width="15%">Center</th>
                 <th width="15%">Incharge User</th>
                 <th width="10%">Trainees</th>
+                <th width="10%">Attendance</th>
                 <th width="5%" class="text-center">Status</th>
                 <th width="5%" class="text-center">Actions</th>
             </tr>
@@ -139,6 +140,7 @@ if(!empty($q)){
                         <td><?php echo unslash($r["center"]); ?></td>
                         <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
                         <td><a href="trainees_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainees</a></td>
+                        <td><a href="centers_manage.php?tab=attendance&id=<?php echo $r["id"]?>&date=<?php echo date('d/m/Y');?>" class="btn btn-sm btn-primary fancybox_iframe">Attendance</a></td>
                         <td class="text-center">
                             <a href="centers_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
