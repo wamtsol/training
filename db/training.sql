@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 10, 2022 at 04:47 PM
+-- Generation Time: Jan 11, 2022 at 04:01 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -89,6 +89,15 @@ CREATE TABLE `centers` (
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `centers`
+--
+
+INSERT INTO `centers` (`id`, `project_id`, `district_id`, `center`, `incharge_user_id`, `status`, `ts`) VALUES
+(1, 1, 1, 'Cant Center', 0, 1, '2022-01-11 09:26:10'),
+(2, 1, 2, 'Cant Center 1', 0, 1, '2022-01-11 09:26:19'),
+(3, 3, 1, 'Cant Center 3', 0, 1, '2022-01-11 09:26:33');
+
 -- --------------------------------------------------------
 
 --
@@ -160,7 +169,8 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `title`, `status`, `ts`) VALUES
-(2, 'Home', 1, '2022-01-10 15:59:12');
+(2, 'Home', 1, '2022-01-10 15:59:12'),
+(3, 'New Dept', 1, '2022-01-11 09:23:34');
 
 -- --------------------------------------------------------
 
@@ -174,6 +184,14 @@ CREATE TABLE `designations` (
   `status` int(1) NOT NULL DEFAULT '1',
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `designations`
+--
+
+INSERT INTO `designations` (`id`, `title`, `status`, `ts`) VALUES
+(1, 'Incharge', 1, '2022-01-11 09:25:14'),
+(2, 'Manager', 1, '2022-01-11 09:25:31');
 
 -- --------------------------------------------------------
 
@@ -208,9 +226,9 @@ CREATE TABLE `menu` (
   `url` varchar(100) NOT NULL,
   `parent_id` int(11) NOT NULL,
   `depth` int(1) NOT NULL,
-  `sortorder` int(11) NOT NULL,
-  `icon` varchar(200) NOT NULL,
-  `small_icon` varchar(200) CHARACTER SET latin1 NOT NULL
+  `sortorder` int(11) DEFAULT NULL,
+  `icon` varchar(200) DEFAULT NULL,
+  `small_icon` varchar(200) CHARACTER SET latin1 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -219,38 +237,18 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`id`, `title`, `url`, `parent_id`, `depth`, `sortorder`, `icon`, `small_icon`) VALUES
 (1, 'Dashboard', '#', 0, 0, 1, 'dashboard.png', 'home'),
-(68, 'Bangles Setting', '#', 0, 0, 6, 'bengles.jpg', 'magnet'),
-(69, 'Color', 'color_manage.php', 68, 1, 7, 'color.png', 'circle'),
+(68, 'Training', '#', 0, 0, 6, 'training.jpg', 'magnet'),
+(69, 'Departments', 'departments_manage.php', 68, 1, 7, 'departments.png', 'circle'),
 (8, 'Manage Users', 'admin_manage.php', 1, 1, 4, 'administrator.png', 'user'),
 (7, 'General Settings', 'config_manage.php?config_id=1', 1, 1, 2, 'general-settings.png', 'cog'),
 (12, 'Upload Center', 'upload_manage.php', 1, 1, 3, 'upload-center.png', 'file-o'),
-(22, 'Reports', '#', 0, 0, 24, 'reports.png', 'line-chart'),
-(24, 'General Journal', 'report_manage.php?tab=general_journal', 22, 1, 23, 'general-journal.png', 'th-large'),
 (26, 'Manage User Types', 'admin_type_manage.php', 1, 1, 5, 'admin-type.png', 'unlock-alt'),
-(30, 'Accounts', '#', 0, 0, 19, 'accounts.jpg', 'suitcase'),
-(28, 'Manage Expenses', 'expense_manage.php', 30, 1, 14, 'manage-expense.png', 'car'),
-(32, 'Manage Transactions', 'transaction_manage.php', 30, 1, 21, 'transaction.png', 'money'),
-(35, 'Manage Accounts', 'account_manage.php', 30, 1, 10, 'manage-accounts.png', 'balance-scale'),
-(40, 'Expense Category', 'expense_category_manage.php', 30, 1, 13, 'expense-category.png', 'server'),
-(74, 'Incoming', 'incoming_manage.php', 78, 1, 13, 'incoming.png', 'rub'),
-(75, 'Washing', 'washing_manage.php', 78, 1, 14, 'washing.png', 'eraser'),
-(76, 'Delivery', 'delivery_manage.php', 78, 1, 15, 'delivery.png', 'yelp'),
-(53, 'Balance Sheet', 'report_manage.php?tab=balance_sheet', 22, 1, 24, 'balance-sheet.png', '500px'),
-(54, 'Income Report', 'report_manage.php?tab=income', 22, 1, 25, 'income-report.png', 'backward'),
-(73, 'Labour', 'labour_manage.php', 68, 1, 12, 'labour.png', 'male'),
-(70, 'Size', 'size_manage.php', 68, 1, 8, 'size.png', 'exchange'),
-(71, 'Design', 'design_manage.php', 68, 1, 9, 'design.png', 'empire'),
-(72, 'Customer', 'customer_manage.php', 30, 1, 11, 'customer.png', 'male'),
-(77, 'Customer Payment', 'customer_payment_manage.php', 30, 1, 12, 'customer-payment.png', 'random'),
-(78, 'Bangles Manufacturing', '#', 0, 0, 7, 'bengles-manufacturing.jpg', 'map-signs'),
-(79, 'Employees', '#', 0, 0, 18, 'employees.png', 'male'),
-(80, 'Manage Employee', 'employee_manage.php', 79, 1, 27, 'manage-employee.png', 'user'),
-(84, 'Employee Payment', 'employee_payment_manage.php', 79, 1, 30, 'employee-payment.png', 'archive'),
-(82, 'Stock Report', 'report_manage.php?tab=stock_report', 22, 1, 28, 'stock-report.png', 'cogs'),
-(83, 'Machine', 'machine_manage.php', 68, 1, 30, 'machine.png', 'magnet'),
-(85, 'Employee Salary', 'employee_salary_manage.php', 79, 1, 31, 'employee-salary.png', 'anchor'),
-(86, 'Manage Invoice', 'invoice_manage.php', 30, 1, 32, 'manage-invoice.png', 'balance-scale'),
-(87, 'Stock Report New', 'report_manage.php?tab=stock_total', 22, 1, 33, 'stock-report-new.png', 'android');
+(32, 'Users', 'users_manage.php', 68, 1, 12, 'transaction.png', 'money'),
+(73, 'Centers', 'centers_manage.php', 68, 1, 10, 'centers.png', 'columns'),
+(70, 'Districts', 'districts_manage.php', 68, 1, 8, 'districts.png', 'exchange'),
+(71, 'Projects', 'projects_manage.php', 68, 1, 9, 'projects.png', 'empire'),
+(83, 'Designations', 'designations_manage.php', 68, 1, 11, 'designations.png', 'magnet'),
+(88, 'Trainees', 'trainees_manage.php', 68, 1, 19, 'trainees.png', 'male');
 
 -- --------------------------------------------------------
 
@@ -379,7 +377,8 @@ INSERT INTO `menu_2_admin_type` (`menu_id`, `admin_type_id`) VALUES
 (85, 1),
 (86, 1),
 (87, 1),
-(87, 3);
+(87, 3),
+(88, 1);
 
 -- --------------------------------------------------------
 
@@ -400,7 +399,8 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `department_id`, `title`, `status`, `ts`) VALUES
-(1, 2, 'Project 1', 1, '2022-01-10 16:42:32');
+(1, 2, 'Project 1', 1, '2022-01-11 09:24:31'),
+(3, 3, 'Project 2', 1, '2022-01-11 09:23:57');
 
 -- --------------------------------------------------------
 
@@ -419,6 +419,13 @@ CREATE TABLE `trainees` (
   `status` int(1) NOT NULL DEFAULT '1',
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `trainees`
+--
+
+INSERT INTO `trainees` (`id`, `name`, `gender`, `cnic`, `cnic_photo_front`, `cnic_photo_back`, `birth_date`, `status`, `ts`) VALUES
+(1, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2021-12-01', 1, '2022-01-11 12:27:35');
 
 -- --------------------------------------------------------
 
@@ -457,6 +464,13 @@ CREATE TABLE `users` (
   `status` int(1) NOT NULL DEFAULT '1',
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `designation_id`, `name`, `gender`, `cnic`, `cnic_photo_front`, `cnic_photo_back`, `appointment_date`, `status`, `ts`) VALUES
+(5, 2, 'Rakhshinda', 1, '41304-2094017-5', NULL, NULL, '2022-01-05', 1, '2022-01-11 11:30:08');
 
 --
 -- Indexes for dumped tables
@@ -566,7 +580,7 @@ ALTER TABLE `admin_type`
 -- AUTO_INCREMENT for table `centers`
 --
 ALTER TABLE `centers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `config_type`
@@ -584,13 +598,13 @@ ALTER TABLE `config_variable`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `designations`
 --
 ALTER TABLE `designations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -602,19 +616,19 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `trainees`
 --
 ALTER TABLE `trainees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uploads`
@@ -626,7 +640,7 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

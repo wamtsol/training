@@ -340,7 +340,7 @@ App Logo
 }
 .applogo .logo {
   	color: #fff;
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: bold;
 	font-family: 'Montserrat', sans-serif;
 	line-height: 24px;
@@ -4485,9 +4485,7 @@ body.popup-content {
     width: 175px;
 }
 .applogo {
-    padding:6px 6px 0;
-}
-.page-header .btn.btn-light:last-child {
+    padding:18px 6px 0;
 }
 .text-right{
 	text-align:right;

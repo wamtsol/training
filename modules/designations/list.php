@@ -3,43 +3,27 @@ if(!defined("APP_START")) die("No Direct Access");
 $q="";
 $extra='';
 $is_search=false;
-if(isset($_GET["department_id"])){
-	$department_id=slash($_GET["department_id"]);
-	$_SESSION["projects_manage"]["department_id"]=$department_id;
-}
-if(isset($_SESSION["projects_manage"]["department_id"])){
-    $department_id=$_SESSION["projects_manage"]["department_id"];
-}
-else{
-    $department_id="";
-}
-if($department_id!=""){
-	$extra.=" and department_id='".$department_id."'";
-	$is_search=true;
-}
 if(isset($_GET["q"])){
 	$q=slash($_GET["q"]);
-	$_SESSION["projects_manage"]["q"]=$q;
+	$_SESSION["designations_manage"]["q"]=$q;
 }
-if(isset($_SESSION["projects_manage"]["q"])){
-    $q=$_SESSION["projects_manage"]["q"];
-}
-else{
-    $q="";
-}
+if(isset($_SESSION["designations_manage"]["q"]))
+	$q=$_SESSION["designations_manage"]["q"];
+else
+	$q="";
 if(!empty($q)){
 	$extra.=" and title like '%".$q."%'";
 	$is_search=true;
 }
 ?>
 <div class="page-header">
-	<h1 class="title">Projects</h1>
+	<h1 class="title">Designations</h1>
   	<ol class="breadcrumb">
-    	<li class="active">Manage Projects</li>
+    	<li class="active">Manage Designations</li>
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="projects_manage.php?tab=add" class="btn btn-light editproject">Add New Project</a> 
+        	<a href="designations_manage.php?tab=add" class="btn btn-light editproject">Add New Designation</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
     	</div> 
     </div> 
@@ -48,21 +32,6 @@ if(!empty($q)){
     <li class="col-xs-12 col-lg-12 col-sm-12">
     	<div>
         	<form class="form-horizontal" action="" method="get">
-                <div class="col-sm-2">
-                	<select name="department_id" id="department_id" class="custom_select">
-                        <option value=""<?php echo ($department_id=="")? " selected":"";?>>Select Department</option>
-                        <?php
-                        $res=doquery("select * from departments where status = 1 order by title",$dblink);
-                        if(numrows($res)>=0){
-                            while($rec=dofetch($res)){
-                            ?>
-                            <option value="<?php echo $rec["id"]?>" <?php echo($department_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["title"])?></option>
-                            <?php
-                            }
-                        }	
-                        ?>
-                    </select>
-                </div>
                 <div class="col-sm-3">
                   <input type="text" title="Enter String" value="<?php echo $q;?>" name="q" id="search" class="form-control" >  
                 </div>
@@ -82,7 +51,6 @@ if(!empty($q)){
                 <th class="text-center" width="3%"><div class="checkbox checkbox-primary">
                     <input type="checkbox" id="select_all" value="0" title="Select All Records">
                     <label for="select_all"></label></div></th>
-                <th width="20%">Department</th>
                 <th>Title</th>
                 <th width="5%" class="text-center">Status</th>
                 <th width="10%" class="text-center">Actions</th>
@@ -90,7 +58,7 @@ if(!empty($q)){
         </thead>
         <tbody>
             <?php 
-            $sql="select * from projects where 1 $extra order by title";
+            $sql="select * from designations where 1 $extra order by title";
             $rs=show_page($rows, $pageNum, $sql);
             if(numrows($rs)>0){
                 $sn=1;
@@ -102,10 +70,9 @@ if(!empty($q)){
                             <input type="checkbox" name="id[]" id="<?php echo "rec_".$sn?>"  value="<?php echo $r["id"]?>" title="Select Record" />
                             <label for="<?php echo "rec_".$sn?>"></label></div>
                         </td>
-                        <td><?php echo get_field($r["department_id"], "departments", "title"); ?></td>
                         <td><?php echo unslash($r["title"]); ?></td>
                         <td class="text-center">
-                            <a href="projects_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
+                            <a href="designations_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
                                 if($r["status"]==0){
                                     ?>
@@ -121,8 +88,8 @@ if(!empty($q)){
                             </a>
                         </td>
                         <td class="text-center">
-                            <a href="projects_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
-                            <a onclick="return confirm('Are you sure you want to delete')" href="projects_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
+                            <a href="designations_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
+                            <a onclick="return confirm('Are you sure you want to delete')" href="designations_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
                         </td>
                     </tr>  
                     <?php 
@@ -139,14 +106,14 @@ if(!empty($q)){
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="3" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "projects", $sql, $pageNum)?></td>
+                    <td colspan="2" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "designations", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
             else{	
                 ?>
                 <tr>
-                    <td colspan="6"  class="no-record">No Result Found</td>
+                    <td colspan="5"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }
