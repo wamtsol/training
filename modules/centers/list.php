@@ -113,8 +113,9 @@ if(!empty($q)){
                     <label for="select_all"></label></div></th>
                 <th width="15%">Project</th>
                 <th width="15%">District</th>
-                <th width="20%">Center</th>
+                <th width="15%">Center</th>
                 <th width="15%">Incharge User</th>
+                <th width="10%">Trainees</th>
                 <th width="5%" class="text-center">Status</th>
                 <th width="5%" class="text-center">Actions</th>
             </tr>
@@ -137,6 +138,7 @@ if(!empty($q)){
                         <td><?php echo get_field($r["district_id"], "districts", "name"); ?></td>
                         <td><?php echo unslash($r["center"]); ?></td>
                         <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
+                        <td><a href="trainees_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainees</a></td>
                         <td class="text-center">
                             <a href="centers_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
@@ -172,14 +174,14 @@ if(!empty($q)){
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="3" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "centers", $sql, $pageNum)?></td>
+                    <td colspan="4" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "centers", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
             else{	
                 ?>
                 <tr>
-                    <td colspan="8"  class="no-record">No Result Found</td>
+                    <td colspan="9"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }

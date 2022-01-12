@@ -21,6 +21,11 @@ if(isset($_POST["trainees_add"])){
 			$sql="Update trainees set cnic_photo_back='".$cnic_photo_back."' where id=$id";
 			doquery($sql,$dblink);
 		}
+		if(isset( $center_ids ) && count( $center_ids ) > 0 ) {
+			foreach( $center_ids as $center_id ) {
+				doquery( "insert into trainees_2_center(trainee_id, center_id) values( '".$id."', '".$center_id."' )", $dblink );
+			}
+		}
 		unset($_SESSION["trainees_manage"]["add"]);
 		header('Location: trainees_manage.php?tab=list&msg='.url_encode("Successfully Added"));
 		die;

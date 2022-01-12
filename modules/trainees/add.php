@@ -8,6 +8,7 @@ else{
     $gender="";
     $cnic="";
     $birth_date=date("d/m/Y");
+    $center_ids=isset($_SESSION["trainees_manage"]["center_id"])?[$_SESSION["trainees_manage"]["center_id"]]:array();
 }
 ?>
 <div class="page-header">
@@ -20,6 +21,27 @@ else{
   	</div>
 </div>
 <form class="form-horizontal form-horizontal-left" role="form" action="trainees_manage.php?tab=add" method="post" enctype="multipart/form-data" name="frmAdd"  onSubmit="return checkFields();">
+    <div class="form-group">
+        <div class="row">
+        	<div class="col-sm-2 control-label">
+            	<label class="form-label" for="center_id">Center </label>
+            </div>
+            <div class="col-sm-10">
+                <select name="center_ids[]" id="center_id" multiple="multiple" class="select_multiple" title="Choose Option">
+                    <?php
+                    $res=doquery("select * from centers where status = 1 order by center",$dblink);
+                    if(numrows($res)>0){
+                        while($rec=dofetch($res)){
+                        ?>
+                        <option value="<?php echo $rec["id"]?>"<?php echo(isset($center_ids) && in_array( $rec["id"], $center_ids))?"selected":"";?>><?php echo unslash($rec["center"]);?></option>
+                        <?php			
+                        }			
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">

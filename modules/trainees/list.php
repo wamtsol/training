@@ -3,6 +3,20 @@ if(!defined("APP_START")) die("No Direct Access");
 $q="";
 $extra='';
 $is_search=false;
+if(isset($_GET["center_id"])){
+	$center_id=slash($_GET["center_id"]);
+	$_SESSION["trainees_manage"]["center_id"]=$center_id;
+}
+if(isset($_SESSION["trainees_manage"]["center_id"])){
+    $center_id=$_SESSION["trainees_manage"]["center_id"];
+}
+else{
+    $center_id="";
+}
+if($center_id!=""){
+	$extra.=" and center_id='".$center_id."'";
+	$is_search=true;
+}
 if(isset($_GET["q"])){
 	$q=slash($_GET["q"]);
 	$_SESSION["trainees_manage"]["q"]=$q;
@@ -34,10 +48,25 @@ if(!empty($q)){
     <li class="col-xs-12 col-lg-12 col-sm-12">
     	<div>
         	<form class="form-horizontal" action="" method="get">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
+                	<select name="center_id" id="center_id" class="custom_select">
+                        <option value=""<?php echo ($center_id=="")? " selected":"";?>>Select Center</option>
+                        <?php
+                        $res=doquery("select * from centers where status = 1 order by center",$dblink);
+                        if(numrows($res)>=0){
+                            while($rec=dofetch($res)){
+                            ?>
+                            <option value="<?php echo $rec["id"]?>" <?php echo($center_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["center"])?></option>
+                            <?php
+                            }
+                        }	
+                        ?>
+                    </select>
+                </div>
+                <div class="col-sm-3">
                   <input type="text" title="Enter String" value="<?php echo $q;?>" name="q" id="search" class="form-control" >  
                 </div>
-                <div class="col-sm-2 text-left">
+                <div class="col-sm-3 text-left">
                     <input type="button" class="btn btn-danger btn-l reset_search" value="Reset" alt="Reset Record" title="Reset Record" />
                     <input type="submit" class="btn btn-default btn-l" value="Search" alt="Search Record" title="Search Record" />
                 </div>
@@ -63,7 +92,7 @@ if(!empty($q)){
         </thead>
         <tbody>
             <?php 
-            $sql="select * from trainees where 1 $extra order by name";
+            $sql="select a.* from trainees a left join trainees_2_center b on a.id = b.trainee_id where 1 $extra order by name";
             $rs=show_page($rows, $pageNum, $sql);
             if(numrows($rs)>0){
                 $sn=1;

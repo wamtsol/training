@@ -15,6 +15,27 @@ if(!defined("APP_START")) die("No Direct Access");
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
+            	<label class="form-label" for="center_id">Center </label>
+            </div>
+            <div class="col-sm-10">
+                <select name="center_ids[]" id="center_id" multiple="multiple" class="select_multiple" title="Choose Option">
+                    <?php
+                    $res=doquery("select * from centers where status = 1 order by center",$dblink);
+                    if(numrows($res)>0){
+                        while($rec=dofetch($res)){
+                        ?>
+                        <option value="<?php echo $rec["id"]?>"<?php echo(isset($center_ids) && in_array( $rec["id"], $center_ids))?"selected":"";?>><?php echo unslash($rec["center"]);?></option>
+                        <?php			
+                        }			
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+        	<div class="col-sm-2 control-label">
             	<label class="form-label" for="name">Name <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
