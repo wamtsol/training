@@ -7,6 +7,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
 		$trainee = dofetch( $trainees );
 		deleteFile($file_upload_root."trainee_cnic/".$trainee["cnic_photo_front"]);
 		deleteFile($file_upload_root."trainee_cnic/".$trainee["cnic_photo_back"]);
+		doquery("delete from trainees_2_center where trainee_id='".$id."'",$dblink);
 		doquery("delete from trainees where id='".$id."'",$dblink);
 	}
 	header("Location: trainees_manage.php");

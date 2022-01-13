@@ -20,7 +20,7 @@ else{
     	<div class="btn-group" role="group" aria-label="..."> <a href="trainees_manage.php" class="btn btn-light editproject">Back to List</a> </div>
   	</div>
 </div>
-<form class="form-horizontal form-horizontal-left" role="form" action="trainees_manage.php?tab=add" method="post" enctype="multipart/form-data" name="frmAdd"  onSubmit="return checkFields();">
+<form class="form-horizontal form-horizontal-left" role="form" action="trainees_manage.php?tab=add" method="post" enctype="multipart/form-data" name="frmAdd">
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">

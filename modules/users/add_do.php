@@ -21,6 +21,11 @@ if(isset($_POST["users_add"])){
 			$sql="Update users set cnic_photo_back='".$cnic_photo_back."' where id=$id";
 			doquery($sql,$dblink);
 		}
+		if(isset( $center_ids ) && count( $center_ids ) > 0 ) {
+			foreach( $center_ids as $center_id ) {
+				doquery( "insert into users_2_center(user_id, center_id) values( '".$id."', '".$center_id."' )", $dblink );
+			}
+		}
 		unset($_SESSION["users_manage"]["add"]);
 		header('Location: users_manage.php?tab=list&msg='.url_encode("Successfully Added"));
 		die;

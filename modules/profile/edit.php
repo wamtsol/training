@@ -42,16 +42,6 @@ if(!defined("APP_START")) die("No Direct Access");
             </div>
         </div>
   	</div>
-    <div class="form-group">
-    	<div class="row">
-        	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="monthly_salary">Monthly Salary</label>
-            </div>
-            <div class="col-sm-10">
-                <input type="text" title="Enter Salary" value="<?php echo $monthly_salary; ?>" name="monthly_salary" id="monthly_salary" class="form-control">
-            </div>
-        </div>
-  	</div>
   	<div class="form-group">
     	<div class="row">
         	<div class="col-sm-2 control-label">

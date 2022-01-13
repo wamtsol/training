@@ -4,7 +4,7 @@ angular.module('attendance', ['ngAnimate', 'angularMoment']).controller('attenda
 		$scope.wctAJAX = function( wctData, wctCallback ) {
 			wctRequest = {
 				method: 'POST',
-				url: 'centers_manage.php',
+				url: 'attendance_manage.php',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				transformRequest: function(obj) {
 					var str = [];
@@ -21,7 +21,7 @@ angular.module('attendance', ['ngAnimate', 'angularMoment']).controller('attenda
 				console.log("Error in fetching data");
 			});
 		}
-		$scope.wctAJAX( {tab: 'trainee_list', id: $("#id").val(), date: $("#date").val()}, function( response ){
+		$scope.wctAJAX( {tab: 'trainee_list', center_id: $("#id").val(), id: $("#ida").val(), date: $("#date").val()}, function( response ){
 			$scope.students = response;
 		});
 	}

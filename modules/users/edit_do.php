@@ -38,6 +38,12 @@ if(isset($_POST["users_edit"])){
 				doquery($sql,$dblink);
 			}
 		}
+		doquery("delete from users_2_center where user_id='".$id."'", $dblink);
+		if(isset( $center_ids ) && count( $center_ids ) > 0 ) {
+			foreach( $center_ids as $center_id ) {
+				doquery( "insert into users_2_center(user_id, center_id) values( '".$id."', '".$center_id."' )", $dblink );
+			}
+		}
 		unset($_SESSION["users_manage"]["edit"]);
 		header('Location: users_manage.php?tab=list&msg='.url_encode("Successfully Updated"));
 		die;
@@ -57,6 +63,14 @@ if(isset($_GET["id"]) && $_GET["id"]!=""){
 		foreach($r as $key=>$value)
 			$$key=htmlspecialchars(unslash($value));
 			$appointment_date=date_convert($appointment_date);
+			$center_ids = array();
+			$sql="select * from users_2_center where user_id='".$id."'";
+			$rs1 = doquery( $sql, $dblink );
+			if( numrows( $rs1 ) > 0 ) {
+				while( $r1 = dofetch( $rs1 ) ) {
+					$center_ids[] = $r1[ "center_id" ];
+				}
+			}
 		if(isset($_SESSION["users_manage"]["edit"]))
 			extract($_SESSION["users_manage"]["edit"]);
 	}

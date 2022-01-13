@@ -47,13 +47,13 @@ if(!empty($q)){
 }
 ?>
 <div class="page-header">
-	<h1 class="title">Centers</h1>
+	<h1 class="title">Batches</h1>
   	<ol class="breadcrumb">
-    	<li class="active">Manage Centers</li>
+    	<li class="active">Manage Batches</li>
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="centers_manage.php?tab=add" class="btn btn-light editproject">Add New Center</a> 
+        	<a href="centers_manage.php?tab=add" class="btn btn-light editproject">Add New Batch</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
     	</div> 
     </div> 
@@ -113,8 +113,9 @@ if(!empty($q)){
                     <label for="select_all"></label></div></th>
                 <th width="15%">Project</th>
                 <th width="15%">District</th>
-                <th width="15%">Center</th>
+                <th width="15%">Batch</th>
                 <th width="15%">Incharge User</th>
+                <th width="10%">Trainers</th>
                 <th width="10%">Trainees</th>
                 <th width="10%">Attendance</th>
                 <th width="5%" class="text-center">Status</th>
@@ -139,8 +140,9 @@ if(!empty($q)){
                         <td><?php echo get_field($r["district_id"], "districts", "name"); ?></td>
                         <td><?php echo unslash($r["center"]); ?></td>
                         <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
+                        <td><a href="users_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainers</a></td>
                         <td><a href="trainees_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainees</a></td>
-                        <td><a href="centers_manage.php?tab=attendance&id=<?php echo $r["id"]?>&date=<?php echo date('d/m/Y');?>" class="btn btn-sm btn-primary fancybox_iframe">Attendance</a></td>
+                        <td><a href="attendance_manage.php?tab=list&center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Attendance</a></td>
                         <td class="text-center">
                             <a href="centers_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
@@ -167,7 +169,7 @@ if(!empty($q)){
                 }
                 ?>
                 <tr>
-                    <td colspan="5" class="actions">
+                    <td colspan="6" class="actions">
                         <select name="bulk_action" class="" id="bulk_action" title="Choose Action">
                             <option value="null">Bulk Action</option>
                             <option value="delete">Delete</option>
@@ -183,7 +185,7 @@ if(!empty($q)){
             else{	
                 ?>
                 <tr>
-                    <td colspan="9"  class="no-record">No Result Found</td>
+                    <td colspan="11"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }

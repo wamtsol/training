@@ -33,9 +33,9 @@ if(!empty($q)){
 }
 ?>
 <div class="page-header">
-	<h1 class="title">Projects</h1>
+	<h1 class="title">Projects/Course</h1>
   	<ol class="breadcrumb">
-    	<li class="active">Manage Projects</li>
+    	<li class="active">Manage Projects/Course</li>
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 

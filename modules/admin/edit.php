@@ -43,7 +43,7 @@ if(!defined("APP_START")) die("No Direct Access");
                 <select name="linked_user" title="Choose Option">
                     <option value="0">Select Linked User</option>
                     <?php
-                    $res=doquery("Select * from admin where status = 1 order by name",$dblink);
+                    $res=doquery("Select * from users where status = 1 order by name",$dblink);
                     if(numrows($res)>0){
                         while($rec=dofetch($res)){
                         ?>

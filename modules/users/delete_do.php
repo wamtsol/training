@@ -7,6 +7,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
 		$user = dofetch( $users );
 		deleteFile($file_upload_root."user_cnic/".$user["cnic_photo_front"]);
 		deleteFile($file_upload_root."user_cnic/".$user["cnic_photo_back"]);
+		doquery("delete from users_2_center where user_id='".$id."'",$dblink);
 		doquery("delete from users where id='".$id."'",$dblink);
 	}
 	header("Location: users_manage.php");

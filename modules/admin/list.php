@@ -77,7 +77,7 @@ if(!empty($q)){
                         <td><?php echo unslash($r["username"]); ?></td>
                         <td><?php echo unslash($r["name"]); ?></td>
                         <td><?php echo unslash($r["email"]); ?></td>
-                        <td><?php echo get_field($r["linked_user"], "admin", "name"); ?></td>
+                        <td><?php echo get_field($r["linked_user"], "users", "name"); ?></td>
                         <td class="text-center"><a href="admin_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                             <?php
                             if($r["status"]==0){
@@ -111,14 +111,14 @@ if(!empty($q)){
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="3" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "admin", $sql, $pageNum)?></td>
+                    <td colspan="4" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "admin", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
             else{	
                 ?>
                 <tr>
-                    <td colspan="8"  class="no-record">No Result Found</td>
+                    <td colspan="9"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }

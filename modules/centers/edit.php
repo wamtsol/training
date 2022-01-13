@@ -2,9 +2,9 @@
 if(!defined("APP_START")) die("No Direct Access");
 ?>
 <div class="page-header">
-	<h1 class="title">Edit Center</h1>
+	<h1 class="title">Edit Batch</h1>
   	<ol class="breadcrumb">
-    	<li class="active">Manage Centers</li>
+    	<li class="active">Manage Batches</li>
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> <a href="centers_manage.php" class="btn btn-light editproject">Back to List</a> </div>
@@ -59,7 +59,7 @@ if(!defined("APP_START")) die("No Direct Access");
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="center">Center <span class="red">*</span></label>
+            	<label class="form-label" for="center">Batch <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Center" value="<?php echo $center; ?>" name="center" id="center" class="form-control" />
