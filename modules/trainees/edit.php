@@ -24,7 +24,7 @@ if(!defined("APP_START")) die("No Direct Access");
                     if(numrows($res)>0){
                         while($rec=dofetch($res)){
                         ?>
-                        <option value="<?php echo $rec["id"]?>"<?php echo(isset($center_ids) && in_array( $rec["id"], $center_ids))?"selected":"";?>><?php echo unslash($rec["center"]);?></option>
+                        <option value="<?php echo $rec["id"]?>"<?php echo(isset($center_ids) && in_array( $rec["id"], $center_ids))?"selected":"";?>><?php echo get_field($rec["district_id"], "districts", "name")." ".unslash($rec["center"])?></option>
                         <?php			
                         }			
                     }

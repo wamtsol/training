@@ -85,7 +85,7 @@ if(!empty($q)){
                         if(numrows($res)>=0){
                             while($rec=dofetch($res)){
                             ?>
-                            <option value="<?php echo $rec["id"]?>" <?php echo($center_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["center"])?></option>
+                            <option value="<?php echo $rec["id"]?>" <?php echo($center_id==$rec["id"])?"selected":"";?>><?php echo get_field($rec["district_id"], "districts", "name")." ".unslash($rec["center"])?></option>
                             <?php
                             }
                         }	
