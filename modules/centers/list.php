@@ -64,7 +64,7 @@ if(!empty($q)){
         	<form class="form-horizontal" action="" method="get">
                 <div class="col-sm-2">
                 	<select name="project_id" id="project_id" class="custom_select">
-                        <option value=""<?php echo ($project_id=="")? " selected":"";?>>Select Project</option>
+                        <option value=""<?php echo ($project_id=="")? " selected":"";?>>Select Course</option>
                         <?php
                         $res=doquery("select * from projects where status = 1 order by title",$dblink);
                         if(numrows($res)>=0){
@@ -111,12 +111,14 @@ if(!empty($q)){
                 <th class="text-center" width="3%"><div class="checkbox checkbox-primary">
                     <input type="checkbox" id="select_all" value="0" title="Select All Records">
                     <label for="select_all"></label></div></th>
-                <th width="15%">Project</th>
-                <th width="15%">District</th>
-                <th width="15%">Batch</th>
+                <th width="15%">Course</th>
+                <th width="12%">District</th>
+                <th width="8%">Duration</th>
+                <th width="10%">Batch</th>
+                <th width="15%">Min Qualification</th>
                 <th width="15%">Incharge User</th>
-                <th width="10%">Trainers</th>
-                <th width="10%">Trainees</th>
+                <th width="8%">Trainers</th>
+                <th width="8%">Trainees</th>
                 <th width="10%">Attendance</th>
                 <th width="5%" class="text-center">Status</th>
                 <th width="5%" class="text-center">Actions</th>
@@ -138,7 +140,9 @@ if(!empty($q)){
                         </td>
                         <td><?php echo get_field($r["project_id"], "projects", "title"); ?></td>
                         <td><?php echo get_field($r["district_id"], "districts", "name"); ?></td>
+                        <td><?php echo unslash($r["duration"]); ?></td>
                         <td><?php echo unslash($r["center"]); ?></td>
+                        <td><?php echo unslash($r["min_qualification"]); ?></td>
                         <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
                         <td><a href="users_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainers</a></td>
                         <td><a href="trainees_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainees</a></td>
@@ -178,14 +182,14 @@ if(!empty($q)){
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="4" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "centers", $sql, $pageNum)?></td>
+                    <td colspan="7" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "centers", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
             else{	
                 ?>
                 <tr>
-                    <td colspan="11"  class="no-record">No Result Found</td>
+                    <td colspan="13"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }

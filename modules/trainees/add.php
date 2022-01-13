@@ -24,7 +24,7 @@ else{
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="center_id">Center </label>
+            	<label class="form-label" for="center_id">Batch </label>
             </div>
             <div class="col-sm-10">
                 <select name="center_ids[]" id="center_id" multiple="multiple" class="select_multiple" title="Choose Option">

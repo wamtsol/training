@@ -33,13 +33,13 @@ if(!empty($q)){
 }
 ?>
 <div class="page-header">
-	<h1 class="title">Projects/Course</h1>
+	<h1 class="title">Course</h1>
   	<ol class="breadcrumb">
-    	<li class="active">Manage Projects/Course</li>
+    	<li class="active">Manage Course</li>
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="projects_manage.php?tab=add" class="btn btn-light editproject">Add New Project</a> 
+        	<a href="projects_manage.php?tab=add" class="btn btn-light editproject">Add New Course</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
     	</div> 
     </div> 

@@ -15,11 +15,11 @@ if(!defined("APP_START")) die("No Direct Access");
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
-                <label class="form-label" for="project_id">Project</label>
+                <label class="form-label" for="project_id">Course</label>
             </div>
             <div class="col-sm-10">
                 <select name="project_id" title="Choose Option">
-                    <option value="0">Select Project</option>
+                    <option value="0">Select Course</option>
                     <?php
                     $res=doquery("select * from projects where status=1 order by title", $dblink);
                     if(numrows($res)>0){
@@ -62,7 +62,27 @@ if(!defined("APP_START")) die("No Direct Access");
             	<label class="form-label" for="center">Batch <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
-                <input type="text" title="Enter Center" value="<?php echo $center; ?>" name="center" id="center" class="form-control" />
+                <input type="text" title="Enter Batch" value="<?php echo $center; ?>" name="center" id="center" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+        	<div class="col-sm-2 control-label">
+            	<label class="form-label" for="duration">Duration </label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter duration" value="<?php echo $duration; ?>" name="duration" id="duration" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+        	<div class="col-sm-2 control-label">
+            	<label class="form-label" for="min_qualification">Min Qualification </label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Qualification" value="<?php echo $min_qualification; ?>" name="min_qualification" id="min_qualification" class="form-control" />
             </div>
         </div>
     </div>

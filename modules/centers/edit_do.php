@@ -6,7 +6,7 @@ if(isset($_POST["centers_edit"])){
 	if(empty($center))
 		$err="Fields with (*) are Mandatory.<br />";
 	if($err==""){
-		$sql="Update centers set `project_id`='".slash($project_id)."', `district_id`='".slash($district_id)."', `center`='".slash($center)."', `incharge_user_id`='".slash($incharge_user_id)."' where id='".$id."'";
+		$sql="Update centers set `project_id`='".slash($project_id)."', `district_id`='".slash($district_id)."', `center`='".slash($center)."', `duration`='".slash($duration)."', `min_qualification`='".slash($min_qualification)."', `incharge_user_id`='".slash($incharge_user_id)."' where id='".$id."'";
 		doquery($sql,$dblink);
 		unset($_SESSION["centers_manage"]["edit"]);
 		header('Location: centers_manage.php?tab=list&msg='.url_encode("Successfully Updated"));
