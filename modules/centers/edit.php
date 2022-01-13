@@ -68,26 +68,6 @@ if(!defined("APP_START")) die("No Direct Access");
     </div>
     <div class="form-group">
         <div class="row">
-        	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="duration">Duration </label>
-            </div>
-            <div class="col-sm-10">
-                <input type="text" title="Enter duration" value="<?php echo $duration; ?>" name="duration" id="duration" class="form-control" />
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="row">
-        	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="min_qualification">Min Qualification </label>
-            </div>
-            <div class="col-sm-10">
-                <input type="text" title="Enter Qualification" value="<?php echo $min_qualification; ?>" name="min_qualification" id="min_qualification" class="form-control" />
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="row">
             <div class="col-sm-2 control-label">
                 <label class="form-label" for="incharge_user_id">Incharge User</label>
             </div>

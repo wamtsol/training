@@ -8,8 +8,6 @@ else{
     $district_id="";
     $center="";
     $incharge_user_id="";
-    $duration="";
-    $min_qualification="";
 }
 ?>
 <div class="page-header">
@@ -76,26 +74,7 @@ else{
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="row">
-        	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="duration">Duration </label>
-            </div>
-            <div class="col-sm-10">
-                <input type="text" title="Enter duration" value="<?php echo $duration; ?>" name="duration" id="duration" class="form-control" />
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="row">
-        	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="min_qualification">Min Qualification </label>
-            </div>
-            <div class="col-sm-10">
-                <input type="text" title="Enter Qualification" value="<?php echo $min_qualification; ?>" name="min_qualification" id="min_qualification" class="form-control" />
-            </div>
-        </div>
-    </div>
+    
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">

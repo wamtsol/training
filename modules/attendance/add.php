@@ -1,5 +1,13 @@
 <?php
 if(!defined("APP_START")) die("No Direct Access");
+if(isset($_SESSION["attendance_manage"]["add"])){
+	extract($_SESSION["attendance_manage"]["add"]);	
+}
+else{
+	$center_id=$_SESSION["attendance_manage"]["center_id"];
+	$user_id="";
+	$date=date('d/m/Y');
+}
 ?>
 <div class="page-header">
 	<h1 class="title"> Student's Attendance</h1>
@@ -7,13 +15,30 @@ if(!defined("APP_START")) die("No Direct Access");
     	<li class="active">Manage Attendance</li>
   	</ol>
   	<div class="right">
-    	<div class="btn-group" role="group" aria-label="..."> <a href="attendance_manage.php?center_id=<?php echo slash($_GET["center_id"]);?>" class="btn btn-light editproject">Back to List</a> </div>
+    	<div class="btn-group" role="group" aria-label="..."> <a href="attendance_manage.php" class="btn btn-light editproject">Back to List</a> </div>
   	</div>
 </div>        	
 <form class="form-horizontal form-horizontal-left" role="form" action="attendance_manage.php?tab=add" method="post" enctype="multipart/form-data" name="frmAdd">
-    <input type="hidden" name="center_id" id="id" value="<?php echo slash($_GET["center_id"]);?>">
+    <input type="hidden" name="center_id" id="id" value="<?php echo $center_id;?>">
     <input type="hidden" name="id" id="ida" value="">
-    <input type="hidden" name="date" id="date" value="<?php echo $_GET["date"];?>">
+    <div class="row">
+        <div class="col-md-2"><input type="text" name="date" id="date" value="<?php echo $date?>" class="date-picker"></div>
+        <div class="col-md-3">
+            <select name="user_id" id="user_id" class="custom_select">
+                <option value=""<?php echo ($user_id=="")? " selected":"";?>>Select Trainer</option>
+                <?php
+                $res=doquery("select a.* from users a left join users_2_center b on a.id = b.user_id where status = 1 and center_id = '".$center_id."' order by name",$dblink);
+                if(numrows($res)>=0){
+                    while($rec=dofetch($res)){
+                    ?>
+                    <option value="<?php echo $rec["id"]?>" <?php echo($user_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"])?></option>
+                    <?php
+                    }
+                }	
+                ?>
+            </select>
+        </div>
+    </div>
     <style>
     .student_list{
         padding:10px;

@@ -6,7 +6,7 @@ if(isset($_POST["projects_edit"])){
 	if(empty($title))
 		$err="Fields with (*) are Mandatory.<br />";
 	if($err==""){
-		$sql="Update projects set `department_id`='".slash($department_id)."', `title`='".slash($title)."' where id='".$id."'";
+		$sql="Update projects set `department_id`='".slash($department_id)."', `title`='".slash($title)."', `duration`='".slash($duration)."', `total_batches`='".slash($total_batches)."', `min_qualification`='".slash($min_qualification)."', `total_no_of_trainees`='".slash($total_no_of_trainees)."' where id='".$id."'";
 		doquery($sql,$dblink);
 		unset($_SESSION["projects_manage"]["edit"]);
 		header('Location: projects_manage.php?tab=list&msg='.url_encode("Successfully Updated"));

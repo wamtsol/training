@@ -13,7 +13,49 @@ if(isset($_REQUEST["tab"]) && in_array($_REQUEST["tab"], $tab_array)){
 else{
 	$tab="list";
 }
-
+$q="";
+$extra='';
+$is_search=false;
+if(isset($_GET["center_id"])){
+	$center_id=slash($_GET["center_id"]);
+	$_SESSION["attendance_manage"]["center_id"]=$center_id;
+}
+if(isset($_SESSION["attendance_manage"]["center_id"])){
+    $center_id=$_SESSION["attendance_manage"]["center_id"];
+}
+else{
+    $center_id="";
+}
+if($center_id!=""){
+	$extra.=" and center_id='".$center_id."'";
+	$is_search=true;
+}
+if( isset($_GET["date_from"]) ){
+	$_SESSION["attendance_manage"]["date_from"] = $_GET["date_from"];
+}
+if(isset($_SESSION["attendance_manage"]["date_from"]) && !empty($_SESSION["attendance_manage"]["date_from"])){
+	$date_from = $_SESSION["attendance_manage"]["date_from"];
+}
+else{
+	$date_from = date("01/m/Y");
+}
+if( !empty($date_from) ){
+	$extra.=" and date>='".date("Y/m/d", strtotime(date_dbconvert($date_from)))."'";
+	$is_search=true;
+}
+if( isset($_GET["date_to"]) ){
+	$_SESSION["attendance_manage"]["date_to"] = $_GET["date_to"];
+}
+if(isset($_SESSION["attendance_manage"]["date_to"]) && !empty($_SESSION["attendance_manage"]["date_to"])){
+	$date_to = $_SESSION["attendance_manage"]["date_to"];
+}
+else{
+	$date_to = date("d/m/Y");
+}
+if( !empty($date_to) ){
+	$extra.=" and date<='".date_dbconvert($date_to)."'";
+	$is_search=true;
+}
 switch($tab){
 	case 'add':
 		include("modules/attendance/add_do.php");

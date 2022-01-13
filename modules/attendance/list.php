@@ -1,25 +1,5 @@
 <?php
 if(!defined("APP_START")) die("No Direct Access");
-if(isset($_GET["center_id"]) && !empty($_GET["center_id"])){
-    $center=dofetch(doquery("select * from centers where id='".slash($_GET["center_id"])."'", $dblink)); 
-}
-$q="";
-$extra='';
-$is_search=false;
-if(isset($_GET["date"])){
-	$date=slash($_GET["date"]);
-	$_SESSION["attendance_manage"]["date"]=$date;
-}
-if(isset($_SESSION["attendance_manage"]["date"])){
-    $date=$_SESSION["attendance_manage"]["date"];
-}
-else{
-    $date=date("d/m/Y");
-}
-if(!empty($date)){
-	$extra.=" and date = '".date_dbconvert($date)."'";
-	$is_search=true;
-}
 ?>
 <div class="page-header">
 	<h1 class="title">Attendance</h1>
@@ -28,7 +8,7 @@ if(!empty($date)){
   	</ol>
     <div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="attendance_manage.php?tab=add&center_id=<?php echo $center["id"]?>&date=<?php echo $date?>" class="btn btn-light editproject">Add New Attendance</a> 
+        	<a href="attendance_manage.php?tab=add" class="btn btn-light editproject">Add New Attendance</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
     	</div> 
     </div>
@@ -37,9 +17,26 @@ if(!empty($date)){
     <li class="col-xs-12 col-lg-12 col-sm-12">
     	<div>
         	<form class="form-horizontal" action="" method="get">
-                <input type="hidden" name="center_id" value="<?php echo $center["id"];?>">
+                <div class="col-sm-3">
+                	<select name="center_id" id="center_id" class="custom_select">
+                        <option value=""<?php echo ($center_id=="")? " selected":"";?>>Select Batch</option>
+                        <?php
+                        $res=doquery("select * from centers where status = 1 order by center",$dblink);
+                        if(numrows($res)>=0){
+                            while($rec=dofetch($res)){
+                            ?>
+                            <option value="<?php echo $rec["id"]?>" <?php echo($center_id==$rec["id"])?"selected":"";?>><?php echo get_field($rec["district_id"], "districts", "name")." ".unslash($rec["center"])?></option>
+                            <?php
+                            }
+                        }	
+                        ?>
+                    </select>
+                </div>
                 <div class="col-sm-2">
-                  <input type="text" title="Enter Date" value="<?php echo $date;?>" name="date" id="search" class="form-control date-picker">  
+                  <input type="text" title="Enter Date From" value="<?php echo $date_from;?>" name="date_from" id="search" class="form-control date-picker">  
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" title="Enter Date To" value="<?php echo $date_to;?>" name="date_to" id="search" class="form-control date-picker">  
                 </div>
                 <div class="col-sm-3 text-left">
                     <input type="button" class="btn btn-danger btn-l reset_search" value="Reset" alt="Reset Record" title="Reset Record" />
@@ -63,7 +60,7 @@ if(!empty($date)){
         </thead>
         <tbody>
             <?php 
-            $sql="select * from attendance where center_id = '".$center["id"]."' $extra order by date desc";
+            $sql="select * from attendance where 1 $extra order by date desc";
             $rs=show_page($rows, $pageNum, $sql);
             if(numrows($rs)>0){
                 $sn=1;
@@ -90,7 +87,7 @@ if(!empty($date)){
                             ?>
                         </td>
                         <td class="text-center">
-                            <a href="attendance_manage.php?tab=edit&center_id=<?php echo $r['center_id'];?>&id=<?php echo $r['id'];?>&date=<?php echo $r['date'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
+                            <a href="attendance_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
                             <a onclick="return confirm('Are you sure you want to delete')" href="attendance_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
                         </td>
                     </tr>  

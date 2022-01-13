@@ -1,21 +1,11 @@
 <?php
 if(!defined("APP_START")) die("No Direct Access");
 if(isset($_POST["attendance_add"])){
-	$center_id = slash( $_POST[ "center_id" ] );
-	$date = date_dbconvert( $_POST[ "date" ] );
+	extract($_POST);
 	$students = json_decode($_POST["students"]);
-	$attendance = doquery( "select * from attendance where center_id = '".$center_id."' and date='". $date."'", $dblink );
 	$status = 1;
-	//echo $_SESSION[ "logged_in_admin" ][ "linked_user" ];die;
-	if( numrows( $attendance ) > 0 ) {
-		$attendance = dofetch( $attendance );
-		$attendance_id = $attendance["id"];
-		
-	}
-	else {
-		doquery( "insert into attendance(center_id, date, user_id) values('".$center_id."', '".$date."', '".$_SESSION[ "logged_in_admin" ][ "linked_user" ]."')", $dblink );
-		$attendance_id = inserted_id();
-	}
+	doquery( "insert into attendance(center_id, date, user_id) values('".$center_id."', '".date_dbconvert($date)."', '".$user_id."')", $dblink );
+	$attendance_id = inserted_id();
 	foreach( $students as $student ) {
 		if( $student->status ) {
 			if( numrows( doquery( "select * from attendance_records where trainee_id='".$student->id."' and attendance_id='".$attendance_id."'", $dblink ) ) == 0 ) {
@@ -30,7 +20,6 @@ if(isset($_POST["attendance_add"])){
 			}
 		}
 	}
-	
-	header("Location: attendance_manage.php?tab=list&center_id=".$center_id."&msg=".url_encode( "Attendance has been taken successfully." ));
+	header("Location: attendance_manage.php?tab=list&msg=".url_encode( "Attendance has been taken successfully." ));
 	die;
 }

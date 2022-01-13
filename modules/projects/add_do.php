@@ -6,7 +6,7 @@ if(isset($_POST["projects_add"])){
 	if(empty($title))
 		$err="Fields with (*) are Mandatory.<br />";
 	if($err==""){
-		$sql="INSERT INTO projects (department_id, title) VALUES ('".slash($department_id)."', '".slash($title)."')";
+		$sql="INSERT INTO projects (department_id, title, duration, total_batches, min_qualification, total_no_of_trainees) VALUES ('".slash($department_id)."', '".slash($title)."', '".slash($duration)."', '".slash($total_batches)."', '".slash($min_qualification)."', '".slash($total_no_of_trainees)."')";
 		doquery($sql,$dblink);
 		unset($_SESSION["projects_manage"]["add"]);
 		header('Location: projects_manage.php?tab=list&msg='.url_encode("Successfully Added"));

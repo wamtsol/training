@@ -138,11 +138,11 @@ if(!empty($q)){
                             <input type="checkbox" name="id[]" id="<?php echo "rec_".$sn?>"  value="<?php echo $r["id"]?>" title="Select Record" />
                             <label for="<?php echo "rec_".$sn?>"></label></div>
                         </td>
-                        <td><?php echo get_field($r["project_id"], "projects", "title"); ?></td>
-                        <td><?php echo get_field($r["district_id"], "districts", "name"); ?></td>
-                        <td><?php echo unslash($r["duration"]); ?></td>
+                        <td><?php echo get_field($r["project_id"], "projects", "title");?></td>
+                        <td><?php echo get_field($r["district_id"], "districts", "name");?></td>
+                        <td><?php echo get_field($r["project_id"], "projects", "duration");?></td>
                         <td><?php echo unslash($r["center"]); ?></td>
-                        <td><?php echo unslash($r["min_qualification"]); ?></td>
+                        <td><?php echo get_field($r["project_id"], "projects", "min_qualification"); ?></td>
                         <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
                         <td><a href="users_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainers</a></td>
                         <td><a href="trainees_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainees</a></td>
