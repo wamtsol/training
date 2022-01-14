@@ -6,7 +6,7 @@ include("include/paging.php");
 define("APP_START", 1);
 $filename = 'attendance_manage.php';
 include("include/admin_type_access.php");
-$tab_array=array("list", "add", "edit", "delete", "trainee_list");
+$tab_array=array("list", "add", "edit", "delete", "trainee_list", "print");
 if(isset($_REQUEST["tab"]) && in_array($_REQUEST["tab"], $tab_array)){
 	$tab=$_REQUEST["tab"];
 }
@@ -56,6 +56,7 @@ if( !empty($date_to) ){
 	$extra.=" and date<='".date_dbconvert($date_to)."'";
 	$is_search=true;
 }
+$sql="select * from attendance where 1 $extra order by date desc";
 switch($tab){
 	case 'add':
 		include("modules/attendance/add_do.php");
@@ -96,6 +97,10 @@ switch($tab){
 		echo json_encode($student_list);
 		die;
 	break;
+	case 'print':
+		include("modules/attendance/print.php");
+	break;
+	
 }
 ?>
 <?php include("include/header.php");?>

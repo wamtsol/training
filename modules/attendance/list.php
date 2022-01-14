@@ -60,7 +60,7 @@ if(!defined("APP_START")) die("No Direct Access");
         </thead>
         <tbody>
             <?php 
-            $sql="select * from attendance where 1 $extra order by date desc";
+            
             $rs=show_page($rows, $pageNum, $sql);
             if(numrows($rs)>0){
                 $sn=1;
