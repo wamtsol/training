@@ -400,6 +400,20 @@ function getAccountType($value){
 		return "Current Assets";
 	}
 }
+function getStatusType($value){
+	if( $value == 1 ) {
+		return "Clear";
+	}
+	elseif( $value == 2 ) {
+		return "Already Registered";
+	}
+	elseif( $value == 3 ) {
+		return "Invalid Cnic";
+	}
+	else {
+		return "--";
+	}
+}
 /*--------------getCountryName Function--------------*/
 function getCountryname($country){
 	global $dblink;

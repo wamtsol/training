@@ -7,6 +7,7 @@ $attendance = doquery("select * from attendance where center_id = '".$center_id.
 if( numrows( $attendance ) > 0 ) {
     while( $attend = dofetch( $attendance ) ) {
         $trainee_att[] = $attend;
+                        
     }
 };        
 ?>
@@ -71,15 +72,15 @@ table {
 
     }
     ?>
-    <th width="5%">Present</th>
-    <th width="5%">Absent</th>
+    <th width="5%" class="text-center">Present</th>
+    <th width="5%" class="text-center">Absent</th>
 </tr>
 <?php
 if( numrows( $rs ) > 0 ) {
 	$sn = 1;
 	while( $r = dofetch( $rs ) ) {
+        $attendance1 = doquery("select * from attendance a left join attendance_records b on a.id = b.attendance_id where center_id = '".$center_id."' and trainee_id = '".$r["id"]."'", $dblink);
         $st = [];
-        $total = "";
         foreach($trainee_att as $att){
             $attendance = dofetch(doquery("select * from attendance_records where attendance_id = '".$att["id"]."' and trainee_id = '".$r["id"]."'", $dblink));
             $st[] = $attendance;
@@ -96,8 +97,8 @@ if( numrows( $rs ) > 0 ) {
 
             }
             ?>
-            <td><?php echo $s?></td>
-            <td></td>
+            <td class="text-center"><?php echo numrows($attendance1)?></td>
+            <td class="text-center"><?php echo count($st)-numrows($attendance1);?></td>
         </tr>
 		<?php
 	}

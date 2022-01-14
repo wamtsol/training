@@ -114,6 +114,8 @@ if(!empty($q)){
                 <th width="15%">Course</th>
                 <th width="12%">District</th>
                 <th width="8%">Duration</th>
+                <th width="8%">Total batches</th>
+                <th width="8%">Total trainees</th>
                 <th width="10%">Batch</th>
                 <th width="15%">Min Qualification</th>
                 <th width="15%">Incharge User</th>
@@ -141,6 +143,8 @@ if(!empty($q)){
                         <td><?php echo get_field($r["project_id"], "projects", "title");?></td>
                         <td><?php echo get_field($r["district_id"], "districts", "name");?></td>
                         <td><?php echo get_field($r["project_id"], "projects", "duration");?></td>
+                        <td><?php echo get_field($r["project_id"], "projects", "total_batches");?></td>
+                        <td><?php echo get_field($r["project_id"], "projects", "total_no_of_trainees");?></td>
                         <td><?php echo unslash($r["center"]); ?></td>
                         <td><?php echo get_field($r["project_id"], "projects", "min_qualification"); ?></td>
                         <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
@@ -173,7 +177,7 @@ if(!empty($q)){
                 }
                 ?>
                 <tr>
-                    <td colspan="6" class="actions">
+                    <td colspan="8" class="actions">
                         <select name="bulk_action" class="" id="bulk_action" title="Choose Action">
                             <option value="null">Bulk Action</option>
                             <option value="delete">Delete</option>
@@ -189,7 +193,7 @@ if(!empty($q)){
             else{	
                 ?>
                 <tr>
-                    <td colspan="13"  class="no-record">No Result Found</td>
+                    <td colspan="15"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }

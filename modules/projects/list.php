@@ -82,10 +82,14 @@ if(!empty($q)){
                 <th class="text-center" width="3%"><div class="checkbox checkbox-primary">
                     <input type="checkbox" id="select_all" value="0" title="Select All Records">
                     <label for="select_all"></label></div></th>
-                <th width="20%">Department</th>
+                <th width="15%">Department</th>
                 <th>Title</th>
+                <th width="10%">Duration</th>
+                <th width="12%">Total no of batches</th>
+                <th width="15%">Min Qualification</th>
+                <th width="12%">Total no of trainees</th>
                 <th width="5%" class="text-center">Status</th>
-                <th width="10%" class="text-center">Actions</th>
+                <th width="5%" class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -104,6 +108,10 @@ if(!empty($q)){
                         </td>
                         <td><?php echo get_field($r["department_id"], "departments", "title"); ?></td>
                         <td><?php echo unslash($r["title"]); ?></td>
+                        <td><?php echo unslash($r["duration"]); ?></td>
+                        <td><?php echo unslash($r["total_batches"]); ?></td>
+                        <td><?php echo unslash($r["min_qualification"]); ?></td>
+                        <td><?php echo unslash($r["total_no_of_trainees"]); ?></td>
                         <td class="text-center">
                             <a href="projects_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
@@ -130,7 +138,7 @@ if(!empty($q)){
                 }
                 ?>
                 <tr>
-                    <td colspan="3" class="actions">
+                    <td colspan="5" class="actions">
                         <select name="bulk_action" class="" id="bulk_action" title="Choose Action">
                             <option value="null">Bulk Action</option>
                             <option value="delete">Delete</option>
@@ -139,14 +147,14 @@ if(!empty($q)){
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="3" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "projects", $sql, $pageNum)?></td>
+                    <td colspan="5" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "projects", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
             else{	
                 ?>
                 <tr>
-                    <td colspan="6"  class="no-record">No Result Found</td>
+                    <td colspan="10"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }
