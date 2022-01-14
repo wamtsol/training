@@ -47,13 +47,13 @@ if(!empty($q)){
 }
 ?>
 <div class="page-header">
-	<h1 class="title">Trainers</h1>
+	<h1 class="title">Staff</h1>
   	<ol class="breadcrumb">
-    	<li class="active">Manage Trainers</li>
+    	<li class="active">Manage Staff</li>
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="users_manage.php?tab=add" class="btn btn-light editproject">Add New Trainer</a> 
+        	<a href="users_manage.php?tab=add" class="btn btn-light editproject">Add New Staff</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
     	</div> 
     </div> 

@@ -2,14 +2,15 @@
 if(!defined("APP_START")) die("No Direct Access");
 $sql="select a.* from trainees a left join trainees_2_center b on a.id = b.trainee_id where center_id = '".$center_id."' order by name";
 $rs = doquery( $sql, $dblink );
-$dates = array();
-$attendance_dates = doquery("select DISTINCT attendance_id, a.* from attendance a left join attendance_records b on a.id = b.attendance_id where center_id = '".$center_id."'", $dblink);
-if( numrows( $attendance_dates ) > 0 ) {
-    while( $attendance_date = dofetch( $attendance_dates ) ) {
+$trainee_att = array();
+$attendance = doquery("select * from attendance where center_id = '".$center_id."'", $dblink);
+if( numrows( $attendance ) > 0 ) {
+    while( $attend = dofetch( $attendance ) ) {
         //print_r($attendance_date);
-        $dates[] = $attendance_date["date"];
+        $trainee_att[] = $attend;
     }
-};          
+};   
+//print_r($trainee_att);die;       
 ?>
 <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
 <link type="text/css" rel="stylesheet" href="css/font-awesome.css" />
@@ -65,9 +66,9 @@ table {
     <th width="2%" class="text-center">S.No</th>
     <th>Trainee</th>
     <?php 
-    foreach($dates as $date){
+    foreach($trainee_att as $date){
         ?>
-        <th width="5%"><?php echo $date?></th>
+        <th width="5%"><?php echo $date["date"]?></th>
         <?php
 
     }
@@ -78,14 +79,16 @@ table {
 if( numrows( $rs ) > 0 ) {
 	$sn = 1;
 	while( $r = dofetch( $rs ) ) {
-        $attendance = dofetch(doquery("select * from attendance_records where trainee_id = '".$r["id"]."'", $dblink));
-		//print_r($attendance);
+        foreach($trainee_att as $att){
+            // print_r($att);
+        $attendance = doquery("select * from attendance_records where attendance_id = '".$att["id"]."' and trainee_id = '".$r["id"]."'", $dblink);
+        }
         ?>
 		<tr>
             <td class="text-center"><?php echo $sn++?></td>
             <td><?php echo unslash($r["name"]);?></td>
             <?php 
-    foreach($dates as $date){
+    foreach($trainee_att as $date){
         ?>
             <td><i class="fa fa-check" style="color: #0f0"></i></td>
             <?php
