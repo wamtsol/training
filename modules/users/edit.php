@@ -89,44 +89,22 @@ if(!defined("APP_START")) die("No Direct Access");
         </div>
     </div>
     <div class="form-group">
-    	<div class="row">
-            <div class="col-sm-2 control-label">
-                <label class="form-label" for="cnic_photo_front">CNIC Photo Front</label>
-            </div>
-            <div class="col-sm-10">
-                <input type="file" title="Select Image" name="cnic_photo_front" id="cnic_photo_front" class="form-control">
-                <?php if(!empty($cnic_photo_front)) { ?>
-                    <a href="<?php echo $file_upload_root?>user_cnic/<?php echo $cnic_photo_front; ?>" target="_blank">
-                        <img src="<?php echo $file_upload_root?>user_cnic/<?php echo $cnic_photo_front; ?>"  alt="image" title="<?php echo $id;?>" style="width: 50px;margin-right: 10px;" />
-                    </a>
-                    <input type="checkbox" name="delete_image_front" id="delete_image_front" class="delete-image" value="1" />&nbsp;<label for="delete_image_front">Delete This Image</label>
-                <?php } ?>
-            </div>
-        </div>
-  	</div>
-    <div class="form-group">
-    	<div class="row">
-            <div class="col-sm-2 control-label">
-                <label class="form-label" for="cnic_photo_back">CNIC Photo Back</label>
-            </div>
-            <div class="col-sm-10">
-                <input type="file" title="Select Image" name="cnic_photo_back" id="cnic_photo_back" class="form-control">
-                <?php if(!empty($cnic_photo_back)) { ?>
-                    <a href="<?php echo $file_upload_root?>user_cnic/<?php echo $cnic_photo_back; ?>" target="_blank">
-                        <img src="<?php echo $file_upload_root?>user_cnic/<?php echo $cnic_photo_back; ?>"  alt="image" title="<?php echo $id;?>" style="width: 50px;margin-right: 10px;" />
-                    </a>
-                    <input type="checkbox" name="delete_image_back" id="delete_image_back" class="delete-image" value="1" />&nbsp;<label for="delete_image_back">Delete This Image</label>
-                <?php } ?>
-            </div>
-        </div>
-  	</div>
-    <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
             	<label class="form-label" for="appointment_date">Appointment Date</label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Date" value="<?php echo $appointment_date; ?>" name="appointment_date" id="appointment_date" class="form-control date-picker" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="releaving_date">Releaving Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Releaving Date" value="<?php echo $releaving_date; ?>" name="releaving_date" id="releaving_date" class="form-control date-picker" />
             </div>
         </div>
     </div>

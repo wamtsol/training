@@ -6,21 +6,9 @@ if(isset($_POST["users_add"])){
 	if(empty($name) || $gender=="")
 		$err="Fields with (*) are Mandatory.<br />";
 	if($err==""){
-		$sql="INSERT INTO users (designation_id, name, gender, cnic, appointment_date) VALUES ('".slash($designation_id)."', '".slash($name)."', '".slash($gender)."', '".slash($cnic)."', '".date_dbconvert($appointment_date)."')";
+		$sql="INSERT INTO users (designation_id, name, gender, cnic, appointment_date, releaving_date) VALUES ('".slash($designation_id)."', '".slash($name)."', '".slash($gender)."', '".slash($cnic)."', '".date_dbconvert($appointment_date)."', '".date_dbconvert($releaving_date)."')";
 		doquery($sql,$dblink);
 		$id=inserted_id();
-		if(!empty($_FILES["cnic_photo_front"]["tmp_name"])){
-			$cnic_photo_front=getFilename($_FILES["cnic_photo_front"]["name"], $id."front");
-			move_uploaded_file($_FILES["cnic_photo_front"]["tmp_name"], $file_upload_root."user_cnic/".$cnic_photo_front);
-			$sql="Update users set cnic_photo_front='".$cnic_photo_front."' where id=$id";
-			doquery($sql,$dblink);
-		}
-		if(!empty($_FILES["cnic_photo_back"]["tmp_name"])){
-			$cnic_photo_back=getFilename($_FILES["cnic_photo_back"]["name"], $id."back");
-			move_uploaded_file($_FILES["cnic_photo_back"]["tmp_name"], $file_upload_root."user_cnic/".$cnic_photo_back);
-			$sql="Update users set cnic_photo_back='".$cnic_photo_back."' where id=$id";
-			doquery($sql,$dblink);
-		}
 		if(isset( $center_ids ) && count( $center_ids ) > 0 ) {
 			foreach( $center_ids as $center_id ) {
 				doquery( "insert into users_2_center(user_id, center_id) values( '".$id."', '".$center_id."' )", $dblink );

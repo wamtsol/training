@@ -5,9 +5,13 @@ if(isset($_SESSION["trainees_manage"]["add"])){
 }
 else{
     $name="";
+    $father_name="";
     $gender="";
     $cnic="";
     $birth_date=date("d/m/Y");
+    $cnic_issue_date=date("d/m/Y");
+    $contact="";
+    $trainee_status_id=0;
     $center_ids=isset($_SESSION["trainees_manage"]["center_id"])?[$_SESSION["trainees_manage"]["center_id"]]:array();
 }
 ?>
@@ -49,6 +53,16 @@ else{
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Name" value="<?php echo $name; ?>" name="name" id="name" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="father_name">Father Name </label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Father/Husband Name" value="<?php echo $father_name; ?>" name="father_name" id="father_name" class="form-control" />
             </div>
         </div>
     </div>
@@ -102,6 +116,41 @@ else{
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Date" value="<?php echo $birth_date; ?>" name="birth_date" id="birth_date" class="form-control date-picker" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="cnic_issue_date">Cnic Issue Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Cnic Issue Date" value="<?php echo $cnic_issue_date; ?>" name="cnic_issue_date" id="cnic_issue_date" class="form-control date-picker" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="contact">Contact</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Contact" value="<?php echo $contact; ?>" name="contact" id="contact" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="trainee_status_id">Trainee Status</label>
+            </div>
+            <div class="col-sm-10">
+                <select name="trainee_status_id" title="Choose Option">
+                    <option value="0">Select Trainee Status</option>
+                    <option value="1">Clear</option>
+                    <option value="2">Already Registered</option>
+                    <option value="3">Invalid Cnic</option>
+                </select>
             </div>
         </div>
     </div>

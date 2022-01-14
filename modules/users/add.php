@@ -9,6 +9,7 @@ else{
     $gender="";
     $cnic="";
     $appointment_date=date("d/m/Y");
+    $releaving_date=date("d/m/Y");
     $center_ids=isset($_SESSION["users_manage"]["center_id"])?[$_SESSION["users_manage"]["center_id"]]:array();
 }
 ?>
@@ -99,32 +100,22 @@ else{
         </div>
     </div>
     <div class="form-group">
-    	<div class="row">
-            <div class="col-sm-2 control-label">
-                <label class="form-label" for="cnic_photo_front">CNIC Photo Front</label>
-            </div>
-            <div class="col-sm-10">
-                <input type="file" title="Select Image" name="cnic_photo_front" id="cnic_photo_front" class="form-control">
-            </div>
-        </div>
-  	</div>
-    <div class="form-group">
-    	<div class="row">
-            <div class="col-sm-2 control-label">
-                <label class="form-label" for="cnic_photo_back">CNIC Photo Back</label>
-            </div>
-            <div class="col-sm-10">
-                <input type="file" title="Select Image" name="cnic_photo_back" id="cnic_photo_back" class="form-control">
-            </div>
-        </div>
-  	</div>
-    <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
             	<label class="form-label" for="appointment_date">Appointment Date</label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Date" value="<?php echo $appointment_date; ?>" name="appointment_date" id="appointment_date" class="form-control date-picker" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="releaving_date">Releaving Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Releaving Date" value="<?php echo $releaving_date; ?>" name="releaving_date" id="releaving_date" class="form-control date-picker" />
             </div>
         </div>
     </div>

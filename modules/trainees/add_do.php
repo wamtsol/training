@@ -5,8 +5,11 @@ if(isset($_POST["trainees_add"])){
 	$err="";
 	if(empty($name) || $gender=="")
 		$err="Fields with (*) are Mandatory.<br />";
+    if(get_age( date_dbconvert( $birth_date ), "") < 18 || get_age( date_dbconvert( $birth_date ), "") > 35)
+        $err="Out of age.<br> Age is under (18 to 35)";
+
 	if($err==""){
-		$sql="INSERT INTO trainees (name, gender, cnic, birth_date) VALUES ('".slash($name)."', '".slash($gender)."', '".slash($cnic)."', '".date_dbconvert($birth_date)."')";
+		$sql="INSERT INTO trainees (name, father_name, gender, cnic, birth_date, cnic_issue_date, contact, trainee_status_id) VALUES ('".slash($name)."', '".slash($father_name)."', '".slash($gender)."', '".slash($cnic)."', '".date_dbconvert($birth_date)."', '".date_dbconvert($cnic_issue_date)."','".slash($contact)."','".slash($trainee_status_id)."')";
 		doquery($sql,$dblink);
 		$id=inserted_id();
 		if(!empty($_FILES["cnic_photo_front"]["tmp_name"])){

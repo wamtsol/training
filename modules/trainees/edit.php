@@ -45,6 +45,16 @@ if(!defined("APP_START")) die("No Direct Access");
     </div>
     <div class="form-group">
         <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="father_name">Father Name </label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Enter Father/Husband Name" value="<?php echo $father_name; ?>" name="father_name" id="father_name" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
         	<div class="col-sm-2 control-label">
             	<label class="form-label" for="gender">Gender <span class="red">*</span></label>
             </div>
@@ -105,6 +115,41 @@ if(!defined("APP_START")) die("No Direct Access");
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Date" value="<?php echo $birth_date; ?>" name="birth_date" id="birth_date" class="form-control date-picker" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="cnic_issue_date">Cnic Issue Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Cnic Issue Date" value="<?php echo $cnic_issue_date; ?>" name="cnic_issue_date" id="cnic_issue_date" class="form-control date-picker" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="contact">Contact</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Contact" value="<?php echo $contact; ?>" name="contact" id="contact" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="trainee_status_id">Trainee Status</label>
+            </div>
+            <div class="col-sm-10">
+                <select name="trainee_status_id" title="Choose Option">
+                    <option value="">Select Trainee Status</option>
+                    <option value="1" <?php echo($trainee_status_id==1)?"selected":"";?>>Clear</option>
+                    <option value="2" <?php echo($trainee_status_id==2)?"selected":"";?>>Already Registered</option>
+                    <option value="3" <?php echo($trainee_status_id==3)?"selected":"";?>>Invalid Cnic</option>
+                </select>
             </div>
         </div>
     </div>

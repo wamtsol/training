@@ -316,6 +316,13 @@ function get_image_mcp($img, $size, $folder){
 	return;
 }
 
+function get_age( $birth_date, $now = "" ){
+    $date = new DateTime($birth_date);
+    $now = new DateTime( $now );
+    $interval = $now->diff($date);
+    return $interval->y;
+}
+
 /*-------------- Function--------------*/
 function get_bitly( $url ){
     $options = array(

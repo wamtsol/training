@@ -6,38 +6,8 @@ if(isset($_POST["users_edit"])){
 	if(empty($name))
 		$err="Fields with (*) are Mandatory.<br />";
 	if($err==""){
-		$sql="Update users set `designation_id`='".slash($designation_id)."', `name`='".slash($name)."', `gender`='".slash($gender)."', `cnic`='".slash($cnic)."', `appointment_date`='".date_dbconvert($appointment_date)."' where id='".$id."'";
+		$sql="Update users set `designation_id`='".slash($designation_id)."', `name`='".slash($name)."', `gender`='".slash($gender)."', `cnic`='".slash($cnic)."', `appointment_date`='".date_dbconvert($appointment_date)."', `releaving_date`='".date_dbconvert($releaving_date)."' where id='".$id."'";
 		doquery($sql,$dblink);
-		if(!empty($_FILES["cnic_photo_front"]["tmp_name"]) || isset($delete_image_front)){
-			$prev_icon=doquery("select cnic_photo_front from users where id=$id",$dblink);
-			if(numrows($prev_icon)>0){
-				$p_icon=dofetch($prev_icon);
-				deleteFile($file_upload_root."user_cnic/".$p_icon["cnic_photo_front"]);
-				$sql="Update users set cnic_photo_front='' where id='".$id."'";
-				doquery($sql,$dblink);
-			}
-			if(!empty($_FILES["cnic_photo_front"]["tmp_name"])){
-				$cnic_photo_front=getFilename($_FILES["cnic_photo_front"]["name"], $id."front");
-				move_uploaded_file($_FILES["cnic_photo_front"]["tmp_name"], $file_upload_root."user_cnic/".$cnic_photo_front);
-				$sql="Update users set cnic_photo_front='".slash($cnic_photo_front)."' where id='".$id."'";
-				doquery($sql,$dblink);
-			}
-		}
-		if(!empty($_FILES["cnic_photo_back"]["tmp_name"]) || isset($delete_image_back)){
-			$prev_icon=doquery("select cnic_photo_back from users where id=$id",$dblink);
-			if(numrows($prev_icon)>0){
-				$p_icon=dofetch($prev_icon);
-				deleteFile($file_upload_root."user_cnic/".$p_icon["cnic_photo_back"]);
-				$sql="Update users set cnic_photo_back='' where id='".$id."'";
-				doquery($sql,$dblink);
-			}
-			if(!empty($_FILES["cnic_photo_back"]["tmp_name"])){
-				$cnic_photo_back=getFilename($_FILES["cnic_photo_back"]["name"], $id."back");
-				move_uploaded_file($_FILES["cnic_photo_back"]["tmp_name"], $file_upload_root."user_cnic/".$cnic_photo_back);
-				$sql="Update users set cnic_photo_back='".slash($cnic_photo_back)."' where id='".$id."'";
-				doquery($sql,$dblink);
-			}
-		}
 		doquery("delete from users_2_center where user_id='".$id."'", $dblink);
 		if(isset( $center_ids ) && count( $center_ids ) > 0 ) {
 			foreach( $center_ids as $center_id ) {
@@ -63,6 +33,7 @@ if(isset($_GET["id"]) && $_GET["id"]!=""){
 		foreach($r as $key=>$value)
 			$$key=htmlspecialchars(unslash($value));
 			$appointment_date=date_convert($appointment_date);
+            $releaving_date=date_convert($releaving_date);
 			$center_ids = array();
 			$sql="select * from users_2_center where user_id='".$id."'";
 			$rs1 = doquery( $sql, $dblink );

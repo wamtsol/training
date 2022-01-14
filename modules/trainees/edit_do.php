@@ -5,8 +5,11 @@ if(isset($_POST["trainees_edit"])){
 	$err="";
 	if(empty($name) || $gender=="")
 		$err="Fields with (*) are Mandatory.<br />";
+    if(get_age( date_dbconvert( $birth_date ), "") < 18 || get_age( date_dbconvert( $birth_date ), "") > 35)
+        $err="Out of age.<br> Age is under (18 to 35)";
+    
 	if($err==""){
-		$sql="Update trainees set `name`='".slash($name)."', `gender`='".slash($gender)."', `cnic`='".slash($cnic)."', `birth_date`='".date_dbconvert($birth_date)."' where id='".$id."'";
+		$sql="Update trainees set `name`='".slash($name)."', `father_name`='".slash($father_name)."', `gender`='".slash($gender)."', `cnic`='".slash($cnic)."', `birth_date`='".date_dbconvert($birth_date)."', `cnic_issue_date`='".date_dbconvert($cnic_issue_date)."', `contact`='".slash($contact)."', `trainee_status_id`='".slash($trainee_status_id)."' where id='".$id."'";
 		doquery($sql,$dblink);
 		if(!empty($_FILES["cnic_photo_front"]["tmp_name"]) || isset($delete_image_front)){
 			$prev_icon=doquery("select cnic_photo_front from trainees where id=$id",$dblink);
@@ -63,6 +66,7 @@ if(isset($_GET["id"]) && $_GET["id"]!=""){
 		foreach($r as $key=>$value)
 			$$key=htmlspecialchars(unslash($value));
 			$birth_date=date_convert($birth_date);
+            $cnic_issue_date=date_convert($cnic_issue_date);
 			$center_ids = array();
 			$sql="select * from trainees_2_center where trainee_id='".$id."'";
 			$rs1 = doquery( $sql, $dblink );
