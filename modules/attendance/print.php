@@ -6,11 +6,9 @@ $trainee_att = array();
 $attendance = doquery("select * from attendance where center_id = '".$center_id."'", $dblink);
 if( numrows( $attendance ) > 0 ) {
     while( $attend = dofetch( $attendance ) ) {
-        //print_r($attendance_date);
         $trainee_att[] = $attend;
     }
-};   
-//print_r($trainee_att);die;       
+};        
 ?>
 <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
 <link type="text/css" rel="stylesheet" href="css/font-awesome.css" />
@@ -68,33 +66,37 @@ table {
     <?php 
     foreach($trainee_att as $date){
         ?>
-        <th width="5%"><?php echo $date["date"]?></th>
+        <th width="10%"><?php echo $date["date"]?></th>
         <?php
 
     }
     ?>
+    <th width="5%">Present</th>
     <th width="5%">Absent</th>
 </tr>
 <?php
 if( numrows( $rs ) > 0 ) {
 	$sn = 1;
 	while( $r = dofetch( $rs ) ) {
+        $st = [];
+        $total = "";
         foreach($trainee_att as $att){
-            // print_r($att);
-        $attendance = doquery("select * from attendance_records where attendance_id = '".$att["id"]."' and trainee_id = '".$r["id"]."'", $dblink);
+            $attendance = dofetch(doquery("select * from attendance_records where attendance_id = '".$att["id"]."' and trainee_id = '".$r["id"]."'", $dblink));
+            $st[] = $attendance;
         }
         ?>
 		<tr>
             <td class="text-center"><?php echo $sn++?></td>
             <td><?php echo unslash($r["name"]);?></td>
             <?php 
-    foreach($trainee_att as $date){
-        ?>
-            <td><i class="fa fa-check" style="color: #0f0"></i></td>
-            <?php
+            foreach($st as $s){
+                ?>
+                <td class="text-center"><?php echo $s?'<i class="fa fa-check" style="color: #0f0"></i>':'<i class="fa fa-close" style="color: #f00"></i>'?></td>
+                <?php
 
-    }
-    ?>
+            }
+            ?>
+            <td><?php echo $s?></td>
             <td></td>
         </tr>
 		<?php
