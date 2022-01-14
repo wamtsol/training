@@ -59,7 +59,7 @@ else{
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
-                <label class="form-label" for="father_name">Father Name </label>
+                <label class="form-label" for="father_name">Father/Husband Name </label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Father/Husband Name" value="<?php echo $father_name; ?>" name="father_name" id="father_name" class="form-control" />

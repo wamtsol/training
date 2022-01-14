@@ -17,6 +17,18 @@ if($center_id!=""){
 	$extra.=" and center_id='".$center_id."'";
 	$is_search=true;
 }
+if(isset($_GET["trainee_status_id"])){
+	$trainee_status_id=slash($_GET["trainee_status_id"]);
+	$_SESSION["trainees_manage"]["list"]["trainee_status_id"]=$trainee_status_id;
+}
+if(isset($_SESSION["trainees_manage"]["list"]["trainee_status_id"]))
+	$trainee_status_id=$_SESSION["trainees_manage"]["list"]["trainee_status_id"];
+else
+	$trainee_status_id="";
+if($trainee_status_id!=""){
+	$extra.=" and trainee_status_id='".$trainee_status_id."'";
+	$is_search=true;
+}
 if(isset($_GET["q"])){
 	$q=slash($_GET["q"]);
 	$_SESSION["trainees_manage"]["q"]=$q;
@@ -48,7 +60,7 @@ if(!empty($q)){
     <li class="col-xs-12 col-lg-12 col-sm-12">
     	<div>
         	<form class="form-horizontal" action="" method="get">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                 	<select name="center_id" id="center_id" class="custom_select">
                         <option value=""<?php echo ($center_id=="")? " selected":"";?>>Select Batch</option>
                         <?php
@@ -63,7 +75,15 @@ if(!empty($q)){
                         ?>
                     </select>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
+                	<select name="trainee_status_id" id="trainee_status_id" title="Choose Option">
+                        <option value="">Select Status</option>
+                        <option value="1" <?php echo($trainee_status_id==1)?"selected":"";?>>Clear</option>
+                        <option value="2" <?php echo($trainee_status_id==2)?"selected":"";?>>Already Registered</option>
+                        <option value="3" <?php echo($trainee_status_id==3)?"selected":"";?>>Invalid Cnic</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
                   <input type="text" title="Enter String" value="<?php echo $q;?>" name="q" id="search" class="form-control" >  
                 </div>
                 <div class="col-sm-3 text-left">
@@ -83,7 +103,7 @@ if(!empty($q)){
                     <input type="checkbox" id="select_all" value="0" title="Select All Records">
                     <label for="select_all"></label></div></th>
                 <th width="15%">Name</th>
-                <th width="15%">Father Name</th>
+                <th width="15%">Father/Husband Name</th>
                 <th width="10%">Contact</th>
                 <th width="8%">CNIC</th>
                 <th width="8%">Birth Date</th>
@@ -140,7 +160,7 @@ if(!empty($q)){
                 }
                 ?>
                 <tr>
-                    <td colspan="4" class="actions">
+                    <td colspan="5" class="actions">
                         <select name="bulk_action" class="" id="bulk_action" title="Choose Action">
                             <option value="null">Bulk Action</option>
                             <option value="delete">Delete</option>
@@ -149,14 +169,14 @@ if(!empty($q)){
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="4" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "trainees", $sql, $pageNum)?></td>
+                    <td colspan="5" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "trainees", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
             else{	
                 ?>
                 <tr>
-                    <td colspan="8"  class="no-record">No Result Found</td>
+                    <td colspan="10"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }
