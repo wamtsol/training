@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 11, 2022 at 10:39 PM
+-- Generation Time: Jan 14, 2022 at 01:00 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -31,10 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `admin_type_id` int(11) NOT NULL,
+  `linked_user` int(11) DEFAULT NULL,
   `username` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `monthly_salary` decimal(10,2) NOT NULL,
   `password` varchar(200) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -44,9 +44,10 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `admin_type_id`, `username`, `email`, `name`, `monthly_salary`, `password`, `status`, `ts`) VALUES
-(1, 1, 'admin', 'vickyali2@hotmail.com', 'Admin', '0.00', 'admin', 1, '2022-01-10 15:16:45'),
-(28, 3, 'FARHAN', 'mburhan2030@gmail.com', 'FARHAN', '0.00', 'dawood123', 1, '2022-01-05 11:49:37');
+INSERT INTO `admin` (`id`, `admin_type_id`, `linked_user`, `username`, `email`, `name`, `password`, `status`, `ts`) VALUES
+(1, 1, 5, 'admin', 'vickyali2@hotmail.com', 'Admin', 'admin', 1, '2022-01-12 11:52:28'),
+(29, 4, 0, 'hassan', 'hassan@test.com', 'Hassan', 'hassan', 1, '2022-01-12 12:16:01'),
+(30, 5, 0, 'admin1', 'tajmal-hassan@hotmail.com', 'Majeed Dhamrah', '123456', 1, '2022-01-12 12:25:30');
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,9 @@ CREATE TABLE `admin_type` (
 
 INSERT INTO `admin_type` (`id`, `title`, `can_add`, `can_edit`, `can_delete`, `can_read`, `status`, `ts`) VALUES
 (1, 'Administrator', 1, 1, 1, 1, 1, '2017-02-27 12:10:38'),
-(3, 'FARHAN', 0, 0, 0, 1, 1, '2022-01-01 11:57:35');
+(3, 'Center Incharge', 0, 0, 0, 1, 1, '2022-01-12 11:15:25'),
+(4, 'Trainer', 0, 0, 0, 0, 1, '2022-01-12 12:15:33'),
+(5, 'Administrator1', 0, 0, 0, 1, 1, '2022-01-12 12:24:32');
 
 -- --------------------------------------------------------
 
@@ -92,7 +95,14 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`id`, `center_id`, `user_id`, `date`, `ts`) VALUES
-(1, 3, 1, '2022-01-12', '2022-01-11 22:37:32');
+(1, 1, 5, '2022-01-10', '2022-01-12 13:15:24'),
+(2, 1, 5, '2022-01-11', '2022-01-12 13:16:49'),
+(3, 1, 5, '2022-01-12', '2022-01-12 13:37:02'),
+(4, 2, 5, '2022-01-10', '2022-01-12 23:18:53'),
+(5, 2, 5, '2022-01-11', '2022-01-12 23:19:08'),
+(6, 2, 5, '2022-01-12', '2022-01-12 23:19:43'),
+(9, 4, 7, '2022-01-12', '2022-01-13 03:37:51'),
+(10, 4, 7, '2022-01-13', '2022-01-13 03:43:20');
 
 -- --------------------------------------------------------
 
@@ -110,7 +120,15 @@ CREATE TABLE `attendance_records` (
 --
 
 INSERT INTO `attendance_records` (`attendance_id`, `trainee_id`) VALUES
-(1, 2);
+(1, 8),
+(2, 8),
+(2, 7),
+(4, 9),
+(4, 10),
+(5, 10),
+(9, 11),
+(9, 12),
+(10, 12);
 
 -- --------------------------------------------------------
 
@@ -133,9 +151,9 @@ CREATE TABLE `centers` (
 --
 
 INSERT INTO `centers` (`id`, `project_id`, `district_id`, `center`, `incharge_user_id`, `status`, `ts`) VALUES
-(1, 1, 1, 'Cant Center', 0, 1, '2022-01-11 09:26:10'),
+(1, 1, 1, 'call center', 5, 1, '2022-01-12 14:51:19'),
 (2, 1, 2, 'Cant Center 1', 0, 1, '2022-01-11 09:26:19'),
-(3, 3, 1, 'Cant Center 3', 0, 1, '2022-01-11 09:26:33');
+(4, 4, 1, 'Masu Bhurgri', 0, 1, '2022-01-12 12:28:17');
 
 -- --------------------------------------------------------
 
@@ -208,8 +226,8 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `title`, `status`, `ts`) VALUES
-(2, 'Home', 1, '2022-01-10 15:59:12'),
-(3, 'New Dept', 1, '2022-01-11 09:23:34');
+(2, 'Fisheries wing', 1, '2022-01-12 13:01:07'),
+(4, 'Livestock wing', 1, '2022-01-12 12:26:03');
 
 -- --------------------------------------------------------
 
@@ -229,8 +247,19 @@ CREATE TABLE `designations` (
 --
 
 INSERT INTO `designations` (`id`, `title`, `status`, `ts`) VALUES
-(1, 'Incharge', 1, '2022-01-11 09:25:14'),
-(2, 'Manager', 1, '2022-01-11 09:25:31');
+(1, 'Project Director BBSHRRDB', 1, '2022-01-12 14:20:44'),
+(2, 'Deputy Project Director Livestock', 1, '2022-01-12 14:13:51'),
+(3, 'Deputy Project Director Fisheries', 1, '2022-01-12 14:14:11'),
+(4, 'Assistant Director Livestock', 1, '2022-01-12 14:14:33'),
+(5, 'Assistant Director Fisheries', 1, '2022-01-12 14:14:51'),
+(6, 'Accounts Officer', 1, '2022-01-12 14:15:08'),
+(7, 'Incharge IT Livestock', 1, '2022-01-12 14:15:31'),
+(8, 'Incharge IT Fisheries', 1, '2022-01-12 14:15:49'),
+(9, 'Trainer Fisheries', 1, '2022-01-12 14:18:02'),
+(10, 'Trainer Livestock', 1, '2022-01-12 14:18:15'),
+(11, 'Assistant Trainer Fisheries', 1, '2022-01-12 14:18:31'),
+(12, 'Assistant Trainer Livestock', 1, '2022-01-12 14:18:44'),
+(13, 'Training Coordinator Fisheries', 1, '2022-01-12 14:19:03');
 
 -- --------------------------------------------------------
 
@@ -250,8 +279,27 @@ CREATE TABLE `districts` (
 --
 
 INSERT INTO `districts` (`id`, `name`, `status`, `ts`) VALUES
-(1, 'Hyderabad', 1, '2022-01-10 16:06:55'),
-(2, 'Larkana', 1, '2022-01-10 16:07:21');
+(1, 'Hyderabad', 1, '2022-01-12 13:13:26'),
+(2, 'Larkana', 1, '2022-01-10 16:07:21'),
+(3, 'Dadu', 1, '2022-01-12 13:31:18'),
+(4, 'Ghotki', 1, '2022-01-12 13:31:29'),
+(5, 'Khairpur Mirs', 1, '2022-01-12 13:32:05'),
+(6, 'Thatta', 1, '2022-01-12 13:32:12'),
+(7, 'Shaheed Benazirabad', 1, '2022-01-12 13:32:27'),
+(8, 'Sanghar', 1, '2022-01-12 13:32:38'),
+(9, 'Tando Muhammad Khan', 1, '2022-01-12 13:32:50'),
+(10, 'Matyari', 1, '2022-01-12 13:33:01'),
+(11, 'Jamshoro', 1, '2022-01-12 13:33:12'),
+(12, 'Sukkur', 1, '2022-01-12 13:33:22'),
+(13, 'Badin', 1, '2022-01-12 13:33:32'),
+(14, 'Sujjawal', 1, '2022-01-12 13:33:43'),
+(15, 'Naushro Feroze', 1, '2022-01-12 13:34:27'),
+(16, 'FTC Chillya Thatta', 1, '2022-01-12 13:35:34'),
+(17, 'FTC Keenjhar Lake', 1, '2022-01-12 13:35:50'),
+(18, 'Shikarpur', 1, '2022-01-12 13:36:01'),
+(19, 'FTC Badin', 1, '2022-01-12 13:36:14'),
+(20, 'FTC Dokri Larkana', 1, '2022-01-12 13:36:31'),
+(21, 'FTC Mando Dero Sukkur', 1, '2022-01-12 13:36:44');
 
 -- --------------------------------------------------------
 
@@ -430,16 +478,28 @@ CREATE TABLE `projects` (
   `department_id` int(11) DEFAULT NULL,
   `title` varchar(50) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '1',
-  `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `duration` varchar(50) DEFAULT NULL,
+  `total_batches` int(20) DEFAULT NULL,
+  `min_qualification` varchar(300) DEFAULT NULL,
+  `total_no_of_trainees` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `department_id`, `title`, `status`, `ts`) VALUES
-(1, 2, 'Project 1', 1, '2022-01-11 09:24:31'),
-(3, 3, 'Project 2', 1, '2022-01-11 09:23:57');
+INSERT INTO `projects` (`id`, `department_id`, `title`, `status`, `ts`, `duration`, `total_batches`, `min_qualification`, `total_no_of_trainees`) VALUES
+(1, 2, 'Fish Farming Extension Technology', 1, '2022-01-12 13:16:42', NULL, NULL, NULL, NULL),
+(4, 4, 'Livestock Community Health Worker', 1, '2022-01-12 12:27:01', NULL, NULL, NULL, NULL),
+(5, 2, 'Integrated Fish Farming', 1, '2022-01-12 13:17:02', NULL, NULL, NULL, NULL),
+(6, 2, 'Integrated Fish Farming Female', 1, '2022-01-12 13:17:31', NULL, NULL, NULL, NULL),
+(7, 2, 'Aqua Ponic Fish Farming', 1, '2022-01-13 03:59:58', '1', 6, 'Fish Rearing', 150),
+(8, 2, 'Hatchery Technician & Management', 1, '2022-01-12 13:18:12', NULL, NULL, NULL, NULL),
+(9, 2, 'Fish Farming in Cages', 1, '2022-01-12 13:18:27', NULL, NULL, NULL, NULL),
+(10, 2, 'Bioflock Fish Farming', 1, '2022-01-12 13:18:45', NULL, NULL, NULL, NULL),
+(11, 2, 'Mud Crab Fattening', 1, '2022-01-12 13:19:00', NULL, NULL, NULL, NULL),
+(12, 2, 'Fish Nursing & Culture Technology', 1, '2022-01-12 13:19:17', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -466,7 +526,16 @@ CREATE TABLE `trainees` (
 INSERT INTO `trainees` (`id`, `name`, `gender`, `cnic`, `cnic_photo_front`, `cnic_photo_back`, `birth_date`, `status`, `ts`) VALUES
 (1, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2021-12-01', 1, '2022-01-11 12:27:35'),
 (2, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-12 00:51:08'),
-(3, 'Hassan', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-11 22:35:24');
+(3, 'Hassan', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-11 22:35:24'),
+(4, 'Ali', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:04:05'),
+(5, 'Raheel', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:08:27'),
+(6, 'Tajamul Hassan', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:12:48'),
+(7, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:08:52'),
+(8, 'Hassan', 0, '41304-9641332-7', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:09:02'),
+(9, 'Bilal', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:09:17'),
+(10, 'Tariq', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:09:38'),
+(11, 'Ali', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:09:50'),
+(12, 'Faraz', 0, '', NULL, NULL, '2022-01-13', 1, '2022-01-13 03:15:11');
 
 -- --------------------------------------------------------
 
@@ -484,8 +553,12 @@ CREATE TABLE `trainees_2_center` (
 --
 
 INSERT INTO `trainees_2_center` (`trainee_id`, `center_id`) VALUES
-(2, 3),
-(3, 3);
+(7, 1),
+(8, 1),
+(9, 2),
+(10, 2),
+(11, 4),
+(12, 4);
 
 -- --------------------------------------------------------
 
@@ -530,7 +603,32 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `designation_id`, `name`, `gender`, `cnic`, `cnic_photo_front`, `cnic_photo_back`, `appointment_date`, `status`, `ts`) VALUES
-(5, 2, 'Rakhshinda', 1, '41304-2094017-5', NULL, NULL, '2022-01-05', 1, '2022-01-11 11:30:08');
+(5, 2, 'Dr. Faroque Ahmed Memon', 0, '41304-2094017-5', NULL, NULL, '2022-01-05', 1, '2022-01-12 14:16:43'),
+(6, 6, 'Mr. Tajamul Hassan Memon', 0, '41303-3619576-9', NULL, NULL, '1970-01-01', 1, '2022-01-12 14:22:39'),
+(7, 1, 'Dr. Majeed Hakeem Dhamrah', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:43:34'),
+(8, 4, 'Dr. Murk Pirzada', 1, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:20:06'),
+(9, 5, 'Mr. Makhdom Muhammad Hussain', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:21:35'),
+(10, 13, 'Mr. Adnan Ali Pirzada', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:22:27'),
+(11, 13, 'Mr. Naveed Ali Jokhio', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:22:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_2_center`
+--
+
+CREATE TABLE `users_2_center` (
+  `user_id` int(11) DEFAULT NULL,
+  `center_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_2_center`
+--
+
+INSERT INTO `users_2_center` (`user_id`, `center_id`) VALUES
+(5, 1),
+(7, 4);
 
 --
 -- Indexes for dumped tables
@@ -634,25 +732,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `admin_type`
 --
 ALTER TABLE `admin_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `centers`
 --
 ALTER TABLE `centers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `config_type`
@@ -670,19 +768,19 @@ ALTER TABLE `config_variable`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `designations`
 --
 ALTER TABLE `designations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -694,13 +792,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `trainees`
 --
 ALTER TABLE `trainees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `uploads`
@@ -712,7 +810,7 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

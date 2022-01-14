@@ -10,6 +10,7 @@ if(!defined("APP_START")) die("No Direct Access");
     	<div class="btn-group" role="group" aria-label="..."> 
         	<a href="attendance_manage.php?tab=add" class="btn btn-light editproject">Add New Attendance</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
+            <a class="btn print-btn" href="attendance_manage.php?tab=print" target="_blank"><i class="fa fa-print" aria-hidden="true"></i></a>
     	</div> 
     </div>
 </div>
