@@ -6,7 +6,7 @@ include("include/paging.php");
 define("APP_START", 1);
 $filename = 'centers_manage.php';
 include("include/admin_type_access.php");
-$tab_array=array("list", "add", "edit", "status", "delete", "bulk_action", "report");
+$tab_array=array("list", "add", "edit", "status", "delete", "bulk_action", "report", "inception_report");
 if(isset($_REQUEST["tab"]) && in_array($_REQUEST["tab"], $tab_array)){
 	$tab=$_REQUEST["tab"];
 }
@@ -44,6 +44,20 @@ if($district_id!=""){
 	$extra.=" and district_id='".$district_id."'";
 	$is_search=true;
 }
+if(isset($_GET["incharge_user_id"])){
+	$incharge_user_id=slash($_GET["incharge_user_id"]);
+	$_SESSION["centers_manage"]["incharge_user_id"]=$incharge_user_id;
+}
+if(isset($_SESSION["centers_manage"]["incharge_user_id"])){
+    $incharge_user_id=$_SESSION["centers_manage"]["incharge_user_id"];
+}
+else{
+    $incharge_user_id="";
+}
+if($incharge_user_id!=""){
+	$extra.=" and incharge_user_id='".$incharge_user_id."'";
+	$is_search=true;
+}
 if(isset($_GET["q"])){
 	$q=slash($_GET["q"]);
 	$_SESSION["centers_manage"]["q"]=$q;
@@ -77,6 +91,9 @@ switch($tab){
 	break;
 	case 'report':
 		include("modules/centers/report.php");
+	break;
+	case 'inception_report':
+		include("modules/centers/inception_report.php");
 	break;
 }
 ?>

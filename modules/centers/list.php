@@ -12,6 +12,7 @@ if(!defined("APP_START")) die("No Direct Access");
         	<a href="centers_manage.php?tab=add" class="btn btn-light editproject">Add New Batch</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
             <a class="btn print-btn" href="centers_manage.php?tab=report"><i class="fa fa-print" aria-hidden="true"></i></a>
+            <a class="btn btn-sm btn-white" href="centers_manage.php?tab=inception_report">Inception Report</a>
     	</div> 
     </div> 
 </div>
@@ -39,6 +40,21 @@ if(!defined("APP_START")) die("No Direct Access");
                         <option value=""<?php echo ($district_id=="")? " selected":"";?>>Select District</option>
                         <?php
                         $res=doquery("select * from districts where status = 1 order by name",$dblink);
+                        if(numrows($res)>=0){
+                            while($rec=dofetch($res)){
+                            ?>
+                            <option value="<?php echo $rec["id"]?>" <?php echo($district_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"])?></option>
+                            <?php
+                            }
+                        }	
+                        ?>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                	<select name="incharge_user_id" id="incharge_user_id" class="custom_select">
+                        <option value=""<?php echo ($incharge_user_id=="")? " selected":"";?>>Select Incharge User</option>
+                        <?php
+                        $res=doquery("select * from users where status = 1 order by name",$dblink);
                         if(numrows($res)>=0){
                             while($rec=dofetch($res)){
                             ?>

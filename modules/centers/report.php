@@ -36,7 +36,7 @@ table {
 <tr class="head">
 	<th colspan="10">
     	<h1><?php echo get_config( 'site_title' )?></h1>
-    	<h2>Attendance List</h2>
+    	<h2>Progress Report</h2>
         <p>
         	<?php
 			echo "List of";
@@ -61,6 +61,10 @@ table {
     <th width="8%" class="text-center">Duration</th>
     <th width="8%" class="text-center">Total batches</th>
     <th width="8%" class="text-center">Total trainees</th>
+    <th width="10%" class="text-center">No of Batch Completed</th>
+    <th width="10%" class="text-center">No of Trainee Trained</th>
+    <th width="10%" class="text-center">Remaining Batch</th>
+    <th width="10%" class="text-center">Remaining Trainee to be trained</th>
     <th width="10%">Batch</th>
     <th width="15%">Min Qualification</th>
     <th width="15%">Incharge User</th>
@@ -72,6 +76,8 @@ if( numrows( $rs ) > 0 ) {
 	while( $r = dofetch( $rs ) ) {
         $total_batches += $r["total_batches"];
         $total_trainees += $r["total_no_of_trainees"];
+        $completed_batch = dofetch(doquery("select count(id) as count from centers where status = 1 and end_date < '".date('Y-m-d')."' and id = '".$r['id']."'", $dblink));
+        $trained = dofetch(doquery("select count(a.id) as count from trainees a inner join trainees_2_center b on a.id = b.trainee_id inner join centers c on b.center_id = c.id where trainee_status_id = 1 and end_date < '".date('Y-m-d')."' and center_id = '".$r['id']."'", $dblink));
         ?>
 		<tr>
             <td class="text-center"><?php echo $sn++?></td>
@@ -80,6 +86,10 @@ if( numrows( $rs ) > 0 ) {
             <td class="text-center"><?php echo unslash($r["duration"]); ?></td>
             <td class="text-center"><?php echo unslash($r["total_batches"]); ?></td>
             <td class="text-center"><?php echo unslash($r["total_no_of_trainees"]);?></td>
+            <td class="text-center"><?php echo $completed_batch["count"];?></td>
+            <td class="text-center"><?php echo $trained["count"];?></td>
+            <td class="text-center"><?php echo $r["total_batches"]-$completed_batch["count"];?></td>
+            <td class="text-center"><?php echo $r["total_no_of_trainees"]-$trained["count"];?></td>
             <td><?php echo unslash($r["center"]); ?></td>
             <td><?php echo unslash($r["min_qualification"]); ?></td>
             <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
@@ -92,6 +102,10 @@ if( numrows( $rs ) > 0 ) {
     <th class="text-right" colspan="4">Total</th>
     <th><?php echo $total_batches;?></th>
     <th><?php echo $total_trainees;?></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
