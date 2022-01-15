@@ -1,50 +1,6 @@
 <?php
 if(!defined("APP_START")) die("No Direct Access");
-$q="";
-$extra='';
-$is_search=false;
-if(isset($_GET["project_id"])){
-	$project_id=slash($_GET["project_id"]);
-	$_SESSION["centers_manage"]["project_id"]=$project_id;
-}
-if(isset($_SESSION["centers_manage"]["project_id"])){
-    $project_id=$_SESSION["centers_manage"]["project_id"];
-}
-else{
-    $project_id="";
-}
-if($project_id!=""){
-	$extra.=" and project_id='".$project_id."'";
-	$is_search=true;
-}
-if(isset($_GET["district_id"])){
-	$district_id=slash($_GET["district_id"]);
-	$_SESSION["centers_manage"]["district_id"]=$district_id;
-}
-if(isset($_SESSION["centers_manage"]["district_id"])){
-    $district_id=$_SESSION["centers_manage"]["district_id"];
-}
-else{
-    $district_id="";
-}
-if($district_id!=""){
-	$extra.=" and district_id='".$district_id."'";
-	$is_search=true;
-}
-if(isset($_GET["q"])){
-	$q=slash($_GET["q"]);
-	$_SESSION["centers_manage"]["q"]=$q;
-}
-if(isset($_SESSION["centers_manage"]["q"])){
-    $q=$_SESSION["centers_manage"]["q"];
-}
-else{
-    $q="";
-}
-if(!empty($q)){
-	$extra.=" and center like '%".$q."%'";
-	$is_search=true;
-}
+
 ?>
 <div class="page-header">
 	<h1 class="title">Batches</h1>
@@ -55,6 +11,7 @@ if(!empty($q)){
     	<div class="btn-group" role="group" aria-label="..."> 
         	<a href="centers_manage.php?tab=add" class="btn btn-light editproject">Add New Batch</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
+            <a class="btn print-btn" href="centers_manage.php?tab=report"><i class="fa fa-print" aria-hidden="true"></i></a>
     	</div> 
     </div> 
 </div>
@@ -128,7 +85,6 @@ if(!empty($q)){
         </thead>
         <tbody>
             <?php 
-            $sql="select * from centers where 1 $extra order by center";
             $rs=show_page($rows, $pageNum, $sql);
             if(numrows($rs)>0){
                 $sn=1;

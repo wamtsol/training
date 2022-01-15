@@ -6,7 +6,7 @@ if(isset($_POST["centers_edit"])){
 	if(empty($center))
 		$err="Fields with (*) are Mandatory.<br />";
 	if($err==""){
-		$sql="Update centers set `project_id`='".slash($project_id)."', `district_id`='".slash($district_id)."', `center`='".slash($center)."', `incharge_user_id`='".slash($incharge_user_id)."' where id='".$id."'";
+		$sql="Update centers set `project_id`='".slash($project_id)."', `district_id`='".slash($district_id)."', `center`='".slash($center)."', `incharge_user_id`='".slash($incharge_user_id)."', `end_date`='".date_dbconvert($end_date)."', `start_date`='".date_dbconvert($start_date)."' where id='".$id."'";
 		doquery($sql,$dblink);
 		unset($_SESSION["centers_manage"]["edit"]);
 		header('Location: centers_manage.php?tab=list&msg='.url_encode("Successfully Updated"));
@@ -26,6 +26,8 @@ if(isset($_GET["id"]) && $_GET["id"]!=""){
 		$r=dofetch($rs);
 		foreach($r as $key=>$value)
 			$$key=htmlspecialchars(unslash($value));
+			$end_date = date_convert($end_date);
+			$start_date = date_convert($start_date);
 		if(isset($_SESSION["centers_manage"]["edit"]))
 			extract($_SESSION["centers_manage"]["edit"]);
 	}

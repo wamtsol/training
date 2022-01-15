@@ -18,8 +18,6 @@ if(isset($_GET["action"]) && $_GET["action"]!=""){
 				$users = doquery( "select * from users where id = '".$id[$i]."' ", $dblink );
 				if( numrows( $users ) > 0 ) {
 					$user = dofetch( $users );
-					deleteFile($file_upload_root."user_cnic/".$user["cnic_photo_front"]);
-					deleteFile($file_upload_root."user_cnic/".$user["cnic_photo_back"]);
 					doquery("delete from users_2_center where user_id='".$id[$i]."'",$dblink);
 					doquery("delete from users where id='".$id[$i]."'",$dblink);
 				}

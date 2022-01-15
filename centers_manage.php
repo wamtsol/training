@@ -6,14 +6,59 @@ include("include/paging.php");
 define("APP_START", 1);
 $filename = 'centers_manage.php';
 include("include/admin_type_access.php");
-$tab_array=array("list", "add", "edit", "status", "delete", "bulk_action");
+$tab_array=array("list", "add", "edit", "status", "delete", "bulk_action", "report");
 if(isset($_REQUEST["tab"]) && in_array($_REQUEST["tab"], $tab_array)){
 	$tab=$_REQUEST["tab"];
 }
 else{
 	$tab="list";
 }
-
+$q="";
+$extra='';
+$is_search=false;
+if(isset($_GET["project_id"])){
+	$project_id=slash($_GET["project_id"]);
+	$_SESSION["centers_manage"]["project_id"]=$project_id;
+}
+if(isset($_SESSION["centers_manage"]["project_id"])){
+    $project_id=$_SESSION["centers_manage"]["project_id"];
+}
+else{
+    $project_id="";
+}
+if($project_id!=""){
+	$extra.=" and project_id='".$project_id."'";
+	$is_search=true;
+}
+if(isset($_GET["district_id"])){
+	$district_id=slash($_GET["district_id"]);
+	$_SESSION["centers_manage"]["district_id"]=$district_id;
+}
+if(isset($_SESSION["centers_manage"]["district_id"])){
+    $district_id=$_SESSION["centers_manage"]["district_id"];
+}
+else{
+    $district_id="";
+}
+if($district_id!=""){
+	$extra.=" and district_id='".$district_id."'";
+	$is_search=true;
+}
+if(isset($_GET["q"])){
+	$q=slash($_GET["q"]);
+	$_SESSION["centers_manage"]["q"]=$q;
+}
+if(isset($_SESSION["centers_manage"]["q"])){
+    $q=$_SESSION["centers_manage"]["q"];
+}
+else{
+    $q="";
+}
+if(!empty($q)){
+	$extra.=" and center like '%".$q."%'";
+	$is_search=true;
+}
+$sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification from centers a inner join projects b on a.project_id = b.id where 1 $extra order by center";
 switch($tab){
 	case 'add':
 		include("modules/centers/add_do.php");
@@ -29,6 +74,9 @@ switch($tab){
 	break;
 	case 'bulk_action':
 		include("modules/centers/bulkactions.php");
+	break;
+	case 'report':
+		include("modules/centers/report.php");
 	break;
 }
 ?>

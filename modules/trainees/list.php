@@ -109,7 +109,7 @@ if(!empty($q)){
                 <th width="8%">Birth Date</th>
                 <th width="8%">Trainee Status</th>
                 <th width="5%" class="text-center">Status</th>
-                <th width="5%" class="text-center">Actions</th>
+                <th width="8%" class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -153,6 +153,7 @@ if(!empty($q)){
                         <td class="text-center">
                             <a href="trainees_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
                             <a onclick="return confirm('Are you sure you want to delete')" href="trainees_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
+                            <?php if($r["trainee_status_id"]==1){?><a href="trainees_manage.php?tab=offer_letter&id=<?php echo $r['id'];?>"><img title="Print Letter" alt="Edit" src="images/view.png"></a><?php }?>
                         </td>
                     </tr>  
                     <?php 

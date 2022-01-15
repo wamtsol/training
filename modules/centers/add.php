@@ -8,6 +8,8 @@ else{
     $district_id="";
     $center="";
     $incharge_user_id="";
+    $start_date="";
+    $end_date="";
 }
 ?>
 <div class="page-header">
@@ -74,7 +76,6 @@ else{
             </div>
         </div>
     </div>
-    
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
@@ -94,6 +95,26 @@ else{
                     }
                     ?>
                 </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+        	<div class="col-sm-2 control-label">
+            	<label class="form-label" for="start_date">Start Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Date" value="<?php echo $start_date; ?>" name="start_date" id="start_date" class="form-control date-picker" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+        	<div class="col-sm-2 control-label">
+            	<label class="form-label" for="end_date">End Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Date" value="<?php echo $end_date; ?>" name="end_date" id="end_date" class="form-control date-picker" />
             </div>
         </div>
     </div>

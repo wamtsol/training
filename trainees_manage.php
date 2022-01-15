@@ -6,7 +6,7 @@ include("include/paging.php");
 define("APP_START", 1);
 $filename = 'trainees_manage.php';
 include("include/admin_type_access.php");
-$tab_array=array("list", "add", "edit", "status", "delete", "bulk_action");
+$tab_array=array("list", "add", "edit", "status", "delete", "bulk_action", "offer_letter");
 if(isset($_REQUEST["tab"]) && in_array($_REQUEST["tab"], $tab_array)){
 	$tab=$_REQUEST["tab"];
 }
@@ -29,6 +29,9 @@ switch($tab){
 	break;
 	case 'bulk_action':
 		include("modules/trainees/bulkactions.php");
+	break;
+	case 'offer_letter':
+		include("modules/trainees/offer_letter.php");
 	break;
 }
 ?>

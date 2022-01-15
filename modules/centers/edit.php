@@ -89,6 +89,26 @@ if(!defined("APP_START")) die("No Direct Access");
         </div>
     </div>
     <div class="form-group">
+        <div class="row">
+        	<div class="col-sm-2 control-label">
+            	<label class="form-label" for="start_date">Start Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Date" value="<?php echo $start_date; ?>" name="start_date" id="start_date" class="form-control date-picker" autocomplete="off" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+        	<div class="col-sm-2 control-label">
+            	<label class="form-label" for="end_date">End Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Date" value="<?php echo $end_date; ?>" name="end_date" id="end_date" class="form-control date-picker" autocomplete="off" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
     	<div class="row">
             <div class="col-sm-2 control-label">
                 <label for="company" class="form-label"></label>
