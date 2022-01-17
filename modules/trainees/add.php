@@ -29,7 +29,7 @@ else{
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="center_id">Batch </label>
+            	<label class="form-label" for="center_id">Center/Trade </label>
             </div>
             <div class="col-sm-10">
                 <select name="center_ids[]" id="center_id" multiple="multiple" class="select_multiple" title="Choose Option">
@@ -123,7 +123,7 @@ else{
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
-                <label class="form-label" for="cnic_issue_date">Cnic Issue Date</label>
+                <label class="form-label" for="cnic_issue_date">CNIC Issue Date</label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Cnic Issue Date" value="<?php echo $cnic_issue_date; ?>" name="cnic_issue_date" id="cnic_issue_date" class="form-control date-picker" />
@@ -143,10 +143,10 @@ else{
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
-                <label class="form-label" for="address">Address</label>
+                <label class="form-label" for="address">Course</label>
             </div>
             <div class="col-sm-10">
-                <input type="text" title="Enter Address" value="<?php echo $address; ?>" name="address" id="address" class="form-control" />
+                <input type="text" title="Enter Course" value="<?php echo $address; ?>" name="address" id="address" class="form-control" />
             </div>
         </div>
     </div>

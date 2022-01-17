@@ -21,6 +21,21 @@ if(!defined("APP_START")) die("No Direct Access");
     	<div>
         	<form class="form-horizontal" action="" method="get">
                 <div class="col-sm-2">
+                    <select name="department_id" id="department_id" class="custom_select">
+                        <option value=""<?php echo ($department_id=="")? " selected":"";?>>Select Department</option>
+                        <?php
+                        $res=doquery("select * from departments where status = 1 order by title",$dblink);
+                        if(numrows($res)>=0){
+                            while($rec=dofetch($res)){
+                                ?>
+                                <option value="<?php echo $rec["id"]?>" <?php echo($department_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["title"])?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-sm-2">
                 	<select name="project_id" id="project_id" class="custom_select">
                         <option value=""<?php echo ($project_id=="")? " selected":"";?>>Select Course</option>
                         <?php

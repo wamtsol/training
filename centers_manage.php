@@ -16,6 +16,20 @@ else{
 $q="";
 $extra='';
 $is_search=false;
+if(isset($_GET["department_id"])){
+    $department_id=slash($_GET["department_id"]);
+    $_SESSION["centers_manage"]["department_id"]=$department_id;
+}
+if(isset($_SESSION["centers_manage"]["department_id"])){
+    $department_id=$_SESSION["centers_manage"]["department_id"];
+}
+else{
+    $department_id="";
+}
+if($department_id!=""){
+    $extra.=" and department_id='".$department_id."'";
+    $is_search=true;
+}
 if(isset($_GET["project_id"])){
 	$project_id=slash($_GET["project_id"]);
 	$_SESSION["centers_manage"]["project_id"]=$project_id;
