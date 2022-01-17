@@ -61,7 +61,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         .content-head {
             display: flex;
         }
-        .content-head h2 span{
+        .content-head h2 span, .subject-text p span{
             border-bottom: 1px solid #000;
             width: auto;
             display: inline-block;
@@ -232,7 +232,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                     </div>
                     <div class="subject-text">
                         <p>With reference to your application ror lhc training under BBSHRRDB, you have been successfully selected as
-                        trainee therefore you are offered training of__________________________________________________</p>
+                        trainee therefore you are offered training of <span><?php echo get_field($trainee["project_id"], "projects", "title")?></span></p>
                         <p>as trainee position on following terms and conditions:</p>
                     </div>
                     <div class="subject-list">
@@ -270,7 +270,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                     <div class="subject-text">
                         <p>If you agree with the above terms & conditions, acceptance must be committed by the signing on this
                             offer letter. Moreover this offer letter may be return to this PMU, so that making you eligible to
-                            participate in training commencing form_________________________,at____________________________</p>
+                            participate in training commencing from <span><?php echo $trainee["start_date"]?></span>,at <span><?php echo $trainee["address"]?></span></p>
                     </div>
                     <div class="sign">
                         <div class="sign-left">
