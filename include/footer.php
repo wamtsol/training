@@ -28,6 +28,12 @@
 <script src="js/bootstrap-datetimepicker.min.js"></script>
 <script>
 $(document).ready(function(){
+    $("#cnic").keypress(function (e){
+        var cnic = $("#cnic").val();
+        if (cnic.length == 5 || cnic.length == 13) {
+            $("#cnic").val($("#cnic").val() + '-');
+        }
+    });
 	$('.date-picker').daterangepicker({ singleDatePicker: true, format: 'DD/MM/YYYY'});
 	$('.fancybox_iframe').fancybox({type: 'iframe', width: '90%'});
 	$('.fancybox-btn a.fancybox_inline').fancybox({type: 'inline'});
@@ -58,7 +64,7 @@ $(document).ready(function(){
 <script type="text/javascript" src="js/attendance.angular.js"></script>
 <script type="text/javascript" src="js/angular-chosen.js"></script>
 <script>
-$(document).ready(function() {     
+$(document).ready(function() {
 	$(".sorting").hover(function(){
 	  $icon=$(this).find(".sort-icon i");
 	  $icon.removeClass("fa-angle-"+$icon.data("hover_out")).addClass("fa-angle-"+$icon.data("hover_in"))

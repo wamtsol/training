@@ -72,7 +72,7 @@ if(!defined("APP_START")) die("No Direct Access");
             	<label class="form-label" for="cnic">CNIC</label>
             </div>
             <div class="col-sm-10">
-                <input type="text" title="Enter CNIC" value="<?php echo $cnic; ?>" name="cnic" id="cnic" class="form-control" />
+                <input id="cnic" maxlength="15" type="text" title="Enter CNIC" value="<?php echo $cnic; ?>" name="cnic" id="cnic" class="form-control" />
             </div>
         </div>
     </div>
@@ -141,11 +141,21 @@ if(!defined("APP_START")) die("No Direct Access");
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
+                <label class="form-label" for="address">Address</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Address" value="<?php echo $address; ?>" name="address" id="address" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
                 <label class="form-label" for="trainee_status_id">Trainee Status</label>
             </div>
             <div class="col-sm-10">
                 <select name="trainee_status_id" title="Choose Option">
-                    <option value="">Select Trainee Status</option>
+                    <option value="0">Select Trainee Status</option>
                     <option value="1" <?php echo($trainee_status_id==1)?"selected":"";?>>Clear</option>
                     <option value="2" <?php echo($trainee_status_id==2)?"selected":"";?>>Already Registered</option>
                     <option value="3" <?php echo($trainee_status_id==3)?"selected":"";?>>Invalid Cnic</option>

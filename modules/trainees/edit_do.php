@@ -5,11 +5,13 @@ if(isset($_POST["trainees_edit"])){
 	$err="";
 	if(empty($name) || $gender=="")
 		$err="Fields with (*) are Mandatory.<br />";
+    if ( !empty($cnic) && !preg_match('/^\d{5}[-]\d{7}[-]\d{1}$/', $cnic))
+        $err .= 'Invalid cnic<br>';
     if(get_age( date_dbconvert( $birth_date ), "") < 18 || get_age( date_dbconvert( $birth_date ), "") > 35)
-        $err="Out of age.<br> Age is under (18 to 35)";
+        $err .= "Out of age.<br> Age is under (18 to 35)";
     
 	if($err==""){
-		$sql="Update trainees set `name`='".slash($name)."', `father_name`='".slash($father_name)."', `gender`='".slash($gender)."', `cnic`='".slash($cnic)."', `birth_date`='".date_dbconvert($birth_date)."', `cnic_issue_date`='".date_dbconvert($cnic_issue_date)."', `contact`='".slash($contact)."', `trainee_status_id`='".slash($trainee_status_id)."' where id='".$id."'";
+		$sql="Update trainees set `name`='".slash($name)."', `father_name`='".slash($father_name)."', `gender`='".slash($gender)."', `cnic`='".slash($cnic)."', `birth_date`='".date_dbconvert($birth_date)."', `cnic_issue_date`='".date_dbconvert($cnic_issue_date)."', `contact`='".slash($contact)."', `address`='".slash($address)."', `trainee_status_id`='".slash($trainee_status_id)."' where id='".$id."'";
 		doquery($sql,$dblink);
 		if(!empty($_FILES["cnic_photo_front"]["tmp_name"]) || isset($delete_image_front)){
 			$prev_icon=doquery("select cnic_photo_front from trainees where id=$id",$dblink);

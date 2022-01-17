@@ -323,6 +323,13 @@ function get_age( $birth_date, $now = "" ){
     return $interval->y;
 }
 
+function total_month( $start_date, $end_date ){
+    $start = new DateTime($start_date);
+    $end = new DateTime( $end_date );
+    $interval = $end->diff($start);
+    return $interval->m;
+}
+
 /*-------------- Function--------------*/
 function get_bitly( $url ){
     $options = array(
