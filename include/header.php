@@ -21,7 +21,7 @@
 	<div id="wrapper" class="round_corners">		
     	<div id="top" class="clearfix">
             <div class="applogo">
-			<a href="index.php" class="logo"><?php $admin_logo=get_config("admin_logo"); if(empty($admin_logo)) echo $site_title; else { ?><img src="<?php echo $file_upload_root;?>config/<?php echo $admin_logo?>" width="50" style="margin-right:5px" /><?php echo $site_title; }?></a>
+			<a href="index.php" class="logo"><?php $admin_logo=get_config("admin_logo"); if(empty($admin_logo)) echo $site_title; else { ?><img src="<?php echo $file_upload_root;?>config/<?php echo $admin_logo?>" width="50" style="margin-right:5px" /><?php }?></a>
             </div>
             <a class="sidebar-open-button" href="#"><i class="fa fa-bars"></i></a>
             <ul class="top-right">
