@@ -151,9 +151,11 @@ if(!empty($q)){
                             </a>
                         </td>
                         <td class="text-center">
+                            <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1 || $_SESSION["logged_in_admin"]["admin_type_id"]==7 || $_SESSION["logged_in_admin"]["admin_type_id"]==8 || $_SESSION["logged_in_admin"]["admin_type_id"]==9 || $_SESSION["logged_in_admin"]["admin_type_id"]==12){?>
                             <a href="trainees_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
                             <a onclick="return confirm('Are you sure you want to delete')" href="trainees_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
                             <?php if($r["trainee_status_id"]==1){?><a href="trainees_manage.php?tab=offer_letter&id=<?php echo $r['id'];?>"><img title="Print Letter" alt="Edit" src="images/view.png"></a><?php }?>
+                            <?php } else{ echo "--";}?>
                         </td>
                     </tr>  
                     <?php 
