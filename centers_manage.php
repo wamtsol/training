@@ -86,7 +86,7 @@ if(!empty($q)){
 	$extra.=" and center like '%".$q."%'";
 	$is_search=true;
 }
-$sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification from centers a inner join projects b on a.project_id = b.id where 1 $extra and user_id = '".$_SESSION["logged_in_admin"]["id"]."' order by center";
+$sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification from centers a inner join projects b on a.project_id = b.id where 1 $extra and incharge_user_id = '".$_SESSION["logged_in_admin"]["id"]."' order by center";
 switch($tab){
 	case 'add':
 		include("modules/centers/add_do.php");
