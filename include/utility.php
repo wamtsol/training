@@ -327,7 +327,7 @@ function total_month( $start_date, $end_date ){
     $start = new DateTime($start_date);
     $end = new DateTime( $end_date );
     $interval = $end->diff($start);
-    return $interval->m-8;
+    return $interval->m;
 }
 
 /*-------------- Function--------------*/
