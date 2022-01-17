@@ -120,7 +120,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         .subject-list {
             margin-left: 20px;
         }
-        .subject-list span {
+        .subject-list p span {
             border-bottom: 1px solid #000;
         }
         .subject-list p {
@@ -202,7 +202,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                         <h2>To</h2>
                     </div>
                     <div class="content-head center-text-inner">
-                        <h2>Mr./Ms. <span style=""><?php echo unslash($trainee["name"]);?>&nbsp;</span> S/o, D/o. <span><?php echo unslash($trainee["father_name"]);?>&nbsp;</span></h2>
+                        <h2>Mr./Ms. <?php echo ( $trainee["name"] ? "<span>".unslash($trainee["name"])."</span>":"_____________________");?>&nbsp; S/o, D/o. <?php echo ( $trainee["father_name"] ? "<span>".unslash($trainee["father_name"])."</span>":"______________________");?>&nbsp;</h2>
                     </div>
                     <div class="content-right center-text-inner">
                         <h2>CNIC #.&nbsp;&nbsp;</h2>
@@ -223,7 +223,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                         <div class="cnic-code"><?php echo ( $trainee["cnic"] ? unslash($trainee["cnic"][14]):"");?></div>
                     </div>
                     <div class="content-head center-text-inner">
-                        <h2>Address: <span style=""><?php echo unslash($trainee["address"]);?> </span> </h2>
+                        <h2>Address: <?php echo ( $trainee["address"] ? "<span>".unslash($trainee["address"])."<span>":"__________________________________________________");?> </span> </h2>
                     </div>
                     <div class="subject">
                         <h2>Subject:</h2>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -237,7 +237,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                     </div>
                     <div class="subject-list">
                         <div class="list-1">
-                            <span>1.</span><p>The Training period is for <span style=""> <?php echo total_month($trainee["start_date"], $trainee["end_date"]);?></span> months(s) starting form <span style=""> <?php echo unslash($trainee["start_date"]);?></span> to <span style=""> <?php echo unslash($trainee["end_date"]);?></span> .</p>
+                            <span>1.</span><p>The Training period is for <?php echo (($trainee["start_date"] && $trainee["end_date"])?"<span>".total_month($trainee["start_date"], $trainee["end_date"])."</span>":"______ ");?>months(s) starting form <?php echo ( $trainee["start_date"]? "<span>".unslash($trainee["start_date"])."</span>":"_______________");?> to <?php echo ( $trainee["end_date"]? "<span>".unslash($trainee["end_date"])."</span>":"______________________________");?> .</p>
                         </div>
                         <div class="list-1">
                             <span>2.</span><p>You will be paid Rs. 5000/- (Rupees Five Thousand only) in a month.</p>

@@ -52,7 +52,7 @@ if(!empty($q)){
                 <th>User Type</th>
                 <th>User Name</th>
                 <th>Name</th>
-                <th>Email</th>
+                <th>Contact</th>
                 <th>Linked User</th>
                 <th width="5%" class="text-center">Status</th>
                 <th width="5%">Actions</th>

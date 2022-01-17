@@ -79,10 +79,10 @@ if(!defined("APP_START")) die("No Direct Access");
   	<div class="form-group">
     	<div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="email">Email <span class="manadatory">*</span></label>
+            	<label class="form-label" for="email">Contact <span class="manadatory">*</span></label>
             </div>
             <div class="col-sm-10">
-                <input type="email" title="Enter Email" value="<?php echo $email; ?>" name="email" id="email" class="form-control">
+                <input type="text" title="Enter Contact" value="<?php echo $email; ?>" name="email" id="email" class="form-control">
             </div>
         </div>
   	</div>

@@ -5,12 +5,12 @@ if(isset($_POST["admin_edit"])){
 	$err="";
 	if(empty($name) || empty($username) || empty($email))
 		$err="Fields with (*) are Mandatory.<br />";
-	if(!empty($email) && !emailok($email))
-		$err.="E-mail is not valid.<br />";
+//	if(!empty($email) && !emailok($email))
+//		$err.="E-mail is not valid.<br />";
 	if(numrows(doquery("select id from admin where username='".slash($username)."' and id<>'".$id."'", $dblink))>0)
 		$err.='Username already exists.<br />';
-	if(numrows(doquery("select id from admin where email='".slash($email)."' and id<>'".$id."'", $dblink))>0)
-		$err.='Email address already exists.<br />';
+//	if(numrows(doquery("select id from admin where email='".slash($email)."' and id<>'".$id."'", $dblink))>0)
+//		$err.='Email address already exists.<br />';
 	if($err==""){
 		$sql="Update admin set `admin_type_id`='".slash($admin_type_id)."', `username`='".slash($username)."',`name`='".slash($name)."', `email`='".slash($email)."',`linked_user`='".slash($linked_user)."'".(!empty($password)? ", `password`='".slash($password)."'":"")." where id='".$id."'";
 		doquery($sql,$dblink);
