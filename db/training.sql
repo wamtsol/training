@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 14, 2022 at 01:00 AM
+-- Generation Time: Jan 15, 2022 at 06:17 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -142,6 +142,8 @@ CREATE TABLE `centers` (
   `district_id` int(11) DEFAULT NULL,
   `center` varchar(50) NOT NULL,
   `incharge_user_id` int(11) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1',
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -150,10 +152,10 @@ CREATE TABLE `centers` (
 -- Dumping data for table `centers`
 --
 
-INSERT INTO `centers` (`id`, `project_id`, `district_id`, `center`, `incharge_user_id`, `status`, `ts`) VALUES
-(1, 1, 1, 'call center', 5, 1, '2022-01-12 14:51:19'),
-(2, 1, 2, 'Cant Center 1', 0, 1, '2022-01-11 09:26:19'),
-(4, 4, 1, 'Masu Bhurgri', 0, 1, '2022-01-12 12:28:17');
+INSERT INTO `centers` (`id`, `project_id`, `district_id`, `center`, `incharge_user_id`, `start_date`, `end_date`, `status`, `ts`) VALUES
+(1, 1, 1, 'call center', 5, '2021-09-01', '2022-01-31', 1, '2022-01-15 01:49:43'),
+(2, 1, 2, 'Cant Center 1', 0, NULL, NULL, 1, '2022-01-11 09:26:19'),
+(4, 4, 1, 'Masu Bhurgri', 0, NULL, NULL, 1, '2022-01-12 12:28:17');
 
 -- --------------------------------------------------------
 
@@ -510,11 +512,15 @@ INSERT INTO `projects` (`id`, `department_id`, `title`, `status`, `ts`, `duratio
 CREATE TABLE `trainees` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `father_name` varchar(50) DEFAULT NULL,
   `gender` int(1) DEFAULT NULL,
   `cnic` varchar(16) DEFAULT NULL,
   `cnic_photo_front` varchar(50) DEFAULT NULL,
   `cnic_photo_back` varchar(50) DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
+  `cnic_issue_date` date DEFAULT NULL,
+  `contact` varchar(20) NOT NULL,
+  `trainee_status_id` int(1) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT '1',
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -523,19 +529,19 @@ CREATE TABLE `trainees` (
 -- Dumping data for table `trainees`
 --
 
-INSERT INTO `trainees` (`id`, `name`, `gender`, `cnic`, `cnic_photo_front`, `cnic_photo_back`, `birth_date`, `status`, `ts`) VALUES
-(1, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2021-12-01', 1, '2022-01-11 12:27:35'),
-(2, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-12 00:51:08'),
-(3, 'Hassan', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-11 22:35:24'),
-(4, 'Ali', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:04:05'),
-(5, 'Raheel', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:08:27'),
-(6, 'Tajamul Hassan', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:12:48'),
-(7, 'Raheel', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:08:52'),
-(8, 'Hassan', 0, '41304-9641332-7', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:09:02'),
-(9, 'Bilal', 0, '41304-2094017-5', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:09:17'),
-(10, 'Tariq', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:09:38'),
-(11, 'Ali', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 12:09:50'),
-(12, 'Faraz', 0, '', NULL, NULL, '2022-01-13', 1, '2022-01-13 03:15:11');
+INSERT INTO `trainees` (`id`, `name`, `father_name`, `gender`, `cnic`, `cnic_photo_front`, `cnic_photo_back`, `birth_date`, `cnic_issue_date`, `contact`, `trainee_status_id`, `status`, `ts`) VALUES
+(1, 'Raheel', NULL, 0, '41304-2094017-5', NULL, NULL, '2021-12-01', NULL, '', 0, 1, '2022-01-11 12:27:35'),
+(2, 'Raheel', NULL, 0, '41304-2094017-5', NULL, NULL, '2022-01-12', NULL, '', 0, 1, '2022-01-12 00:51:08'),
+(3, 'Hassan', NULL, 0, '41304-2094017-5', NULL, NULL, '2022-01-12', NULL, '', 0, 1, '2022-01-11 22:35:24'),
+(4, 'Ali', NULL, 0, '', NULL, NULL, '2022-01-12', NULL, '', 0, 1, '2022-01-12 12:04:05'),
+(5, 'Raheel', NULL, 0, '', NULL, NULL, '2022-01-12', NULL, '', 0, 1, '2022-01-12 12:08:27'),
+(6, 'Tajamul Hassan', NULL, 0, '', NULL, NULL, '2022-01-12', NULL, '', 0, 1, '2022-01-12 12:12:48'),
+(7, 'Raheel', NULL, 0, '41304-2094017-5', NULL, NULL, '2022-01-12', NULL, '', 0, 1, '2022-01-12 12:08:52'),
+(8, 'Hassan', NULL, 0, '41304-9641332-7', NULL, NULL, '2022-01-12', NULL, '', 0, 1, '2022-01-12 12:09:02'),
+(9, 'Bilal', '', 0, '41304-2094017-5', NULL, NULL, '2002-01-12', '2022-01-02', '', 2, 1, '2022-01-14 23:09:01'),
+(10, 'Tariq', NULL, 0, '', NULL, NULL, '2022-01-12', NULL, '', 0, 1, '2022-01-12 12:09:38'),
+(11, 'Muhammad Ali', 'Muhammad Tufail', 0, '41304-2094017-5', NULL, NULL, '2001-01-12', '2022-01-01', '32323444', 1, 1, '2022-01-15 18:12:34'),
+(12, 'Faraz', NULL, 0, '', NULL, NULL, '2022-01-13', NULL, '', 0, 1, '2022-01-13 03:15:11');
 
 -- --------------------------------------------------------
 
@@ -555,10 +561,10 @@ CREATE TABLE `trainees_2_center` (
 INSERT INTO `trainees_2_center` (`trainee_id`, `center_id`) VALUES
 (7, 1),
 (8, 1),
-(9, 2),
 (10, 2),
-(11, 4),
-(12, 4);
+(12, 4),
+(9, 2),
+(11, 4);
 
 -- --------------------------------------------------------
 
@@ -591,9 +597,8 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `gender` int(1) DEFAULT NULL,
   `cnic` varchar(16) DEFAULT NULL,
-  `cnic_photo_front` varchar(50) DEFAULT NULL,
-  `cnic_photo_back` varchar(50) DEFAULT NULL,
   `appointment_date` date DEFAULT NULL,
+  `releaving_date` date DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1',
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -602,14 +607,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `designation_id`, `name`, `gender`, `cnic`, `cnic_photo_front`, `cnic_photo_back`, `appointment_date`, `status`, `ts`) VALUES
-(5, 2, 'Dr. Faroque Ahmed Memon', 0, '41304-2094017-5', NULL, NULL, '2022-01-05', 1, '2022-01-12 14:16:43'),
-(6, 6, 'Mr. Tajamul Hassan Memon', 0, '41303-3619576-9', NULL, NULL, '1970-01-01', 1, '2022-01-12 14:22:39'),
-(7, 1, 'Dr. Majeed Hakeem Dhamrah', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:43:34'),
-(8, 4, 'Dr. Murk Pirzada', 1, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:20:06'),
-(9, 5, 'Mr. Makhdom Muhammad Hussain', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:21:35'),
-(10, 13, 'Mr. Adnan Ali Pirzada', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:22:27'),
-(11, 13, 'Mr. Naveed Ali Jokhio', 0, '', NULL, NULL, '2022-01-12', 1, '2022-01-12 14:22:15');
+INSERT INTO `users` (`id`, `designation_id`, `name`, `gender`, `cnic`, `appointment_date`, `releaving_date`, `status`, `ts`) VALUES
+(5, 2, 'Dr. Faroque Ahmed Memon', 0, '41304-2094017-5', '2022-01-05', NULL, 1, '2022-01-12 14:16:43'),
+(6, 6, 'Mr. Tajamul Hassan Memon', 0, '41303-3619576-9', '1970-01-01', NULL, 1, '2022-01-12 14:22:39'),
+(7, 1, 'Dr. Majeed Hakeem Dhamrah', 0, '', '2022-01-12', NULL, 1, '2022-01-12 14:43:34'),
+(8, 4, 'Dr. Murk Pirzada', 1, '', '2022-01-12', NULL, 1, '2022-01-12 14:20:06'),
+(9, 5, 'Mr. Makhdom Muhammad Hussain', 0, '', '2022-01-12', NULL, 1, '2022-01-12 14:21:35'),
+(10, 13, 'Mr. Adnan Ali Pirzada', 0, '', '2022-01-12', NULL, 1, '2022-01-12 14:22:27'),
+(11, 13, 'Mr. Naveed Ali Jokhio', 0, '', '2022-01-12', NULL, 1, '2022-01-12 14:22:15');
 
 -- --------------------------------------------------------
 
