@@ -150,7 +150,7 @@ else{
             </div>
         </div>
     </div>
-    <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1 || $_SESSION["logged_in_admin"]["admin_type_id"]==7 || $_SESSION["logged_in_admin"]["admin_type_id"]==8 || $_SESSION["logged_in_admin"]["admin_type_id"]==9 || $_SESSION["logged_in_admin"]["admin_type_id"]==12){?>
+    <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
