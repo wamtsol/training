@@ -331,7 +331,7 @@ App Logo
 .applogo {
   width: 250px;
   height: 60px;
-  background: rgba(0, 0, 0, 0.14);
+  background: #fff;
   color: #fff;
   position: relative;
   padding: 19px 0 0 0px;
