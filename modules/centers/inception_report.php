@@ -40,6 +40,11 @@ table {
         <p>
         	<?php
 			echo "List of";
+            if( !empty( $department_id ) ){
+                ?>
+                Department: <?php echo get_field($department_id, "departments", "title" )."<br>";?>
+                <?php
+            }
             if( !empty( $project_id ) ){
                 ?>
                 Course: <?php echo get_field($project_id, "projects", "title" )."<br>";?>
