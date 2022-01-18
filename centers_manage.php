@@ -66,7 +66,7 @@ if(isset($_SESSION["centers_manage"]["incharge_user_id"])){
     $incharge_user_id=$_SESSION["centers_manage"]["incharge_user_id"];
 }
 else{
-    $incharge_user_id="";
+    $incharge_user_id = $_SESSION["logged_in_admin"]["linked_user"];
 }
 if($incharge_user_id!=""){
 	$extra.=" and incharge_user_id='".$incharge_user_id."'";
