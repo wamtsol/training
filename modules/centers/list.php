@@ -69,7 +69,7 @@ if(!defined("APP_START")) die("No Direct Access");
                 	<select name="incharge_user_id" id="incharge_user_id" class="custom_select">
                         <option value=""<?php echo ($incharge_user_id=="")? " selected":"";?>>Select Incharge User</option>
                         <?php
-                        $res=doquery("select * from users where status = 1 order by name",$dblink);
+                        $res=doquery("select * from users where status = 1 and id = '".$_SESSION["logged_in_admin"]["linked_user"]."' order by name",$dblink);
                         if(numrows($res)>=0){
                             while($rec=dofetch($res)){
                             ?>
