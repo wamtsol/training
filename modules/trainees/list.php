@@ -104,10 +104,13 @@ if(!empty($q)){
                     <label for="select_all"></label></div></th>
                 <th width="15%">Name</th>
                 <th width="15%">Father/Husband Name</th>
-                <th width="10%">Contact</th>
                 <th width="8%">CNIC</th>
-                <th width="8%">Birth Date</th>
-                <th width="8%">Trainee Status</th>
+                <th width="8%">DOB</th>
+                <th width="8%">DOI</th>
+                <th width="8%">Contact</th>
+                <th width="10%">Course</th>
+                <th width="10%">District</th>
+                <th width="10%">Trainee Status</th>
                 <th width="5%" class="text-center">Status</th>
                 <th width="8%" class="text-center">Actions</th>
             </tr>
@@ -128,11 +131,12 @@ if(!empty($q)){
                         </td>
                         <td><?php echo unslash($r["name"]);?></td>
                         <td><?php echo unslash($r["father_name"]);?></td>
-                        <td>
-                            <?php echo unslash($r["contact"]);?>
-                        </td>
                         <td><?php echo unslash($r["cnic"]);?></td>
                         <td><?php echo date_convert($r["birth_date"]);?></td>
+                        <td><?php echo date_convert($r["cnic_issue_date"]);?></td>
+                        <td><?php echo unslash($r["contact"]);?></td>
+                        <td><?php echo unslash($r["address"]);?></td>
+                        <td><?php echo '--';?></td>
                         <td><?php echo getStatusType($r["trainee_status_id"]);?></td>
                         <td class="text-center">
                             <a href="trainees_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">

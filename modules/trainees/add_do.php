@@ -3,7 +3,7 @@ if(!defined("APP_START")) die("No Direct Access");
 if(isset($_POST["trainees_add"])){
 	extract($_POST);
 	$err="";
-	if(empty($name) || $gender=="")
+	if($center_ids=="" || empty($name) || empty($father_name) || empty($cnic) || empty($birth_date) || $gender=="")
 		$err="Fields with (*) are Mandatory.<br />";
     if ( !empty($cnic) && !preg_match('/^\d{5}[-]\d{7}[-]\d{1}$/', $cnic))
         $err .= 'Invalid cnic<br>';
@@ -13,7 +13,7 @@ if(isset($_POST["trainees_add"])){
         $err .= "Out of age.<br> Age is under (18 to 35)";
 
 	if($err==""){
-		$sql="INSERT INTO trainees (name, father_name, gender, cnic, birth_date, cnic_issue_date, contact, address, trainee_status_id) VALUES ('".slash($name)."', '".slash($father_name)."', '".slash($gender)."', '".slash($cnic)."', '".date_dbconvert($birth_date)."', '".date_dbconvert($cnic_issue_date)."', '".slash($contact)."', '".slash($address)."', '".slash($trainee_status_id)."')";
+		$sql="INSERT INTO trainees (name, father_name, gender, cnic, birth_date, cnic_issue_date, contact, address1, address, trainee_status_id) VALUES ('".slash($name)."', '".slash($father_name)."', '".slash($gender)."', '".slash($cnic)."', '".date_dbconvert($birth_date)."', '".date_dbconvert($cnic_issue_date)."', '".slash($contact)."', '".slash($address1)."', '".slash($address)."', '".slash($trainee_status_id)."')";
 		doquery($sql,$dblink);
 		$id=inserted_id();
 		if(!empty($_FILES["cnic_photo_front"]["tmp_name"])){

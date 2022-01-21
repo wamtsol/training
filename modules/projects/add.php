@@ -47,7 +47,7 @@ else{
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="title">Title <span class="red">*</span></label>
+            	<label class="form-label" for="title">Course <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Title" value="<?php echo $title; ?>" name="title" id="title" class="form-control" />
@@ -77,20 +77,20 @@ else{
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="min_qualification">Min Qualification </label>
+            	<label class="form-label" for="total_no_of_trainees">Total no of trainees </label>
             </div>
             <div class="col-sm-10">
-                <input type="text" title="Enter Qualification" value="<?php echo $min_qualification; ?>" name="min_qualification" id="min_qualification" class="form-control" />
+                <input type="text" title="Enter Total Trainees" value="<?php echo $total_no_of_trainees; ?>" name="total_no_of_trainees" id="total_no_of_trainees" class="form-control" />
             </div>
         </div>
     </div>
     <div class="form-group">
         <div class="row">
-        	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="total_no_of_trainees">Total no of trainees </label>
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="min_qualification">Min Qualification </label>
             </div>
             <div class="col-sm-10">
-                <input type="text" title="Enter Total Trainees" value="<?php echo $total_no_of_trainees; ?>" name="total_no_of_trainees" id="total_no_of_trainees" class="form-control" />
+                <input type="text" title="Enter Qualification" value="<?php echo $min_qualification; ?>" name="min_qualification" id="min_qualification" class="form-control" />
             </div>
         </div>
     </div>

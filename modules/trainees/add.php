@@ -12,6 +12,7 @@ else{
     $cnic_issue_date=date("d/m/Y");
     $contact="";
     $address="";
+    $address1="";
     $trainee_status_id=0;
     $center_ids=isset($_SESSION["trainees_manage"]["center_id"])?[$_SESSION["trainees_manage"]["center_id"]]:array();
 }
@@ -29,7 +30,7 @@ else{
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="center_id">Center/Trade </label>
+            	<label class="form-label" for="center_id">Center/Village <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
                 <select name="center_ids[]" id="center_id" multiple="multiple" class="select_multiple" title="Choose Option">
@@ -60,7 +61,7 @@ else{
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
-                <label class="form-label" for="father_name">Father/Husband Name </label>
+                <label class="form-label" for="father_name">Father/Husband Name <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Father/Husband Name" value="<?php echo $father_name; ?>" name="father_name" id="father_name" class="form-control" />
@@ -83,10 +84,20 @@ else{
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="cnic">CNIC</label>
+            	<label class="form-label" for="cnic">CNIC <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
                 <input id="cnic" maxlength="15" type="text" title="Enter CNIC" value="<?php echo $cnic; ?>" name="cnic" id="cnic" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label">
+                <label class="form-label" for="address1">Address</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" title="Enter Address" value="<?php echo $address1; ?>" name="address1" id="address1" class="form-control" />
             </div>
         </div>
     </div>
@@ -113,7 +124,7 @@ else{
     <div class="form-group">
         <div class="row">
         	<div class="col-sm-2 control-label">
-            	<label class="form-label" for="birth_date">Birth Date</label>
+            	<label class="form-label" for="birth_date">DOB <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Date" value="<?php echo $birth_date; ?>" name="birth_date" id="birth_date" class="form-control date-picker" />
@@ -123,7 +134,7 @@ else{
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
-                <label class="form-label" for="cnic_issue_date">CNIC Issue Date</label>
+                <label class="form-label" for="cnic_issue_date">DOI</label>
             </div>
             <div class="col-sm-10">
                 <input type="text" title="Enter Cnic Issue Date" value="<?php echo $cnic_issue_date; ?>" name="cnic_issue_date" id="cnic_issue_date" class="form-control date-picker" />

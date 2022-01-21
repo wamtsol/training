@@ -88,7 +88,7 @@ if( numrows( $rs ) > 0 ) {
         ?>
 		<tr>
             <td class="text-center"><?php echo $sn++?></td>
-            <td><?php echo unslash($r["name"]);?></td>
+            <td><?php echo unslash($r["name"])." ".unslash($r["father_name"])." / ".unslash($r["cnic"]);?></td>
             <?php 
             foreach($st as $s){
                 ?>
