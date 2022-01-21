@@ -78,7 +78,7 @@ switch($tab){
 		else{
 			$attendance = doquery( "select * from attendance where center_id = '".$center_id."' and date='".date_dbconvert( $date )."'", $dblink );
 		}
-		$students = doquery( "select b.* from trainees_2_center a inner join trainees b on a.trainee_id = b.id where center_id = '".$center_id."' and b.status=1 order by b.name", $dblink );
+		$students = doquery( "select b.* from trainees_2_center a inner join trainees b on a.trainee_id = b.id where center_id = '".$center_id."' and b.status=1 and b.trainee_status_id=1 order by b.name", $dblink );
 		if( numrows( $students ) > 0 ) {
 			while( $student = dofetch( $students ) ){
 				if( numrows($attendance) == 0 || numrows( doquery( "select * from attendance_records where trainee_id='".$student[ "id" ]."'".(!empty($id)? "and `attendance_id`='".slash($id)."'":"")."", $dblink ) ) > 0 ) {
@@ -90,6 +90,7 @@ switch($tab){
 				$student_list[] = array(
 					"id" => $student[ "id" ],
 					"name" => unslash( $student[ "name" ] ),
+					"father_name" => unslash( $student[ "father_name" ] ),
 					"status" => $status
 				);
 			}

@@ -53,7 +53,7 @@ if(!defined("APP_START")) die("No Direct Access");
                 <h2>Present Students</h2>
                 <div class="student_list" id="present_list">
                     <div ng-repeat="student in students|filter:{status:true}" class="student_item" ng-dblclick="student.status=!student.status">
-                        <span>{{ $index+1 }}.</span> {{ student.name }}
+                        <span>{{ $index+1 }}.</span> {{ student.name }} {{ student.father_name }}
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@ if(!defined("APP_START")) die("No Direct Access");
                 <h2>Absent Students</h2>
                 <div class="student_list" id="absent_list">
                     <div ng-repeat="student in students|filter:{status:false}" class="student_item" ng-dblclick="student.status=!student.status">
-                        <span>{{ $index+1 }}</span> {{ student.name }}
+                        <span>{{ $index+1 }}</span> {{ student.name }} {{ student.father_name }}
                     </div>
                 </div>
             </div>
