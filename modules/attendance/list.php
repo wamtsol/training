@@ -18,18 +18,33 @@ if(!defined("APP_START")) die("No Direct Access");
     <li class="col-xs-12 col-lg-12 col-sm-12">
     	<div>
         	<form class="form-horizontal" action="" method="get">
-                <div class="col-sm-3">
-                	<select name="center_id" id="center_id" class="custom_select">
+                <div class="col-sm-2">
+                	<select name="project_id" id="project_id" class="custom_select select_multiple">
+                        <option value=""<?php echo ($project_id=="")? " selected":"";?>>Select Project</option>
+                        <?php
+                        $res=doquery("select * from projects where status = 1 order by title",$dblink);
+                        if(numrows($res)>=0){
+                            while($rec=dofetch($res)){
+                            ?>
+                            <option value="<?php echo $rec["id"]?>" <?php echo($project_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["title"]);?></option>
+                            <?php
+                            }
+                        }	
+                        ?>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select name="center_id" id="center_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($center_id=="")? " selected":"";?>>Select Batch</option>
                         <?php
                         $res=doquery("select * from centers where status = 1 order by center",$dblink);
                         if(numrows($res)>=0){
                             while($rec=dofetch($res)){
-                            ?>
-                            <option value="<?php echo $rec["id"]?>" <?php echo($center_id==$rec["id"])?"selected":"";?>><?php echo get_field($rec["district_id"], "districts", "name")." ".unslash($rec["center"])?></option>
-                            <?php
+                                ?>
+                                <option value="<?php echo $rec["id"]?>" <?php echo($center_id==$rec["id"])?"selected":"";?>><?php echo get_field($rec["district_id"], "districts", "name")." ".unslash($rec["center"])?></option>
+                                <?php
                             }
-                        }	
+                        }
                         ?>
                     </select>
                 </div>

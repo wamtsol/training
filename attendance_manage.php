@@ -16,9 +16,23 @@ else{
 $q="";
 $extra='';
 $is_search=false;
+if(isset($_GET["project_id"])){
+    $project_id=slash($_GET["project_id"]);
+	$_SESSION["attendance_manage"]["project_id"]=$project_id;
+}
+if(isset($_SESSION["attendance_manage"]["project_id"])){
+    $project_id=$_SESSION["attendance_manage"]["project_id"];
+}
+else{
+    $project_id="";
+}
+if($project_id!=""){
+	$q.=" left join centers c on attendance.id = c.id and project_id='".$project_id."'";
+	$is_search=true;
+}
 if(isset($_GET["center_id"])){
-	$center_id=slash($_GET["center_id"]);
-	$_SESSION["attendance_manage"]["center_id"]=$center_id;
+    $center_id=slash($_GET["center_id"]);
+    $_SESSION["attendance_manage"]["center_id"]=$center_id;
 }
 if(isset($_SESSION["attendance_manage"]["center_id"])){
     $center_id=$_SESSION["attendance_manage"]["center_id"];
@@ -27,8 +41,8 @@ else{
     $center_id="";
 }
 if($center_id!=""){
-	$extra.=" and center_id='".$center_id."'";
-	$is_search=true;
+    $extra.=" and center_id='".$center_id."'";
+    $is_search=true;
 }
 if( isset($_GET["date_from"]) ){
 	$_SESSION["attendance_manage"]["date_from"] = $_GET["date_from"];
@@ -56,7 +70,7 @@ if( !empty($date_to) ){
 	$extra.=" and date<='".date_dbconvert($date_to)."'";
 	$is_search=true;
 }
-$sql="select * from attendance where 1 $extra order by date desc";
+$sql="select * from attendance $q where 1 $extra order by date desc";
 switch($tab){
 	case 'add':
 		include("modules/attendance/add_do.php");

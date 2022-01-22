@@ -18,7 +18,7 @@ if(!defined("APP_START")) die("No Direct Access");
                 <label class="form-label" for="department_id">Department</label>
             </div>
             <div class="col-sm-10">
-                <select name="department_id" title="Choose Option">
+                <select name="department_id" title="Choose Option" class="select_multiple">
                     <option value="0">Select Department</option>
                     <?php
                     $res=doquery("select * from departments where status=1 order by title", $dblink);

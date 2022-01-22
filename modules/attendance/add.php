@@ -24,7 +24,7 @@ else{
     <div class="row">
         <div class="col-md-2"><input type="text" name="date" id="date" value="<?php echo $date?>" class="date-picker"></div>
         <div class="col-md-3">
-            <select name="user_id" id="user_id" class="custom_select">
+            <select name="user_id" id="user_id" class="custom_select select_multiple">
                 <option value=""<?php echo ($user_id=="")? " selected":"";?>>Select Trainer</option>
                 <?php
                 $res=doquery("select a.* from users a left join users_2_center b on a.id = b.user_id where status = 1 and center_id = '".$center_id."' order by name",$dblink);

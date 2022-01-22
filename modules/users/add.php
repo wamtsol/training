@@ -29,7 +29,7 @@ else{
                 <label class="form-label" for="designation_id">Designation</label>
             </div>
             <div class="col-sm-10">
-                <select name="designation_id" title="Choose Option">
+                <select name="designation_id" title="Choose Option" class="select_multiple">
                     <option value="0">Select Designation</option>
                     <?php
                     $res=doquery("select * from designations where status=1 order by title", $dblink);

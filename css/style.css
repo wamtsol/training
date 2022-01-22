@@ -1946,7 +1946,7 @@ Top Stats
   padding: 12px 0;
 }
 .topstats li {
-  text-align: center;
+  /*text-align: center;*/
   margin: 10px 0;
   list-style:none;
 }

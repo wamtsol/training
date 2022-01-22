@@ -417,6 +417,9 @@ function getStatusType($value){
 	elseif( $value == 3 ) {
 		return "Invalid Cnic";
 	}
+    elseif( $value == 4 ) {
+        return "Not Joined";
+    }
 	else {
 		return "--";
 	}

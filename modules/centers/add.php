@@ -28,7 +28,7 @@ else{
                 <label class="form-label" for="project_id">Course</label>
             </div>
             <div class="col-sm-10">
-                <select name="project_id" title="Choose Option">
+                <select name="project_id" title="Choose Option" class="select_multiple select_multiple">
                     <option value="0">Select Course</option>
                     <?php
                     $res=doquery("select * from projects where status=1 order by title", $dblink);
@@ -50,7 +50,7 @@ else{
                 <label class="form-label" for="district_id">District</label>
             </div>
             <div class="col-sm-10">
-                <select name="district_id" title="Choose Option">
+                <select name="district_id" title="Choose Option" class="select_multiple select_multiple">
                     <option value="0">Select District</option>
                     <?php
                     $res=doquery("select * from districts where status=1 order by name", $dblink);
@@ -82,7 +82,7 @@ else{
                 <label class="form-label" for="incharge_user_id">Incharge User</label>
             </div>
             <div class="col-sm-10">
-                <select name="incharge_user_id" title="Choose Option">
+                <select name="incharge_user_id" title="Choose Option" class="select_multiple select_multiple">
                     <option value="0">Select Incharge User</option>
                     <?php
                     $res=doquery("select * from users where status=1 order by name", $dblink);

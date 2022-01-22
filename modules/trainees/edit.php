@@ -170,6 +170,7 @@ if(!defined("APP_START")) die("No Direct Access");
                     <option value="1" <?php echo($trainee_status_id==1)?"selected":"";?>>Clear</option>
                     <option value="2" <?php echo($trainee_status_id==2)?"selected":"";?>>Already Registered</option>
                     <option value="3" <?php echo($trainee_status_id==3)?"selected":"";?>>Invalid Cnic</option>
+                    <option value="4" <?php echo($trainee_status_id==4)?"selected":"";?>>Not Joined</option>
                 </select>
             </div>
         </div>

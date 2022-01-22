@@ -61,7 +61,7 @@ if(!empty($q)){
     	<div>
         	<form class="form-horizontal" action="" method="get">
                 <div class="col-sm-2">
-                	<select name="center_id" id="center_id" class="custom_select">
+                	<select name="center_id" id="center_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($center_id=="")? " selected":"";?>>Select Batch</option>
                         <?php
                         $res=doquery("select * from centers where status = 1 order by center",$dblink);

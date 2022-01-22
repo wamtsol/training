@@ -49,7 +49,7 @@ if(!empty($q)){
     	<div>
         	<form class="form-horizontal" action="" method="get">
                 <div class="col-sm-2">
-                	<select name="department_id" id="department_id" class="custom_select">
+                	<select name="department_id" id="department_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($department_id=="")? " selected":"";?>>Select Department</option>
                         <?php
                         $res=doquery("select * from departments where status = 1 order by title",$dblink);

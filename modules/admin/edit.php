@@ -18,7 +18,7 @@ if(!defined("APP_START")) die("No Direct Access");
                 <label class="form-label" for="admin_type_id">User Type <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
-                <select name="admin_type_id" title="Choose Option">
+                <select name="admin_type_id" title="Choose Option" class="select_multiple">
                     <option value="0">Select User Type</option>
                     <?php
                     $res=doquery("Select * from admin_type order by title",$dblink);
@@ -40,7 +40,7 @@ if(!defined("APP_START")) die("No Direct Access");
                 <label class="form-label" for="linked_user">Linked User </label>
             </div>
             <div class="col-sm-10">
-                <select name="linked_user" title="Choose Option">
+                <select name="linked_user" title="Choose Option" class="select_multiple">
                     <option value="0">Select Linked User</option>
                     <?php
                     $res=doquery("Select * from users where status = 1 order by name",$dblink);

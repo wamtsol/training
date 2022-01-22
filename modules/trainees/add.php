@@ -173,6 +173,7 @@ else{
                     <option value="1">Clear</option>
                     <option value="2">Already Registered</option>
                     <option value="3">Invalid Cnic</option>
+                    <option value="4">Not Joined</option>
                 </select>
             </div>
         </div>

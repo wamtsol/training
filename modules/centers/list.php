@@ -21,7 +21,7 @@ if(!defined("APP_START")) die("No Direct Access");
     	<div>
         	<form class="form-horizontal" action="" method="get">
                 <div class="col-sm-2">
-                    <select name="department_id" id="department_id" class="custom_select">
+                    <select name="department_id" id="department_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($department_id=="")? " selected":"";?>>Select Department</option>
                         <?php
                         $res=doquery("select * from departments where status = 1 order by title",$dblink);
@@ -36,7 +36,7 @@ if(!defined("APP_START")) die("No Direct Access");
                     </select>
                 </div>
                 <div class="col-sm-2">
-                	<select name="project_id" id="project_id" class="custom_select">
+                	<select name="project_id" id="project_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($project_id=="")? " selected":"";?>>Select Course</option>
                         <?php
                         $res=doquery("select * from projects where status = 1 order by title",$dblink);
@@ -51,7 +51,7 @@ if(!defined("APP_START")) die("No Direct Access");
                     </select>
                 </div>
                 <div class="col-sm-2">
-                	<select name="district_id" id="district_id" class="custom_select">
+                	<select name="district_id" id="district_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($district_id=="")? " selected":"";?>>Select District</option>
                         <?php
                         $res=doquery("select * from districts where status = 1 order by name",$dblink);
@@ -66,7 +66,7 @@ if(!defined("APP_START")) die("No Direct Access");
                     </select>
                 </div>
                 <div class="col-sm-2">
-                	<select name="incharge_user_id" id="incharge_user_id" class="custom_select">
+                	<select name="incharge_user_id" id="incharge_user_id" class="custom_select select_multiple">
                     <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?> <option value=""<?php echo ($incharge_user_id=="")? " selected":"";?>>Select Incharge User</option><?php }?>
                         <?php
                         $res=doquery("select * from users where status = 1 and id = '".$_SESSION["logged_in_admin"]["linked_user"]."' order by name",$dblink);
