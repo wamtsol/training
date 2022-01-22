@@ -194,8 +194,8 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         <div id="content">
             <div class="container">
                 <div class="content-top">
-                    <h4>No: PD/BBSHRRDB/PHXII/&nbsp;&nbsp;&nbsp;&nbsp;/Trgs/</h4>
-                    <h4>Hyderabad, Dated: /&nbsp;&nbsp;&nbsp;&nbsp;/22</h4>
+                    <h4>No: PD/BBSHRRDB/PHXII</h4>
+                    <h4>Hyderabad, Dated: /&nbsp;&nbsp;<?php echo $trainee["start_date"][8].$trainee["start_date"][9].' /'.$trainee["start_date"][5].$trainee["start_date"][6]; ?>&nbsp;/22</h4>
                 </div>
                 <div class="content-center">
                     <div class="text-to">
@@ -223,7 +223,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                         <div class="cnic-code"><?php echo ( $trainee["cnic"] ? unslash($trainee["cnic"][14]):"");?></div>
                     </div>
                     <div class="content-head center-text-inner">
-                        <h2>Address: <?php echo ( $trainee["address"] ? "<span>".unslash($trainee["address"])."<span>":"__________________________________________________");?> </span> </h2>
+                        <h2>Address: <?php echo ( $trainee["address1"] ? "<span>".unslash($trainee["address1"])."<span>":"__________________________________________________");?> </span> .</h2>
                     </div>
                     <div class="subject">
                         <h2>Subject:</h2>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -231,7 +231,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                             RESOURCE RESEARCH DEVELOPMENT BOARD (——WING)</h2>
                     </div>
                     <div class="subject-text">
-                        <p>With reference to your application ror lhc training under BBSHRRDB, you have been successfully selected as
+                        <p>With reference to your application for the training under BBSHRRDB, you have been successfully selected as
                         trainee therefore you are offered training of <span><?php echo get_field($trainee["project_id"], "projects", "title")?></span></p>
                         <p>as trainee position on following terms and conditions:</p>
                     </div>
@@ -249,13 +249,13 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                             <span>4.</span><p>The stipend will be paid to Trainee after assessment test to be conducted in the last week of month.</p>
                         </div>
                         <div class="list-1">
-                            <span>5.</span><p>The dislocation allowance Of Rs. 3000/= & Rs. will be admissible for Karachi and all other districts respectively as per terms and conditions of the program. only for residential based training.</p>
+                            <span>5.</span><p>The dislocation allowance of Rs. 3000/= & Rs.1000/= will be admissible for Karachi and all other districts respectively as per terms and conditions of the program. which only for residential based training.</p>
                         </div>
                         <div class="list-1">
                             <span>6.</span><p>In case of any misconduct, in any form, with trainers, officers and staff, your training will be terminated.</p>
                         </div>
                         <div class="list-1">
-                            <span>7.</span><p>During training you will required to attend various Lectures, Laboratory and practical work as per requirement ofthe training.</p>
+                            <span>7.</span><p>During training you will required to attend various Lectures, Laboratory and practical work as per requirement of the training.</p>
                         </div>
                         <div class="list-1">
                             <span>8.</span><p>A certificate of training will be issued to you after successful completion of training.</p>
@@ -263,23 +263,20 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                         <div class="list-1">
                             <span>9.</span><p>This offer letter is valid till the commencement date of the particular trade at the prescribed center. Late comers will not be entertained.</p>
                         </div>
-                        <div class="list-1">
-                            <span>10.</span><p>This offer letter do not flowing any responsibility to provide appointment in program.</p>
-                        </div>
                     </div>
                     <div class="subject-text">
                         <p>If you agree with the above terms & conditions, acceptance must be committed by the signing on this
                             offer letter. Moreover this offer letter may be return to this PMU, so that making you eligible to
-                            participate in training commencing from <span><?php echo $trainee["start_date"]?></span>,at <span><?php echo $trainee["address"]?></span></p>
+                            participate in training commencing from <span><?php echo $trainee["start_date"]?></span>,at <span><?php echo $trainee["center"]?></span></p>
                     </div>
                     <div class="sign">
                         <div class="sign-left">
-                            <h2>Acceptance by Candidate:</h2>
+                            <h2>Acceptance by Candidate: <span>________________</span></h2>
                         </div>
                         <div class="sign-left dr">
-                            <h1>(DR. MAJEED HAKEEM AMRAH)</h1>
-                            <h2>Project Director BBS RRDB</h2>
-                            <h3>Livestock & Fisheries Department Hyderabad</h3>
+                            <h1>(DR. MAJEED HAKEEM DHAMRAH)</h1>
+                            <h2>Project Director BBSHRRDB</h2>
+                            <h3>Livestock & Fisheries Department</h3>
                         </div>
                     </div>
                 </div>
@@ -288,7 +285,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         <div id="footer">
             <div class="container">
                 <div class="footer-inner">
-                    <h2>Fisheries Complex, Old Wahdat Colony, Qasimabad Hyderabad.</h2>
+                    <h2>Fisheries Complex, Opposite Poly Technical College, Old Wahdat Colony, Qasimabad Hyderabad.</h2>
                     <h2>Tel: 022-9240209 - Fax 022-2671884</h2>
                 </div>
             </div>
