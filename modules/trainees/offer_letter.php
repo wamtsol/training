@@ -195,7 +195,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
             <div class="container">
                 <div class="content-top">
                     <h4>No: PD/BBSHRRDB/PHXII</h4>
-                    <h4>Hyderabad, Dated: /&nbsp;&nbsp;<?php echo $trainee["start_date"][8].$trainee["start_date"][9].' /'.$trainee["start_date"][5].$trainee["start_date"][6]; ?>&nbsp;/22</h4>
+                    <h4>Hyderabad, Dated: /&nbsp<?php echo date('d / m / y',strtotime($trainee["start_date"])); ?>&nbsp</h4>
                 </div>
                 <div class="content-center">
                     <div class="text-to">
