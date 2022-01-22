@@ -51,7 +51,20 @@ table {
         <p>
         	<?php
 			echo "List of";
-            
+            if( !empty( $date_from ) || !empty( $date_to ) ){
+                echo "<br />Date";
+            }
+            if( !empty( $date_from ) ){
+                echo " from ".$date_from;
+            }
+            if( !empty( $date_to ) ){
+                echo " to ".$date_to."<br>";
+            }
+            if( !empty( $project_id ) ){
+                ?>
+                Project: <?php echo get_field($project_id, "projects", "title" )."<br>";?>
+                <?php
+            }
             if( !empty( $center_id ) ){
                 ?>
                 Center: <?php echo get_field($center_id, "centers", "center" )."<br>";?>
