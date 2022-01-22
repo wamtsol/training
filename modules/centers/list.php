@@ -13,6 +13,7 @@ if(!defined("APP_START")) die("No Direct Access");
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
             <a class="btn print-btn" href="centers_manage.php?tab=report"><i class="fa fa-print" aria-hidden="true"></i></a>
             <a class="btn btn-sm btn-white" href="centers_manage.php?tab=inception_report">Inception Report</a>
+            <a class="btn print-btn" href="centers_manage.php?tab=report_csv">CSV</a>
     	</div> 
     </div> 
 </div>
@@ -129,11 +130,11 @@ if(!defined("APP_START")) die("No Direct Access");
                         </td>
                         <td><?php echo get_field($r["project_id"], "projects", "title");?></td>
                         <td><?php echo get_field($r["district_id"], "districts", "name");?></td>
-                        <td><?php echo get_field($r["project_id"], "projects", "duration");?></td>
-                        <td><?php echo get_field($r["project_id"], "projects", "total_batches");?></td>
-                        <td><?php echo get_field($r["project_id"], "projects", "total_no_of_trainees");?></td>
-                        <td><?php echo unslash($r["center"]); ?></td>
-                        <td><?php echo get_field($r["project_id"], "projects", "min_qualification"); ?></td>
+                        <td><?php echo (unslash($r["duration"])?:'--');?></td>
+                        <td><?php echo (unslash($r["total_batches"])?:'--');?></td>
+                        <td><?php echo (unslash($r["total_no_of_trainees"])?:'--');?></td>
+                        <td><?php echo (unslash($r["center"])?:'--'); ?></td>
+                        <td><?php echo (unslash($r["min_qualification"])?:'--'); ?></td>
                         <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
                         <td><a href="users_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainers</a></td>
                         <td><a href="trainees_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainees</a></td>

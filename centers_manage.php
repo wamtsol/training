@@ -6,7 +6,7 @@ include("include/paging.php");
 define("APP_START", 1);
 $filename = 'centers_manage.php';
 include("include/admin_type_access.php");
-$tab_array=array("list", "add", "edit", "status", "delete", "bulk_action", "report", "inception_report");
+$tab_array=array("list", "add", "edit", "status", "delete", "bulk_action", "report", "inception_report", "report_csv");
 if(isset($_REQUEST["tab"]) && in_array($_REQUEST["tab"], $tab_array)){
 	$tab=$_REQUEST["tab"];
 }
@@ -109,6 +109,9 @@ switch($tab){
 	case 'inception_report':
 		include("modules/centers/inception_report.php");
 	break;
+    case 'report_csv':
+        include("modules/centers/report_csv.php");
+    break;
 }
 ?>
 <?php include("include/header.php");?>

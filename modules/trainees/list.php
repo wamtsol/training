@@ -1,48 +1,5 @@
 <?php
 if(!defined("APP_START")) die("No Direct Access");
-$q="";
-$extra='';
-$is_search=false;
-if(isset($_GET["center_id"])){
-	$center_id=slash($_GET["center_id"]);
-	$_SESSION["trainees_manage"]["center_id"]=$center_id;
-}
-if(isset($_SESSION["trainees_manage"]["center_id"])){
-    $center_id=$_SESSION["trainees_manage"]["center_id"];
-}
-else{
-    $center_id="";
-}
-if($center_id!=""){
-	$extra.=" and center_id='".$center_id."'";
-	$is_search=true;
-}
-if(isset($_GET["trainee_status_id"])){
-	$trainee_status_id=slash($_GET["trainee_status_id"]);
-	$_SESSION["trainees_manage"]["list"]["trainee_status_id"]=$trainee_status_id;
-}
-if(isset($_SESSION["trainees_manage"]["list"]["trainee_status_id"]))
-	$trainee_status_id=$_SESSION["trainees_manage"]["list"]["trainee_status_id"];
-else
-	$trainee_status_id="";
-if($trainee_status_id!=""){
-	$extra.=" and trainee_status_id='".$trainee_status_id."'";
-	$is_search=true;
-}
-if(isset($_GET["q"])){
-	$q=slash($_GET["q"]);
-	$_SESSION["trainees_manage"]["q"]=$q;
-}
-if(isset($_SESSION["trainees_manage"]["q"])){
-    $q=$_SESSION["trainees_manage"]["q"];
-}
-else{
-    $q="";
-}
-if(!empty($q)){
-	$extra.=" and name like '%".$q."%' || cnic like '%".$q."%'";
-	$is_search=true;
-}
 ?>
 <div class="page-header">
 	<h1 class="title">Trainees</h1>
@@ -52,7 +9,8 @@ if(!empty($q)){
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
         	<a href="trainees_manage.php?tab=add" class="btn btn-light editproject">Add New Trainee</a> 
-            <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
+            <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a>
+            <a class="btn print-btn" href="trainees_manage.php?tab=report_csv">CSV</a>
     	</div> 
     </div> 
 </div>
@@ -81,6 +39,7 @@ if(!empty($q)){
                         <option value="1" <?php echo($trainee_status_id==1)?"selected":"";?>>Clear</option>
                         <option value="2" <?php echo($trainee_status_id==2)?"selected":"";?>>Already Registered</option>
                         <option value="3" <?php echo($trainee_status_id==3)?"selected":"";?>>Invalid Cnic</option>
+                        <option value="4" <?php echo($trainee_status_id==4)?"selected":"";?>>Not Joined</option>
                     </select>
                 </div>
                 <div class="col-sm-2">
@@ -116,8 +75,7 @@ if(!empty($q)){
             </tr>
         </thead>
         <tbody>
-            <?php 
-            $sql="select a.* from trainees a left join trainees_2_center b on a.id = b.trainee_id where 1 $extra order by name";
+            <?php
             $rs=show_page($rows, $pageNum, $sql);
             if(numrows($rs)>0){
                 $sn=1;
