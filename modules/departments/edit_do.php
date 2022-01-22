@@ -6,7 +6,7 @@ if(isset($_POST["departments_edit"])){
 	if(empty($title))
 		$err="Fields with (*) are Mandatory.<br />";
 	if($err==""){
-		$sql="Update departments set `title`='".slash($title)."' where id='".$id."'";
+		$sql="Update departments set `title`='".slash($title)."', `admin_type_id`='".slash($admin_type_id)."' where id='".$id."'";
 		doquery($sql,$dblink);
 		unset($_SESSION["departments_manage"]["edit"]);
 		header('Location: departments_manage.php?tab=list&msg='.url_encode("Successfully Updated"));

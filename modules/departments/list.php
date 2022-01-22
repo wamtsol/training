@@ -52,6 +52,7 @@ if(!empty($q)){
                     <input type="checkbox" id="select_all" value="0" title="Select All Records">
                     <label for="select_all"></label></div></th>
                 <th>Title</th>
+                <th>User Type</th>
                 <th width="5%" class="text-center">Status</th>
                 <th width="10%" class="text-center">Actions</th>
             </tr>
@@ -71,6 +72,7 @@ if(!empty($q)){
                             <label for="<?php echo "rec_".$sn?>"></label></div>
                         </td>
                         <td><?php echo unslash($r["title"]); ?></td>
+                        <td><?php echo ($r["admin_type_id"]?get_field($r["admin_type_id"], "admin_type", "title"):"--"); ?></td>
                         <td class="text-center">
                             <a href="departments_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
@@ -97,7 +99,7 @@ if(!empty($q)){
                 }
                 ?>
                 <tr>
-                    <td colspan="3" class="actions">
+                    <td colspan="4" class="actions">
                         <select name="bulk_action" class="" id="bulk_action" title="Choose Action">
                             <option value="null">Bulk Action</option>
                             <option value="delete">Delete</option>

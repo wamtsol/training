@@ -6,7 +6,7 @@ if(isset($_POST["departments_add"])){
 	if(empty($title))
 		$err="Fields with (*) are Mandatory.<br />";
 	if($err==""){
-		$sql="INSERT INTO departments (title) VALUES ('".slash($title)."')";
+		$sql="INSERT INTO departments (title, admin_type_id) VALUES ('".slash($title)."', '".slash($admin_type_id)."')";
 		doquery($sql,$dblink);
 		unset($_SESSION["departments_manage"]["add"]);
 		header('Location: departments_manage.php?tab=list&msg='.url_encode("Successfully Added"));
