@@ -27,7 +27,7 @@ else{
     $project_id="";
 }
 if($project_id!=""){
-	$q.=" left join centers c on attendance.id = c.id and project_id='".$project_id."'";
+	$extra.=" and project_id='".$project_id."'";
 	$is_search=true;
 }
 if(isset($_GET["center_id"])){
@@ -70,7 +70,7 @@ if( !empty($date_to) ){
 	$extra.=" and date<='".date_dbconvert($date_to)."'";
 	$is_search=true;
 }
-$sql="select * from attendance $q where 1 $extra order by date desc";
+$sql="select a.*  from attendance a left join centers c on a.center_id = c.id where 1 $extra order by date desc";
 switch($tab){
 	case 'add':
 		include("modules/attendance/add_do.php");

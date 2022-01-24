@@ -30,6 +30,7 @@ if($department_id!=""){
     $extra.=" and department_id='".$department_id."'";
     $is_search=true;
 }
+
 if(isset($_GET["project_id"])){
 	$project_id=slash($_GET["project_id"]);
 	$_SESSION["centers_manage"]["project_id"]=$project_id;
@@ -85,6 +86,12 @@ else{
 if(!empty($q)){
 	$extra.=" and center like '%".$q."%'";
 	$is_search=true;
+}
+$adminId = '';
+$depId = '';
+if($_SESSION["logged_in_admin"]["admin_type_id"]!=1){
+	$adminId = "and admin_type_id = '".$_SESSION["logged_in_admin"]["admin_type_id"]."'";
+	$depId = "and department_id = '".$department_id."'";
 }
 $sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification from centers a inner join projects b on a.project_id = b.id where 1 $extra order by center";
 switch($tab){

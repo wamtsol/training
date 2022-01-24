@@ -25,7 +25,7 @@ if(!defined("APP_START")) die("No Direct Access");
                     <select name="department_id" id="department_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($department_id=="")? " selected":"";?>>Select Department</option>
                         <?php
-                        $res=doquery("select * from departments where status = 1 order by title",$dblink);
+                        $res=doquery("select * from departments where status = 1 ".$adminId." order by title",$dblink);
                         if(numrows($res)>=0){
                             while($rec=dofetch($res)){
                                 ?>
@@ -40,7 +40,7 @@ if(!defined("APP_START")) die("No Direct Access");
                 	<select name="project_id" id="project_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($project_id=="")? " selected":"";?>>Select Course</option>
                         <?php
-                        $res=doquery("select * from projects where status = 1 order by title",$dblink);
+                        $res=doquery("select * from projects where status = 1 ".$depId." order by title",$dblink);
                         if(numrows($res)>=0){
                             while($rec=dofetch($res)){
                             ?>
@@ -138,7 +138,7 @@ if(!defined("APP_START")) die("No Direct Access");
                         <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
                         <td><a href="users_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainers</a></td>
                         <td><a href="trainees_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainees</a></td>
-                        <td><a href="attendance_manage.php?tab=list&center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Attendance</a></td>
+                        <td><a href="attendance_manage.php?tab=list&center_id=<?php echo $r["id"]?>&project_id=<?php echo $r["project_id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Attendance</a></td>
                         <td class="text-center">
                             <a href="centers_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
