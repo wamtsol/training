@@ -14,12 +14,7 @@ else{
 	$tab="list";
 }
 $q="";
-$sr="";
 $extra='';
-$departmentTableextra='';
-$admin_type_search="";
-$alias="";
-$admin_type_department="";
 $is_search=false;
 if(isset($_GET["department_id"])){
     $department_id=slash($_GET["department_id"]);
@@ -91,14 +86,7 @@ if(!empty($q)){
 	$extra.=" and center like '%".$q."%'";
 	$is_search=true;
 }
-if(!empty($_SESSION["logged_in_admin"]["id"]) && $_SESSION["logged_in_admin"]["id"]>"1"){
-    $admin_type_search="inner join departments c on b.department_id = c.id inner join admin_type d on c.admin_type_id = d.id inner join admin e on e.id = '".$_SESSION["logged_in_admin"]["id"]."'";
-    $extra.=" and e.id = '".$_SESSION["logged_in_admin"]["id"]."'";
-    $alias=", c.id as department_id";
-    $admin_type_department="left join admin e on e.id=a.admin_type_id";
-    $admin_type_extra="and e.id = '".$_SESSION["logged_in_admin"]["id"]."'";
-}
-$sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification $alias from centers a inner join projects b on a.project_id = b.id $admin_type_search where 1 $extra order by center";
+$sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification from centers a inner join projects b on a.project_id = b.id where 1 $extra order by center";
 switch($tab){
 	case 'add':
 		include("modules/centers/add_do.php");
