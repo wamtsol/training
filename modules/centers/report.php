@@ -34,7 +34,7 @@ table {
 </style>
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr class="head">
-	<th colspan="10">
+	<th colspan="12">
     	<h1><?php echo get_config( 'site_title' )?></h1>
     	<h2>Progress Report</h2>
         <p>

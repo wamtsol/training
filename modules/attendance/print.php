@@ -62,7 +62,7 @@ table {
             }
             if( !empty( $project_id ) ){
                 ?>
-                Project: <?php echo get_field($project_id, "projects", "title" )."<br>";?>
+                Course: <?php echo get_field($project_id, "projects", "title" )."<br>";?>
                 <?php
             }
             if( !empty( $center_id ) ){
