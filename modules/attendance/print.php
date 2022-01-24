@@ -77,6 +77,8 @@ table {
 <tr>
     <th width="2%" class="text-center">S.No</th>
     <th>Trainee</th>
+    <th width="12%">Father Name</th>
+    <th width="12%">CNIC</th>
     <?php 
     foreach($trainee_att as $date){
         ?>
@@ -101,7 +103,9 @@ if( numrows( $rs ) > 0 ) {
         ?>
 		<tr>
             <td class="text-center"><?php echo $sn++?></td>
-            <td><?php echo unslash($r["name"])." ".unslash($r["father_name"])." / ".unslash($r["cnic"]);?></td>
+            <td><?php echo unslash($r["name"]);?></td>
+            <td><?php echo unslash($r["father_name"]);?></td>
+            <td><?php echo unslash($r["cnic"]);?></td>
             <?php 
             foreach($st as $s){
                 ?>
