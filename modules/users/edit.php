@@ -84,7 +84,7 @@ if(!defined("APP_START")) die("No Direct Access");
             	<label class="form-label" for="cnic">CNIC</label>
             </div>
             <div class="col-sm-10">
-                <input type="text" title="Enter CNIC" value="<?php echo $cnic; ?>" name="cnic" id="cnic" class="form-control" />
+                <input maxlength="15" type="text" title="Enter CNIC" value="<?php echo $cnic; ?>" name="cnic" id="cnic" class="form-control" />
             </div>
         </div>
     </div>
