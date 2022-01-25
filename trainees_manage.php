@@ -14,6 +14,7 @@ else{
 	$tab="list";
 }
 $q="";
+$qr="";
 $extra='';
 $is_search=false;
 if(isset($_GET["center_id"])){
@@ -28,6 +29,21 @@ else{
 }
 if($center_id!=""){
     $extra.=" and center_id='".$center_id."'";
+    $is_search=true;
+}
+if(isset($_GET["project_id"])){
+    $project_id=slash($_GET["project_id"]);
+    $_SESSION["trainees_manage"]["project_id"]=$project_id;
+}
+if(isset($_SESSION["trainees_manage"]["project_id"])){
+    $project_id=$_SESSION["trainees_manage"]["project_id"];
+}
+else{
+    $project_id="";
+}
+if($project_id!=""){
+    $qr="left join centers c on c.id = b.center_id";
+    $extra.=" and c.project_id='".$project_id."'";
     $is_search=true;
 }
 if(isset($_GET["trainee_status_id"])){
@@ -56,7 +72,7 @@ if(!empty($q)){
     $extra.=" and name like '%".$q."%' || cnic like '%".$q."%'";
     $is_search=true;
 }
-$sql="select a.* from trainees a left join trainees_2_center b on a.id = b.trainee_id where 1 $extra order by name";
+$sql="select a.* from trainees a left join trainees_2_center b on a.id = b.trainee_id $qr where 1 $extra order by name";
 switch($tab){
 	case 'add':
 		include("modules/trainees/add_do.php");

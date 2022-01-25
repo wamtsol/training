@@ -3,6 +3,20 @@ if(!defined("APP_START")) die("No Direct Access");
 $q="";
 $extra='';
 $is_search=false;
+if(isset($_GET["admin_type_id"])){
+    $admin_type_id=slash($_GET["admin_type_id"]);
+    $_SESSION["trainees_manage"]["admin_type_id"]=$admin_type_id;
+}
+if(isset($_SESSION["trainees_manage"]["admin_type_id"])){
+    $admin_type_id=$_SESSION["trainees_manage"]["admin_type_id"];
+}
+else{
+    $admin_type_id="";
+}
+if($admin_type_id!=""){
+    $extra.=" and admin_type_id='".$admin_type_id."'";
+    $is_search=true;
+}
 if(isset($_GET["q"])){
 	$q=slash($_GET["q"]);
 	$_SESSION["admin_manage"]["q"]=$q;
@@ -31,7 +45,22 @@ if(!empty($q)){
 	<li class="col-xs-12 col-lg-12 col-sm-12">
         <div>
         	<form class="form-horizontal" action="" method="get">
-                <div class="col-sm-10 col-xs-8">
+                <div class="col-sm-2">
+                    <select name="admin_type_id" id="admin_type_id" class="custom_select select_multiple">
+                        <option value=""<?php echo ($admin_type_id=="")? " selected":"";?>>Select User Type</option>
+                        <?php
+                        $res=doquery("select * from admin_type where status = 1 order by title",$dblink);
+                        if(numrows($res)>=0){
+                            while($rec=dofetch($res)){
+                                ?>
+                                <option value="<?php echo $rec["id"]?>" <?php echo($admin_type_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["title"])?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-sm-2 col-xs-8">
                   <input type="text" title="Enter String" value="<?php echo $q;?>" name="q" id="search" class="form-control" >  
                 </div>
                 <div class="col-sm-1 col-xs-2">
