@@ -5,10 +5,10 @@ $extra='';
 $is_search=false;
 if(isset($_GET["admin_type_id"])){
     $admin_type_id=slash($_GET["admin_type_id"]);
-    $_SESSION["trainees_manage"]["admin_type_id"]=$admin_type_id;
+    $_SESSION["admin_manage"]["admin_type_id"]=$admin_type_id;
 }
-if(isset($_SESSION["trainees_manage"]["admin_type_id"])){
-    $admin_type_id=$_SESSION["trainees_manage"]["admin_type_id"];
+if(isset($_SESSION["admin_manage"]["admin_type_id"])){
+    $admin_type_id=$_SESSION["admin_manage"]["admin_type_id"];
 }
 else{
     $admin_type_id="";
