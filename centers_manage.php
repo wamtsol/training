@@ -89,9 +89,11 @@ if(!empty($q)){
 }
 $adminId = '';
 $depId = '';
+$linkedUser='';
 if($_SESSION["logged_in_admin"]["admin_type_id"]!=1){
 	$adminId = "and admin_type_id = '".$_SESSION["logged_in_admin"]["admin_type_id"]."'";
 	$depId = "and department_id = '".$department_id."'";
+	$linkedUser = "and id = '".$_SESSION["logged_in_admin"]["linked_user"]."'";
 }
 $sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification from centers a inner join projects b on a.project_id = b.id where 1 $extra order by center";
 switch($tab){
