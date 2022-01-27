@@ -1,5 +1,6 @@
 <?php
 if(!defined("APP_START")) die("No Direct Access");  
+$sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification from centers a inner join projects b on a.project_id = b.id where 1 $extra order by center";
 $rs = doquery($sql, $dblink);    
 ?>
 <style>
@@ -36,7 +37,7 @@ table {
 <tr class="head">
 	<th colspan="10">
     	<h1><?php echo get_config( 'site_title' )?></h1>
-    	<h2>Attendance Report</h2>
+    	<h2>Inception Report</h2>
         <p>
         	<?php
 			echo "List of";
@@ -77,10 +78,12 @@ table {
     <th width="12%">Date of Completed</th>
 </tr>
 <?php
+$total_selected = $total_joined = 0;
 if( numrows( $rs ) > 0 ) {
 	$sn = 1;
 	while( $r = dofetch( $rs ) ) {
         $selected_trainees = doquery("select a.* from trainees a inner join trainees_2_center b on a.id = b.trainee_id where a.trainee_status_id = 1 and center_id = '".$r["id"]."'", $dblink);
+        $total_selected += numrows($selected_trainees);
         ?>
 		<tr>
             <td class="text-center"><?php echo $sn++?></td>
@@ -98,6 +101,12 @@ if( numrows( $rs ) > 0 ) {
 	}
 }
 ?>
+<tr>
+    <th colspan="7" align="right">Total</th>
+    <th><?php echo $total_selected;?></th>
+    <th></th>
+    <th></th>
+</tr>
 </table>
 <?php
 die;

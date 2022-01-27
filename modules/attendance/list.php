@@ -87,7 +87,7 @@ if(!defined("APP_START")) die("No Direct Access");
                         <td><?php echo date_convert($r["date"]); ?></td>
                         <td>
                             <?php
-                            $count = dofetch( doquery( "select count(1) from trainees_2_center inner join trainees on trainees_2_center.trainee_id = trainees.id where center_id = '".$r[ "center_id" ]."' and status = 1", $dblink ) );
+                            $count = dofetch( doquery( "select count(1) from trainees_2_center inner join trainees on trainees_2_center.trainee_id = trainees.id where center_id = '".$r[ "center_id" ]."' and trainee_status_id = 1", $dblink ) );
                             echo $count[ "count(1)" ];
                             ?>
                         </td>
