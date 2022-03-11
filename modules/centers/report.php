@@ -127,6 +127,7 @@ table {
 <tr>
     <th width="2%" class="text-center">S.No</th>
     <th width="15%">Course</th>
+    <th width="10%">Batch</th>
     <th width="12%">District</th>
     <th width="8%" class="text-center">Duration</th>
     <th width="8%" class="text-center">Total batches</th>
@@ -135,9 +136,8 @@ table {
     <th width="10%" class="text-center">No of Trainee Trained</th>
     <th width="10%" class="text-center">Remaining Batch</th>
     <th width="10%" class="text-center">Remaining Trainee to be trained</th>
-    <th width="10%">Batch</th>
-    <th width="15%">Min Qualification</th>
-    <th width="15%">Incharge User</th>
+    <!-- <th width="15%">Min Qualification</th>
+    <th width="15%">Incharge User</th> -->
 </tr>
 <?php
 $total_batches = $total_trainees = 0;
@@ -152,6 +152,7 @@ if( numrows( $rs ) > 0 ) {
 		<tr>
             <td class="text-center"><?php echo $sn++?></td>
             <td><?php echo unslash($r["title"]); ?></td>
+            <td><?php echo unslash($r["center"]); ?></td>
             <td><?php echo get_field($r["district_id"], "districts", "name");?></td>
             <td class="text-center"><?php echo unslash($r["duration"]); ?></td>
             <td class="text-center"><?php echo unslash($r["total_batches"]); ?></td>
@@ -160,25 +161,23 @@ if( numrows( $rs ) > 0 ) {
             <td class="text-center"><?php echo $trained["count"];?></td>
             <td class="text-center"><?php echo $r["total_batches"]-$completed_batch["count"];?></td>
             <td class="text-center"><?php echo $r["total_no_of_trainees"]-$trained["count"];?></td>
-            <td><?php echo unslash($r["center"]); ?></td>
-            <td><?php echo unslash($r["min_qualification"]); ?></td>
-            <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td>
+            <!-- <td><?php echo unslash($r["min_qualification"]); ?></td>
+            <td><?php echo get_field($r["incharge_user_id"], "users", "name"); ?></td> -->
         </tr>
 		<?php
 	}
 }
 ?>
 <tr>
-    <th class="text-right" colspan="4">Total</th>
+    <th class="text-right" colspan="5">Total</th>
     <th><?php echo $total_batches;?></th>
     <th><?php echo $total_trainees;?></th>
     <th></th>
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <!-- <th></th>
+    <th></th> -->
 </tr>
 </table>
 <?php

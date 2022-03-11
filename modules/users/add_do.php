@@ -5,6 +5,8 @@ if(isset($_POST["users_add"])){
 	$err="";
 	if(empty($name) || $gender=="")
 		$err="Fields with (*) are Mandatory.<br />";
+	if(numrows(doquery("select id from users where cnic='".slash($cnic)."'", $dblink))>0)
+		$err.='cnic already exists.<br />';
 	if($err==""){
 		$sql="INSERT INTO users (designation_id, name, gender, cnic, appointment_date, releaving_date) VALUES ('".slash($designation_id)."', '".slash($name)."', '".slash($gender)."', '".slash($cnic)."', '".date_dbconvert($appointment_date)."', '".date_dbconvert($releaving_date)."')";
 		doquery($sql,$dblink);

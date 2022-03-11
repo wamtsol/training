@@ -144,6 +144,7 @@ if(!empty($q)){
                         <td><?php echo unslash($r["cnic"]);?></td>
                         <td><?php echo date_convert($r["appointment_date"]);?></td>
                         <td class="text-center">
+                            <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                             <a href="users_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
                                 if($r["status"]==0){
@@ -158,10 +159,13 @@ if(!empty($q)){
                                 }
                                 ?>
                             </a>
+                            <?php } else{ echo "--";}?>
                         </td>
                         <td class="text-center">
+                            <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                             <a href="users_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
                             <a onclick="return confirm('Are you sure you want to delete')" href="users_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
+                            <?php } else{ echo "--";}?>
                         </td>
                     </tr>  
                     <?php 

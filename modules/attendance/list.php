@@ -8,7 +8,7 @@ if(!defined("APP_START")) die("No Direct Access");
   	</ol>
     <div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="attendance_manage.php?tab=add" class="btn btn-light editproject">Add New Attendance</a> 
+        	<a href="attendance_manage.php?tab=add" class="btn btn-light editproject <?php echo get_field($center_id, "centers",  "end_date")<date("Y-m-d")?"disabled":''?>">Add New Attendance</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
             <a class="btn print-btn" href="attendance_manage.php?tab=print" target="_blank"><i class="fa fa-print" aria-hidden="true"></i></a>
     	</div> 
@@ -103,8 +103,10 @@ if(!defined("APP_START")) die("No Direct Access");
                             ?>
                         </td>
                         <td class="text-center">
+                            <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                             <a href="attendance_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
                             <a onclick="return confirm('Are you sure you want to delete')" href="attendance_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
+                            <?php } else{ echo "--";}?>
                         </td>
                     </tr>  
                     <?php 

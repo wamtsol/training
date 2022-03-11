@@ -140,6 +140,7 @@ if(!defined("APP_START")) die("No Direct Access");
                         <td><a href="trainees_manage.php?center_id=<?php echo $r["id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Trainees</a></td>
                         <td><a href="attendance_manage.php?tab=list&center_id=<?php echo $r["id"]?>&project_id=<?php echo $r["project_id"]?>" class="btn btn-sm btn-primary fancybox_iframe">Attendance</a></td>
                         <td class="text-center">
+                            <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                             <a href="centers_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
                                 if($r["status"]==0){
@@ -154,10 +155,13 @@ if(!defined("APP_START")) die("No Direct Access");
                                 }
                                 ?>
                             </a>
+                            <?php } else{ echo "--";}?>
                         </td>
                         <td class="text-center">
+                            <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                             <a href="centers_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
                             <a onclick="return confirm('Are you sure you want to delete')" href="centers_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
+                                <?php } else{ echo "--";}?>
                         </td>
                     </tr>  
                     <?php 

@@ -130,7 +130,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         .subject-list span {
             font-weight: bold;
             font-size: 20px;
-            margin-right: 20px;
+            margin-right: 10px;
         }
         .sign {
             display: flex;
@@ -143,7 +143,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         }
         .sign h2 {
             margin: 0;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: bold;
         }
         .sign-left.dr {
@@ -152,7 +152,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         .sign h1 {
             margin: 0;
             font-weight: bold;
-            font-size: 22px;
+            font-size: 18px;
         }
         .sign h3 {
             margin: 0;
@@ -164,11 +164,14 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         }
         .footer-inner h2 {
             margin: 0;
-            font-size: 18px;
+            font-size: 16px;
         }
         .list-1 {
             display: flex;
             justify-content: flex-start;
+        }
+        .subject h2 span {
+            border-bottom: 1px solid #000;
         }
     </style>
 </head>
@@ -228,16 +231,17 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                     <div class="subject">
                         <h2>Subject:</h2>&nbsp;&nbsp;&nbsp;&nbsp;
                         <h2>OFFER LETTER FOR TRAINING UNDER BENAZIR BHUTTO SHAHEED HUMAN
-                            RESOURCE RESEARCH DEVELOPMENT BOARD (——WING)</h2>
+                            RESOURCE RESEARCH DEVELOPMENT BOARD ( <span><?php echo get_field( get_field( $trainee["project_id"], "projects", "department_id" ), "departments", "title" ) ?></span> )</h2>
                     </div>
                     <div class="subject-text">
                         <p>With reference to your application for the training under BBSHRRDB, you have been successfully selected as
-                        trainee therefore you are offered training of <span><?php echo get_field($trainee["project_id"], "projects", "title")?></span></p>
-                        <p>as trainee position on following terms and conditions:</p>
+                        trainee therefore you are offered training of <span><?php echo get_field($trainee["project_id"], "projects", "title")?></span>
+                        as trainee position on following terms and conditions:</p>
                     </div>
                     <div class="subject-list">
                         <div class="list-1">
-                            <span>1.</span><p>The Training period is for <?php echo (($trainee["start_date"] && $trainee["end_date"])?"<span>".total_month($trainee["start_date"], $trainee["end_date"])."</span>":"______ ");?>months(s) starting form <?php echo ( $trainee["start_date"]? "<span>".unslash($trainee["start_date"])."</span>":"_______________");?> to <?php echo ( $trainee["end_date"]? "<span>".unslash($trainee["end_date"])."</span>":"______________________________");?> .</p>
+                            <!-- <span>1.</span><p>The Training period is for <?php echo (($trainee["start_date"] && $trainee["end_date"])?"<span>".total_month($trainee["start_date"], $trainee["end_date"])."</span>":"______ ");?>months(s) starting form <?php echo ( $trainee["start_date"]? "<span>".unslash($trainee["start_date"])."</span>":"_______________");?> to <?php echo ( $trainee["end_date"]? "<span>".unslash($trainee["end_date"])."</span>":"______________________________");?> .</p> -->
+                            <span>1.</span><p>The Training period is for <?php echo (($trainee["project_id"])?"<span>".get_field( $trainee["project_id"], "projects", "duration" )."</span>":"______ ");?>months(s) starting form <?php echo ( $trainee["start_date"]? "<span>".date_convert($trainee["start_date"])."</span>":"_______________");?> to <?php echo ( $trainee["end_date"]? "<span>".date_convert($trainee["end_date"])."</span>":"______________________________");?> .</p>
                         </div>
                         <div class="list-1">
                             <span>2.</span><p>You will be paid Rs. 5000/- (Rupees Five Thousand only) in a month.</p>
@@ -267,7 +271,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                     <div class="subject-text">
                         <p>If you agree with the above terms & conditions, acceptance must be committed by the signing on this
                             offer letter. Moreover this offer letter may be return to this PMU, so that making you eligible to
-                            participate in training commencing from <span><?php echo $trainee["start_date"]?></span>,at <span><?php echo $trainee["center"]?></span></p>
+                            participate in training commencing from <span><?php echo date_convert($trainee["start_date"])?></span>,at <span><?php echo $trainee["center"]?></span></p>
                     </div>
                     <div class="sign">
                         <div class="sign-left">

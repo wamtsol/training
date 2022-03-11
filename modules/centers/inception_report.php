@@ -142,9 +142,9 @@ table {
     <th width="10%">District</th>
     <th width="10%">Prescribed Qualification</th>
     <th width="8%">Date of Start</th>
+    <th width="12%">Date of Completed</th>
     <th width="10%">Selected</th>
     <th width="10%">Joined</th>
-    <th width="12%">Date of Completed</th>
 </tr>
 <?php
 $total_selected = $total_joined = 0;
@@ -162,9 +162,9 @@ if( numrows( $rs ) > 0 ) {
             <td><?php echo get_field($r["district_id"], "districts", "name");?></td>
             <td>Literate</td>
             <td><?php echo date_convert($r["start_date"]);?></td>
+            <td><?php echo date_convert($r["end_date"]);?></td>
             <td class="text-center"><?php echo numrows($selected_trainees);?></td>
             <td class="text-center"></td>
-            <td><?php echo date_convert($r["end_date"]);?></td>
         </tr>
 		<?php
 	}
