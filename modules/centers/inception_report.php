@@ -151,8 +151,10 @@ $total_selected = $total_joined = 0;
 if( numrows( $rs ) > 0 ) {
 	$sn = 1;
 	while( $r = dofetch( $rs ) ) {
-        $selected_trainees = doquery("select a.* from trainees a inner join trainees_2_center b on a.id = b.trainee_id where a.trainee_status_id = 1 and center_id = '".$r["id"]."'", $dblink);
+        $selected_trainees = doquery("select a.* from trainees a inner join trainees_2_center b on a.id = b.trainee_id where center_id = '".$r["id"]."'", $dblink);
         $total_selected += numrows($selected_trainees);
+        $joined_trainees = doquery("select a.* from trainees a inner join trainees_2_center b on a.id = b.trainee_id where a.trainee_status_id = 1 and center_id = '".$r["id"]."'", $dblink);
+        $total_joined += numrows($joined_trainees);
         ?>
 		<tr>
             <td class="text-center"><?php echo $sn++?></td>
@@ -164,17 +166,16 @@ if( numrows( $rs ) > 0 ) {
             <td><?php echo date_convert($r["start_date"]);?></td>
             <td><?php echo date_convert($r["end_date"]);?></td>
             <td class="text-center"><?php echo numrows($selected_trainees);?></td>
-            <td class="text-center"></td>
+            <td class="text-center"><?php echo numrows($joined_trainees);?></td>
         </tr>
 		<?php
 	}
 }
 ?>
 <tr>
-    <th colspan="7" align="right">Total</th>
+    <th colspan="8" align="right">Total</th>
     <th><?php echo $total_selected;?></th>
-    <th></th>
-    <th></th>
+    <th><?php echo $total_joined;?></th>
 </tr>
 </table>
 <?php

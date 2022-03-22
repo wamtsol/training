@@ -3,7 +3,7 @@ if(!defined("APP_START")) die("No Direct Access");
 $sql="select a.* from trainees a left join trainees_2_center b on a.id = b.trainee_id where center_id = '".$center_id."' order by name";
 $rs = doquery( $sql, $dblink );
 $trainee_att = array();
-$attendance = doquery("select * from attendance where center_id = '".$center_id."'", $dblink);
+$attendance = doquery("select * from attendance where center_id = '".$center_id."' order by date desc", $dblink);
 if( numrows( $attendance ) > 0 ) {
     while( $attend = dofetch( $attendance ) ) {
         $trainee_att[] = $attend;
@@ -42,11 +42,81 @@ table {
 .text-center{ text-align:center}
 .text-right{ text-align:right}
 .nastaleeq{font-family: 'NafeesRegular'; direction:rtl; unicode-bidi: embed; text-align:right; font-size: 18px;  }
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.header-bottom {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-text {
+    text-align: center;
+}
+.logo-text h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 300;
+}
+.logo-text h1 {
+    margin: 0;
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.logo-text h3 {
+    margin: 0;
+    font-size: 22px;
+    text-transform: capitalize;
+    line-height: 24px;
+}
+.logo-text {
+    text-align: center;
+}
+.logo-text h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 300;
+}
+.logo-text h1 {
+    margin: 0;
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.logo-text h3 {
+    margin: 0;
+    font-size: 22px;
+    text-transform: capitalize;
+    line-height: 24px;
+}
 </style>
+<div id="header">
+    <div class="container">
+        <div class="header-bottom">
+            <div class="logo">
+                <img src="images/main-logo.png" />
+            </div>
+            <div class="logo-text">
+                <h2>Project Management Unit</h2>
+                <h1>Benazir Bhutto Shaheed</h1>
+                <h3>Human Resource research & development board<br> livestock & fisheries department<br> government of sindh</h3>
+            </div>
+            <div class="logo">
+                <img src="images/second-logo.png" />
+            </div>
+        </div>
+    </div>
+</div>
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr class="head">
-	<th colspan="10">
-    	<h1><?php echo get_config( 'site_title' )?></h1>
+	<th colspan="50">
+    	<!-- <h1><?php echo get_config( 'site_title' )?></h1> -->
     	<h2>Attendance List</h2>
         <p>
         	<?php
