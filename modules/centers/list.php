@@ -9,7 +9,7 @@ if(!defined("APP_START")) die("No Direct Access");
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="centers_manage.php?tab=add" class="btn btn-light editproject">Add New Batch</a> 
+            <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?><a href="centers_manage.php?tab=add" class="btn btn-light editproject">Add New Batch</a> <?php }?>
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
             <a class="btn print-btn" href="centers_manage.php?tab=report"><i class="fa fa-print" aria-hidden="true"></i></a>
             <a class="btn btn-sm btn-white" href="centers_manage.php?tab=inception_report">Inception Report</a>
