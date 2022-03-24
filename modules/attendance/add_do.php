@@ -3,7 +3,7 @@ if(!defined("APP_START")) die("No Direct Access");
 if(isset($_POST["attendance_add"])){
 	extract($_POST);
 	$err="";
-	if(numrows(doquery("select id from attendance where date='".date_dbconvert($date)."'", $dblink))>0)
+	if(numrows(doquery("select id from attendance where date='".date_dbconvert($date)."' and center_id = '".$center_id."'", $dblink))>0)
 		$err='Date already exists.<br />';
 	$students = json_decode($_POST["students"]);
 	$status = 1;
