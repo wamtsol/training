@@ -139,7 +139,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
             border-bottom: solid 1px #000;
             margin-bottom: 10px;
             padding-bottom: 10px;
-            margin-top: 40px;
+            margin-top: 10px;
         }
         .sign h2 {
             margin: 0;
@@ -172,6 +172,9 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
         }
         .subject h2 span {
             border-bottom: 1px solid #000;
+        }
+        .sign-left.dr img{
+            width: 118px;
         }
     </style>
 </head>
@@ -274,10 +277,11 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                             participate in training commencing from <span><?php echo date_convert($trainee["start_date"])?></span>,at <span><?php echo $trainee["center"]?></span></p>
                     </div>
                     <div class="sign">
-                        <div class="sign-left">
+                        <div class="sign-left" style="margin-top: 80px;">
                             <h2>Acceptance by Candidate: <span>________________</span></h2>
                         </div>
                         <div class="sign-left dr">
+                            <img src="images/sign.png" />
                             <h1>(DR. MAJEED HAKEEM DHAMRAH)</h1>
                             <h2>Project Director BBSHRRDB</h2>
                             <h3>Livestock & Fisheries Department</h3>

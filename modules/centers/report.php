@@ -1,5 +1,6 @@
 <?php
 if(!defined("APP_START")) die("No Direct Access");  
+$sql="select a.*, b.title, b.duration, b.total_batches, b.total_no_of_trainees, b.min_qualification from centers a inner join projects b on a.project_id = b.id where 1 $extra group by a.project_id order by center";
 $rs = doquery($sql, $dblink);    
 ?>
 <style>
