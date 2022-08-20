@@ -69,9 +69,11 @@ if(isset($_SESSION["centers_manage"]["incharge_user_id"])){
 else{
     $incharge_user_id = $_SESSION["logged_in_admin"]["linked_user"];
 }
-if($incharge_user_id!=""){
-	$extra.=" and incharge_user_id='".$incharge_user_id."'";
-	$is_search=true;
+if($_SESSION["logged_in_admin"]["admin_type_id"]==16 && $_SESSION["logged_in_admin"]["admin_type_id"]==7 && $_SESSION["logged_in_admin"]["admin_type_id"]==13 && $_SESSION["logged_in_admin"]["admin_type_id"]==8){
+	if($incharge_user_id!=""){
+		$extra.=" and incharge_user_id='".$incharge_user_id."'";
+		$is_search=true;
+	}
 }
 if(isset($_GET["q"])){
 	$q=slash($_GET["q"]);

@@ -74,7 +74,7 @@ if(!defined("APP_START")) die("No Direct Access");
                         if(numrows($res)>=0){
                             while($rec=dofetch($res)){
                             ?>
-                            <option value="<?php echo $rec["id"]?>" <?php echo($district_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"])?></option>
+                            <option value="<?php echo $rec["id"]?>" <?php echo($incharge_user_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"])?></option>
                             <?php
                             }
                         }	
