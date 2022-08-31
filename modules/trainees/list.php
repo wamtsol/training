@@ -11,6 +11,7 @@ if(!defined("APP_START")) die("No Direct Access");
         	<a href="trainees_manage.php?tab=add" class="btn btn-light editproject <?php if(get_field($center_id, "centers",  "end_date")<date("Y-m-d") && $_SESSION["logged_in_admin"]["admin_type_id"]!=1){?>disabled<?php }?>">Add New Trainee</a> 
             <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a>
             <a class="btn print-btn" href="trainees_manage.php?tab=report_csv">CSV</a>
+            <a class="btn print-btn" href="trainees_manage.php?tab=print"><i class="fa fa-print" aria-hidden="true"></i></a>
     	</div> 
     </div> 
 </div>
