@@ -24,7 +24,13 @@ if(isset($_SESSION["centers_manage"]["department_id"])){
     $department_id=$_SESSION["centers_manage"]["department_id"];
 }
 else{
-    $department_id="";
+	if($_SESSION["logged_in_admin"]["admin_type_id"]==16 || $_SESSION["logged_in_admin"]["admin_type_id"]==7 || $_SESSION["logged_in_admin"]["admin_type_id"]==13 || $_SESSION["logged_in_admin"]["admin_type_id"]==8){
+    	$departmentID = dofetch(doquery("select id from department where status = 1 and admin_type_id = '".$_SESSION["logged_in_admin"]["admin_type_id"]."'", $dblink));
+		$department_id=$departmentID["id"];
+	}
+	else{
+		$department_id="";
+	}
 }
 if($department_id!=""){
     $extra.=" and department_id='".$department_id."'";
