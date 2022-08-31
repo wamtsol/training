@@ -128,13 +128,13 @@ table {
     <th width="2%" class="text-center">S.No</th>
     <th width="15%">Name</th>
     <th width="15%">Father/Husband Name</th>
-    <th width="8%">CNIC</th>
+    <th width="12%">CNIC</th>
     <th width="8%">DOB</th>
     <th width="8%">DOI</th>
     <th width="8%">Contact</th>
     <th width="10%">Course</th>
     <th width="10%">District</th>
-    <th width="10%">Trainee Status</th>
+    <th width="8%">Status</th>
 </tr>
 <?php
 $total_batches = $total_trainees = 0;
