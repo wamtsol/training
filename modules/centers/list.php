@@ -25,7 +25,12 @@ if(!defined("APP_START")) die("No Direct Access");
                     <select name="department_id" id="department_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($department_id=="")? " selected":"";?>>Select Department</option>
                         <?php
-                        $res=doquery("select * from departments where status = 1 order by title",$dblink);
+                        if($_SESSION["logged_in_admin"]["admin_type_id"]==16 || $_SESSION["logged_in_admin"]["admin_type_id"]==7 || $_SESSION["logged_in_admin"]["admin_type_id"]==13 || $_SESSION["logged_in_admin"]["admin_type_id"]==8){
+                            $res=doquery("select * from departments where status = 1 $adminId order by title",$dblink);
+                        }
+                        else{
+                            $res=doquery("select * from departments where status = 1 order by title",$dblink);
+                        }
                         if(numrows($res)>=0){
                             while($rec=dofetch($res)){
                                 ?>
